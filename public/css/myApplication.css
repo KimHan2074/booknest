@@ -1,0 +1,232 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.container-myProfile {
+    position: relative;
+    width: 100%;
+}
+
+.sidebar {
+    width: 19.7%;
+    background-color: #F8F8FD;
+    height: 100vh;
+    position: fixed;
+    padding: 0;
+    box-shadow: 1px 2px 4px rgba(199, 199, 199, 0.2);
+}
+
+.top-sidebar h3 {
+    display: flex;
+    justify-content: center;
+    font-size: 32px;
+    margin-top: 27px;
+}
+
+.top-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.top-sidebar ul li {
+    margin: 10px 0; /* Khoảng cách giữa các mục */
+}
+
+.top-sidebar ul li a {
+    text-decoration: none;
+    color: #7C8493;
+    font-size: 16px;
+    display: flex; /* Căn chỉnh icon và text theo chiều ngang */
+    align-items: center;
+    gap: 15px; /* Khoảng cách giữa icon và text */
+    padding: 10px 15px; /* Tạo không gian cho mục */
+    border-left: 3px solid transparent; /* Đường viền bên trái mặc định */
+    transition: background-color 0.3s, border-left-color 0.3s; /* Hiệu ứng mượt */
+}
+
+.top-sidebar ul li a:hover {
+    background-color: #f0f4ff;
+    border-left-color: #4640DE; 
+    color: #4640DE;
+}
+
+
+.bottom-sidebar {
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottom-sidebar button {
+    margin-bottom: 15px;
+    width: 220px;
+    height: 50px;
+    box-shadow: 1px 1px 2px rgba(199, 199, 199, 0.2);
+    border: 1px solid #f0f0f0;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.img-account img {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+
+.account-bottom-sidebar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.account-bottom-sidebar h2 {
+    font-size: 17px;
+}
+
+.account-bottom-sidebar p {
+    color: #202430;
+    font-size: 14px;
+}
+
+.content-myProfile {
+    background-color: white;
+    width: 80.3%;
+    height: 100%;
+    position: absolute;
+    left: 19.7%;
+}
+
+.header-myProfile {
+    margin: 10px 0;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #D6DDEB;
+}
+
+.header-myProfile h2 {
+    font-weight: lighter;
+    margin: 20px 50px;
+    font-size: 30px;
+}
+
+.header-myProfile button {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    font-size: 15px;
+    background-color: white;
+    color: #4640DE;
+    font-weight: bold;
+    margin-right: 50px;
+    padding: 15px;
+    border: 1px solid #D6DDEB;
+    width: 200px;
+    height: 40px;
+}
+
+.underline {
+    width: 1127px;
+    /* height: 1px; */
+    border-bottom: 1px solid #D6DDEB;
+    background-color:#D6DDEB;
+    margin-left: 50px;
+}
+
+.intro-content-myProfile {
+    padding-left: 50px;
+}
+
+.intro-content-myProfile h4 {
+    font-size: 18px;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+.application-history {
+    width: 96%;
+    margin: 20px 0px;
+    border-collapse: collapse;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  */
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.application-history thead th {
+    text-align: left;
+    padding: 20px;
+    background-color: #f0f4ff; /* Màu nền cho tiêu đề */
+    color: #4640DE;
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 2px solid #D6DDEB;
+}
+
+.application-history tbody td {
+    padding: 20px;
+    font-size: 14px;
+    border-bottom: 1px solid #D6DDEB; /* Đường kẻ giữa các dòng */
+    vertical-align: middle;
+}
+
+.application-history tbody tr:hover {
+    background-color: #f0f4ff; /* Màu nền khi hover vào dòng */
+}
+
+.company-info {
+    display: flex; /* Để logo và tên nằm ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 10px; /* Khoảng cách giữa logo và tên */
+}
+
+.company-info img {
+    width: 35px; /* Kích thước logo */
+    height: 35px;
+    border-radius: 20px; /* Tùy chọn: bo góc cho logo */
+    object-fit: cover; /* Giữ tỷ lệ logo */
+}
+
+.company-info span {
+    margin-left: 7px;
+    font-size: 14px; /* Kích thước chữ cho tên công ty */
+    color: #333; /* Màu chữ */
+    font-weight: 500; /* Đậm vừa phải */
+}
+
+
+.application-history tbody td:nth-child(5), 
+.application-history thead th:nth-child(5) {
+    text-align: center;
+}
+
+.status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.status.pending {
+    border: 2px solid #FFC107;
+    color: #FFC107; 
+}
+
+.status.accepted {
+    border: 2px solid #28A745;
+    color: #28A745; 
+}
+
+.status.rejected {
+    border: 2px solid #DC3545;
+    color: #DC3545; 
+}
