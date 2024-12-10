@@ -108,6 +108,8 @@
                     <a href="#" class="mx-2"><i class="bi bi-linkedin"></i></a>
                     <a href="#" class="mx-2"><i class="bi bi-instagram"></i></a>
                     <a href="#" class="mx-2"><i class="bi bi-envelope"></i></a>
+                    <a href="#" class="mx-2"><i class="bi bi-4-circle-fill"></i></a>
+                    
                 </div>
             </div>
         </div>
