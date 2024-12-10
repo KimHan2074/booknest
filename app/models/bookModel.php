@@ -1,10 +1,44 @@
 <?php 
 
-class homeModel extends DModel {
+class bookModel extends DModel {
 
     public function __construct() {
         parent::__construct();
     }
+
+
+    public function getAllBook($table_books) {
+        $sql = "
+                SELECT * from $table_books
+                ORDER BY $table_books.stock DESC
+                LIMIT 16;
+            ";
+        return $this->db->select($sql);
+    }
+
+    public function getBookById($table_books, $book_id) {
+        $sql = "select $table_books.* from $table_books
+                where $table_books.book_id = :book_id";
+
+        $data = [':book_id' => $book_id];
+
+        return $this->db->select($sql, $data);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // public function job($table_jobs) {
     //     $sql = "select * from " . $table_jobs;
     //     return $this->db->select($sql);
