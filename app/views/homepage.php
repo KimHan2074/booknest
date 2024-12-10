@@ -34,11 +34,13 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             padding: 10px 20px;
             background-color:#DEE3E5;
             font-family: "Inter", sans-serif;
+            height: 60px;
         }
 
         /*logo brand*/
         .logo-brand {
             display: flex;
+            gap:10px;
             align-items: center;
             margin-left: 40px;
         }
@@ -46,22 +48,25 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
         .logo {
             width: 75px;
             height: 60px;
-            margin-right: 10px;
+            margin-bottom: 8px;
         }
 
         .brand-name {
             font-size: 40px;
             color: #815C5C;
             font-weight: normal;
+            margin-bottom: 0;
+            line-height: 60px;
         }
 
         /* Navigation Links */
-        .nav {
+        .navigation {
             display: flex;
             align-items: center;
             cursor: pointer;
             list-style: none;
-            margin-left: 600px;
+            margin-left: 540px;
+            margin-bottom: 0;
         }
         .nav-link {
             margin: 0 28px;
@@ -84,19 +89,20 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
         .nav-link.active::after{
             content: "";
             position: absolute;
-            bottom: -11.5px;
+            bottom: -2px;
             left: 0;
             right: 0;
-            height: 3.5px;
+            height: 3px;
             background-color:#815C5C; 
-            border-radius: 8px;
+            border-radius: 10px;
         }
         /* style of right header */
         .right-header{
             display: flex;
             gap: 40px;
             color: #815C5C;
-            margin-left: 90px;
+            margin-left: 70px;
+            align-items:center;
         }
         .icon-cart, .icon-user{
             font-size: 26px;
@@ -162,7 +168,9 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
 <?php
     require_once './app/views/header.php';
 ?>
-<h1>Xin chào tất cả các bạn</h1>
+<div>
+    Hello các bạn
+</div>
 
     <!-- Footer -->
 <?php
