@@ -50,55 +50,6 @@ class Main {
     }
     
 
-    // public function callMethod() {
-    //     if ($this->controller === null) {
-    //         header("Location: " . BASE_URL . "index/notfound");
-    //         return;
-    //     }
-    
-    //     if (isset($this->url[2])) {
-    //         $this->methodName = $this->url[1];
-    //         if (method_exists($this->controller, $this->methodName)) {
-    //             $this->controller->{$this->methodName}($this->url[2]);
-    //         } else {
-    //             header("Location: " . BASE_URL . "index/notfound");
-    //         }
-    //     } else {
-    //         if (isset($this->url[1])) {
-    //             $this->methodName = $this->url[1];
-    //             if (method_exists($this->controller, $this->methodName)) {
-    //                 $this->controller->{$this->methodName}();
-    //             } else {
-    //                 header("Location: " . BASE_URL . "index/notfound");
-    //             }
-    //         } else {
-    //             if (method_exists($this->controller, $this->methodName)) {
-    //                 $this->controller->{$this->methodName}();
-    //             } else {
-    //                 header("Location: " . BASE_URL . "index/notfound");
-    //             }
-    //         }
-    //     }
-    // }
-    // public function callMethod() {
-    //     if ($this->controller === null) {
-    //         header("Location: " . BASE_URL . "index/notfound");
-    //         return;
-    //     }
-    //     $methodName = $this->url[1] ?? $this->methodName;
-    //     $parameter = $this->url[2] ?? null;
-    
-    //     if (method_exists($this->controller, $methodName)) {
-    //         if ($parameter) {
-    //             $this->controller->{$methodName}($parameter);
-    //         } else {
-    //             $this->controller->{$methodName}();
-    //         }
-    //     } else {
-    //             header("Location: " . BASE_URL . "index/notfound");
-    //     }
-    // }
-
     public function callMethod() {
         // Nếu controller là null, chuyển hướng đến trang lỗi, nhưng tránh khi đang ở trang lỗi
         if ($this->controller === null && $this->url[0] !== 'homepage/notfound') {

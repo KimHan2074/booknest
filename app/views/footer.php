@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -60,7 +60,7 @@
         }
     </style>
 </head>
-<body>
+<body> -->
     <div class="footer">
         <div class="container">
             <div class="row">
@@ -112,5 +112,5 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+<!-- </body>
+</html> -->
