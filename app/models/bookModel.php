@@ -17,7 +17,8 @@ class bookModel extends DModel {
     }
 
     public function getBookById($table_books, $book_id) {
-        $sql = "select $table_books.* from $table_books
+        $sql = "select $table_books.title, $table_books.
+        from $table_books
                 where $table_books.book_id = :book_id";
 
         $data = [':book_id' => $book_id];
