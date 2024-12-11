@@ -59,6 +59,9 @@
             cursor: pointer;
             transition: transform 0.2s;
         }
+        .small-book-image:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
