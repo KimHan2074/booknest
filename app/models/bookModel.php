@@ -17,9 +17,16 @@ class bookModel extends DModel {
     }
 
     public function getBookById($table_books, $book_id) {
-        $sql = "select $table_books.title, $table_books.
-        from $table_books
-                where $table_books.book_id = :book_id";
+        $sql = "SELECT 
+            b.title, 
+            b.price, 
+            i.path AS image_path
+        FROM 
+            $table_books b
+        LEFT JOIN 
+            images i ON b.book_id = i.book_id
+        where 
+        b.book_id = :book_id;";
 
         $data = [':book_id' => $book_id];
 
