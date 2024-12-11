@@ -26,7 +26,9 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             padding: 0;
             box-sizing: border-box;
         }
-
+        body{
+            background-color: #F9F5EE;
+        }
         /* Header Styling */
         .header {
             display: flex;
@@ -188,7 +190,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             width: 30%;
             display: flex;
             flex-direction: column;
-            gap: 35px;
+            gap: 30px;
         }
         .categories{
             border: 1px solid #815C5C;
@@ -212,6 +214,47 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
         }
         .categories-item:hover{
             color: brown;
+        }
+
+        .title-bestSeller{
+            font-style: italic;
+            color: #815C5C;
+            font-size: 36px;
+            font-weight: normal;
+            margin-bottom: 12px;
+        }
+        .products-bestSeller{
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .product-item-bestSeller{
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            background-color: white;
+            padding: 8px 7px;
+            border-radius: 5px;
+        }
+        .image-book{
+            width: 78px;
+            height: 78px;
+            object-fit: contain;
+        }
+        .name-price{
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .name-book, .price-book{
+            margin:0;
+        }
+        .name-book{
+            color: #815C5C;
+            font-weight: 500;
+        }
+        .price-book{
+            font-style: italic;
         }
     </style>
 </head>
@@ -239,7 +282,84 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                 <h2 class="title-bestSeller">Bestselling new books</h2>
                 <div class="products-bestSeller">
                     <div class="product-item-bestSeller">
-                        
+                        <img class="image-book" src="public/img/book1.png" alt="image-book">
+                        <div class="name-price">
+                            <p class="name-book">Mastering The Mindset Of 'Full Stomach, Clear Eyes'</p>
+                            <p class="price-book">179,100₫</p>
+                        </div>
+                    </div>
+
+                    <div class="product-item-bestSeller">
+                        <img class="image-book" src="public/img/book2.png" alt="image-book">
+                        <div class="name-price">
+                            <p class="name-book">The Cursed Rabbit</p>
+                            <p class="price-book">124,200₫</p>
+                        </div>
+                    </div>
+
+                    <div class="product-item-bestSeller">
+                        <img class="image-book" src="public/img/book3.png" alt="image-book">
+                        <div class="name-price">
+                            <p class="name-book">The Shadow Of The Eight Trigrams Gate</p>
+                            <p class="price-book">207,000₫</p>
+                        </div>
+                    </div>
+
+                    <div class="product-item-bestSeller">
+                        <img class="image-book" src="public/img/book4.png" alt="image-book">
+                        <div class="name-price">
+                            <p class="name-book">I Want To Eat Your Pancreas</p>
+                            <p class="price-book">113,400₫</p>
+                        </div>
+                    </div>
+
+                    <div class="product-item-bestSeller">
+                        <img class="image-book" src="public/img/book5.png" alt="image-book">
+                        <div class="name-price">
+                            <p class="name-book">Children's Guide To Caring For Parents 
+                                (2-Book Set)</p>
+                            <p class="price-book">266,400₫</p>
+                        </div>
+                    </div>
+
+                    <div class="product-item-bestSeller">
+                        <img class="image-book" src="public/img/book6.png" alt="image-book">
+                        <div class="name-price">
+                            <p class="name-book">There Is A Summer Never Forgotten</p>
+                            <p class="price-book">96,000₫</p>
+                        </div>
+                    </div>
+
+                    <div class="product-item-bestSeller">
+                        <img class="image-book" src="public/img/book7.png" alt="image-book">
+                        <div class="name-price">
+                            <p class="name-book">Practical Human Resources</p>
+                            <p class="price-book">119,200₫</p>
+                        </div>
+                    </div>
+
+                    <div class="product-item-bestSeller">
+                        <img class="image-book" src="public/img/book8.png" alt="image-book">
+                        <div class="name-price">
+                            <p class="name-book">My Grandma Sends Her Apologies</p>
+                            <p class="price-book">171,000₫</p>
+                        </div>
+                    </div>
+
+                    <div class="product-item-bestSeller">
+                        <img class="image-book" src="public/img/book9.png" alt="image-book">
+                        <div class="name-price">
+                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
+                            <p class="price-book">212,000₫</p>
+                        </div>
+                    </div>
+
+                    <div class="product-item-bestSeller">
+                        <img class="image-book" src="public/img/book10.png" alt="image-book">
+                        <div class="name-price">
+                            <p class="name-book">The World Is Very Noisy, Just Being Myself Is Enough</p>
+                            <p class="price-book">96,000₫</p>
+                        </div>
                     </div>
                 </div>
             </div>
