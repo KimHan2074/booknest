@@ -10,7 +10,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookNest Header</title>
+    <title>BookNest</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <!-- link font chữ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -281,86 +281,19 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             <div class="best-seller">
                 <h2 class="title-bestSeller">Bestselling new books</h2>
                 <div class="products-bestSeller">
+                    <?php
+                    foreach($bookBestSelling as $key => $value) {
+                    ?>
                     <div class="product-item-bestSeller">
-                        <img class="image-book" src="public/img/book1.png" alt="image-book">
+                        <img class="image-book" src="public/img/<?php echo $value['image_path']?>" alt="image-book">
                         <div class="name-price">
-                            <p class="name-book">Mastering The Mindset Of 'Full Stomach, Clear Eyes'</p>
-                            <p class="price-book">179,100₫</p>
+                            <p class="name-book"><?php echo $value['title']?></p>
+                            <p class="price-book"><?php echo $value['price'] . "đ"?></p>
                         </div>
                     </div>
-
-                    <div class="product-item-bestSeller">
-                        <img class="image-book" src="public/img/book2.png" alt="image-book">
-                        <div class="name-price">
-                            <p class="name-book">The Cursed Rabbit</p>
-                            <p class="price-book">124,200₫</p>
-                        </div>
-                    </div>
-
-                    <div class="product-item-bestSeller">
-                        <img class="image-book" src="public/img/book3.png" alt="image-book">
-                        <div class="name-price">
-                            <p class="name-book">The Shadow Of The Eight Trigrams Gate</p>
-                            <p class="price-book">207,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="product-item-bestSeller">
-                        <img class="image-book" src="public/img/book4.png" alt="image-book">
-                        <div class="name-price">
-                            <p class="name-book">I Want To Eat Your Pancreas</p>
-                            <p class="price-book">113,400₫</p>
-                        </div>
-                    </div>
-
-                    <div class="product-item-bestSeller">
-                        <img class="image-book" src="public/img/book5.png" alt="image-book">
-                        <div class="name-price">
-                            <p class="name-book">Children's Guide To Caring For Parents 
-                                (2-Book Set)</p>
-                            <p class="price-book">266,400₫</p>
-                        </div>
-                    </div>
-
-                    <div class="product-item-bestSeller">
-                        <img class="image-book" src="public/img/book6.png" alt="image-book">
-                        <div class="name-price">
-                            <p class="name-book">There Is A Summer Never Forgotten</p>
-                            <p class="price-book">96,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="product-item-bestSeller">
-                        <img class="image-book" src="public/img/book7.png" alt="image-book">
-                        <div class="name-price">
-                            <p class="name-book">Practical Human Resources</p>
-                            <p class="price-book">119,200₫</p>
-                        </div>
-                    </div>
-
-                    <div class="product-item-bestSeller">
-                        <img class="image-book" src="public/img/book8.png" alt="image-book">
-                        <div class="name-price">
-                            <p class="name-book">My Grandma Sends Her Apologies</p>
-                            <p class="price-book">171,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="product-item-bestSeller">
-                        <img class="image-book" src="public/img/book9.png" alt="image-book">
-                        <div class="name-price">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price-book">212,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="product-item-bestSeller">
-                        <img class="image-book" src="public/img/book10.png" alt="image-book">
-                        <div class="name-price">
-                            <p class="name-book">The World Is Very Noisy, Just Being Myself Is Enough</p>
-                            <p class="price-book">96,000₫</p>
-                        </div>
-                    </div>
+                    <?php 
+                    }
+                    ?>
                 </div>
             </div>
         </div>

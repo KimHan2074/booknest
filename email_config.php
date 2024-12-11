@@ -1,8 +1,11 @@
 <?php
+require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-require 'vendor/autoload.php';
+
 
 function sendConfirmationEmail($toEmail, $toAddress, $fullname, $job_name, $time) {
     $mail = new PHPMailer(true);
@@ -11,7 +14,7 @@ function sendConfirmationEmail($toEmail, $toAddress, $fullname, $job_name, $time
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'pddat2602@gmail.com';
-        $mail->Password = 'vufz qpax zuuy rujs'; // Thay bằng mật khẩu ứng dụng
+        $mail->Password = $_ENV['SMTP_PASSWORD'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
