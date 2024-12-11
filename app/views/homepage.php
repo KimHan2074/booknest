@@ -235,6 +235,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             background-color: white;
             padding: 8px 7px;
             border-radius: 5px;
+            cursor: pointer;
         }
         .image-book{
             width: 78px;
@@ -284,7 +285,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <?php
                     foreach($bookBestSelling as $key => $value) {
                     ?>
-                    <div class="product-item-bestSeller">
+                    <div class="product-item-bestSeller" onclick="">
                         <img class="image-book" src="public/img/<?php echo $value['image_path']?>" alt="image-book">
                         <div class="name-price">
                             <p class="name-book"><?php echo $value['title']?></p>
