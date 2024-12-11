@@ -19,7 +19,7 @@
         }
 
         .book-details-container {
-            margin-top: 700px;
+            margin-top: 40px;
             display: flex;
             flex-direction: column;
             background: #F9F5EE;
