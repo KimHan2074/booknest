@@ -15,21 +15,24 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: auto;
         }
 
-        /* Bố cục container */
         .book-details-container {
+            margin-top: 700px;
             display: flex;
             flex-direction: column;
             background: #F9F5EE;
-            padding: 10px;
-            max-width: 800px;
+            padding: 20px;
+            max-width: 900px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
         }
 
         .images-details-wrapper {
             display: flex;
             gap: 70px;
+            flex-wrap: wrap;
+            display: flex;
         }
 
         .images-wrapper {
@@ -41,6 +44,7 @@
         .large-image img {
             max-width: 300px;
             max-height: 400px;
+            object-fit: cover;
         }
 
         .small-image {
@@ -50,7 +54,10 @@
 
         .small-book-image {
             width: 60px;
+            height: 80px;
+            object-fit: cover;
             cursor: pointer;
+            transition: transform 0.2s;
         }
     </style>
 </head>

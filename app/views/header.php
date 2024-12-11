@@ -1,107 +1,127 @@
-<style>
-    .job-header {
-    position: fixed;
-    width: 100vw;
-    height: 70px;
-    z-index: 1000;
-    background-color: #e0e7ff;
-    /* background-color: #F8F8FD; */
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-}
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookNest Header</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.job-header-container {
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        /* Header Styling */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color:#DEE3E5;
+            font-family: "Inter", sans-serif;
+        }
 
-.job-header-container img {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    object-fit: cover;
-    top: 15px;
-    left: 100px;
-}
+        /*logo brand*/
+        .logo-brand {
+            display: flex;
+            align-items: center;
+            margin-left: 40px;
+        }
 
-.job-header-container span {
-    position: absolute;
-    top: 22px;
-    left: 155px;
-    font-size: 26px;
-    font-weight: bold;
-}
+        .logo {
+            width: 75px;
+            height: 60px;
+            margin-right: 10px;
+        }
 
-.job-header-container .a1 {
-    position: absolute;
-    top: 27px;
-    left: 345px;
-    font-size: 16px;
-    text-decoration: none;
-    color: #515B6F;
-}
-.job-header-container .a2 {
-    position: absolute;
-    top: 27px;
-    left: 445px;
-    font-size: 16px;
-    text-decoration: none;
-    color: #515B6F;
-}
-.auth-buttons {
-    padding-right: 100px;
-}
+        .brand-name {
+            font-size: 40px;
+            color: #815C5C;
+            font-weight: normal;
+        }
 
-.auth-buttons button {
-    border: none;
-    font-size: 15px;;
-    width: 100px;
-    height: 40px;
-    margin: 0 10px;
-    font-weight: bold;
-}
+        /* Navigation Links */
+        .nav {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            list-style: none;
+            margin-left: 600px;
+        }
+        .nav-link {
+            margin: 0 28px;
+            align-items: center;
+            position: relative;
+        }
+        .nav-link a{
+            text-decoration: none;
+            color: #815C5C;
+            font-size: 22px;
+            font-weight: bold;
+        }
 
-.auth-buttons .btn-login {
-    color: #4640DE;
-    background-color: white;
-    cursor: pointer;
-}
-
-.auth-buttons .btn-register {
-    color: white;
-    background-color: #4640DE;
-    cursor: pointer;
-}
-</style>
-<div class="job-header">
-        <div class="job-header-container">
-            <div class="logo-job-header">
-                <img src="../../public/img/logo_web.jpg" alt="Stripe">
-                <span>JobEverlight</span>
-                <a class="a1" href="http://localhost/job_finder_website/searchjob/searchjob/industry=,pr=,type=,level=,search=">Tìm việc</a>
-                <a class="a2" href="http://localhost/job_finder_website/searchcompany/searchcompany/industry=,size=,search=">Duyệt các công ty</a>
-            </div>
-    
-            <div class="auth-buttons" >
-                <button id="btn-login" class="btn-login">Đăng nhập</button>
-                <button id="btn-register" class="btn-register">Đăng ký</button>
-            </div>
-            <div id="user-info" class="user-info" style="display:none;">
-                <img src="https://via.placeholder.com/40" alt="User Avatar" class="user-avatar">
-                <span id="username" class="username">Tên người dùng</span>
-            </div>
+        .nav-link:hover{
+            color: #815C5C;
+        }
+        .nav-link.active{
+            color:#815C5C;
+        }
+        .nav-link.active::after{
+            content: "";
+            position: absolute;
+            bottom: -11.5px;
+            left: 0;
+            right: 0;
+            height: 3.5px;
+            background-color:#815C5C; 
+            border-radius: 8px;
+        }
+        /* style of right header */
+        .right-header{
+            display: flex;
+            gap: 40px;
+            color: #815C5C;
+            margin-left: 90px;
+        }
+        .icon-cart, .icon-user{
+            font-size: 26px;
+        }
+        .log-out{
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body> -->
+    <header class="header">
+        <div class="logo-brand">
+            <img src="public/img/image.png" alt="BookNest Logo" class="logo">
+            <h1 class="brand-name">BookNest</h1>
         </div>
-    </div>
+        <ul class="nav">
+            <li class="nav-link active"><a href="#">Home</a></li>
+            <li class="nav-link"><a href="#">Search</a></li>
+        </ul>
+        <div class="right-header">
+            <div class="iconCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></div>
+            <div class="iconUser"><i class="fa-solid fa-user icon-user"></i></div>
+            <div class="log-out">Log out</div>
+        </div>
+    </header>
+
     <script>
-    const loginBtn = document.getElementById('btn-login');
-    const registerBtn = document.getElementById('btn-register');
-    loginBtn.addEventListener('click', function () {
-        window.location.href = "http://localhost/job_finder_website/login/login";
-    });
-    registerBtn.addEventListener('click', function () {
-        window.location.href = "http://localhost/job_finder_website/register/registerUser";
-    }
-    );
-</script>
+        const tabs = document.querySelectorAll(".nav-link");
+        tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                tabs.forEach((t) => {
+                    t.classList.remove("active");
+                });
+                tab.classList.add("active");
+            });
+        });
+    </script>
+<!-- </body>
+</html> -->
