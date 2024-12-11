@@ -177,6 +177,42 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
         #address-1, #address-2, #address-3 {
             margin-bottom: 0.5rem; /* Giảm khoảng cách giữa các đoạn văn */
         }
+
+        /* CSS of body */
+        .content{
+            display: flex;
+            gap: 30px;
+            margin: 30px 60px 0 60px;
+        }
+        .content-left{
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+        .categories{
+            border: 1px solid #815C5C;
+            border-radius: 5px;
+            color: #815C5C;
+        }
+        .title-categories{
+            margin: 20px 0 10px 28px;
+            font-size: 36px;
+            font-weight: 600;
+        }
+        .categories-list{
+            margin-left: 20px;
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            font-size: 24px;
+            padding-bottom: 40px;
+            
+        }
+        .categories-item:hover{
+            color: brown;
+        }
     </style>
 </head>
 <body>
@@ -184,9 +220,35 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
 <?php
     require_once './app/views/header.php';
 ?>
-<div>
-    Hello các bạn
-</div>
+    <div class="content">
+        <div class="content-left">
+            <div class="categories">
+                <h2 class="title-categories">Categories</h2>
+                <ul class="categories-list">
+                    <li class="categories-item">Literature books</li>
+                    <li class="categories-item">Economics books</li>
+                    <li class="categories-item">Life skills books</li>
+                    <li class="categories-item">Health & Lifestyle</li>
+                    <li class="categories-item">Children's books</li>
+                    <li class="categories-item">Horror books</li>
+                    <li class="categories-item">Newly released books</li>
+                </ul>
+            </div>
+            <img class="poster" src="public/img/Horror-book.png" alt="horror book">
+            <div class="best-seller">
+                <h2 class="title-bestSeller">Bestselling new books</h2>
+                <div class="products-bestSeller">
+                    <div class="product-item-bestSeller">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-right">
+            <!-- content ... -->
+        </div>
+    </div>
 
     <!-- Footer -->
 <?php
