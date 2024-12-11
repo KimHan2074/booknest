@@ -65,11 +65,11 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             align-items: center;
             cursor: pointer;
             list-style: none;
-            margin-left: 540px;
+            margin-left: auto;
             margin-bottom: 0;
         }
         .nav-link {
-            margin: 0 28px;
+            margin: 0 24px;
             align-items: center;
             position: relative;
         }
@@ -99,16 +99,32 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
         /* style of right header */
         .right-header{
             display: flex;
-            gap: 40px;
+            gap: 30px;
             color: #815C5C;
-            margin-left: 70px;
+            margin-left: 60px;
             align-items:center;
         }
         .icon-cart, .icon-user{
             font-size: 26px;
         }
         .log-out{
-            font-size: 22px;
+            font-size: 18px;
+            white-space: nowrap; /* Không cho phép xuống dòng */
+        }
+        .btn.btn-action{
+            display: flex;
+            gap: 15px;
+        }
+        .sign-up, .log-in{
+            outline: none;
+            border: none;
+            background-color:#815C5C;
+            width: 80px;
+            height: 30px; 
+            padding: 0 6px;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
         /* Màu nền của footer */

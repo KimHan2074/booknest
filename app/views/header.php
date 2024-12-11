@@ -10,7 +10,11 @@
     <div class="right-header">
         <div class="iconCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></div>
         <div class="iconUser"><i class="fa-solid fa-user icon-user"></i></div>
-        <div class="log-out">Log out</div>
+        <div class="btn btn-action">
+            <button class="sign-up">Sign Up</button>
+            <button class="log-in">Log In</button>
+        </div>
+        <div class="log-out">Log Out</div>
     </div>
 </header>
 
