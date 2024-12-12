@@ -527,24 +527,24 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/OVE.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">A Man Called Ove</p>
+                            <p class="price">144,000₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/POIROT.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Poirot Investigates </p>
+                            <p class="price">84,000₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/POTTER.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Harry Potter and the Goblet of Fire</p>
+                            <p class="price">279,000₫</p>
                         </div>
                     </div>
                 </div>
@@ -556,32 +556,32 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/QUYEN_LUC.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">The 48 Laws of Power</p>
+                            <p class="price">180,000₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/TAM_LY.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Positive Psychology in Sales</p>
+                            <p class="price">135,000₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/SINH_TON.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">How the World's Largest Companies Survive</p>
+                            <p class="price">189,000₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/KHAC_BIET.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Differentiate to Succeed</p>
+                            <p class="price">112,500₫</p>
                         </div>
                     </div>
                 </div>
@@ -593,32 +593,32 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/TU_DUY.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Applying Open-Minded Thinking in Work</p>
+                            <p class="price">127,200₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/GAME.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">The Game Theory of Decision Makers</p>
+                            <p class="price">143,200₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/NAO.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">The Brain Must Be Well-Behaved Too</p>
+                            <p class="price">84,000₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/VUI_LEN.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Why Worry? Be Happy! (Small Format)</p>
+                            <p class="price">279,000₫</p>
                         </div>
                     </div>
                 </div>  
@@ -666,32 +666,32 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/CHUYEN_KE.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Stories for Preschool Children - Volume 1</p>
+                            <p class="price">72,000₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/NGUOI_LA.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Don't Follow Strangers Carelessly</p>
+                            <p class="price">28,800₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/MAY_ANH.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Abracadabra! The Camera Opens!</p>
+                            <p class="price">92,800₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/KE_XAU.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">How to Defend When Facing a Bad Person</p>
+                            <p class="price">25,200₫</p>
                         </div>
                     </div>
                 </div>
@@ -703,32 +703,32 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/TRIEU_HOI.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Demon Summoning Volume 1</p>
+                            <p class="price">178,200₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/TRIEU_HOI2.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Demon Summoning Volume 2</p>
+                            <p class="price">178,200₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/TONG_TU.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">The Youth of Forensic Doctor Tong Cu</p>
+                            <p class="price">179,100₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/CHO_HOANG.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">The Wild Dog and the Bone</p>
+                            <p class="price">210,000₫</p>
                         </div>
                     </div>
                 </div>
