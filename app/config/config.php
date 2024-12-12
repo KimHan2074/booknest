@@ -1,2 +1,2 @@
 <?php
-    define('BASE_URL', 'http://localhost/job_finder_website/');
+    define('BASE_URL', 'http://localhost/booknest_website/');
