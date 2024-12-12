@@ -10,8 +10,7 @@ Welcome to **BookNest**, your go-to online bookstore where readers can discover 
 - **Shopping Cart**: Lets users add, edit, or remove books before checkout.  
 - **Payment Gateway**: Facilitates secure and efficient transactions.  
 - **Admin Dashboard**: Empowers administrators to manage books, orders, and users.  
-- **Search and Filter**: Allows users to find books easily by genre, price, or popularity.  
-- **Book Blog**: Provides a platform for sharing articles about books and reading.  
+- **Search and Filter**: Allows users to find books easily by genre, price, or popularity.
 
 ## Technologies Used  
 - **Frontend**:  
