@@ -9,6 +9,7 @@ class homepage extends DController {
         $bookModel = $this->load->model('bookModel');
         $table_book = 'books';
         $data['books'] = $bookModel->getAllBook($table_book);
+        $data['bookBestSelling'] = $bookModel->getBestSellingBookHomepage($table_book);
         $this->load->view('homepage', $data);
     }
 

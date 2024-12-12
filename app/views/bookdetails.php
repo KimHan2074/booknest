@@ -118,39 +118,62 @@
             border: 1px solid  #F9F5EE;
             border-radius: 3px;
         }
+
         
     </style>
 </head>
 <body>
+
+<?php
+// require_once 'header.php';
+?>
 <div class="book-details-container">
-        <div class="images-details-wrapper">
-            <!-- Hình ảnh sách -->
-            <div class="images-wrapper">
-                <div class="large-image">
-                    <img src="https://product.hstatic.net/200000845405/product/1_1fde89db729544a5935dd9e06b471dcc_master.jpg" alt="Book Cover" class="book-image">
+    <div class="images-details-wrapper">
+        <!-- Hình ảnh sách -->
+        <div class="images-wrapper">
+        <?php
+            $counter = 0; 
+            foreach($bookById as $key => $value) { 
+                if ($counter == 0) { ?>
+                    <div class="large-image">
+                        <img src="../public/img/<?php echo $value['image_path']; ?>" alt="Book Cover" class="book-image">
+                    </div>
+                <?php }
+                elseif ($counter == 1) { ?>
+                    <div class="small-image">
+                        <img src="../public/img/<?php echo $value['image_path']; ?>" alt="Small Image 1" class="small-book-image">
+                    </div>
+                <?php }
+                $counter++;
+                if ($counter >= 2) break;
+            }
+            ?>
+
+        </div>
+        <div class="details-wrapper">
+        <?php foreach($bookById as $key => $value) { ?>
+
+        <div class="title"><?php echo $value['title']?></div>
+            <div class="price-quantity-wrapper">
+                <div class="price">
+                    <span class="original-price">30,000đ</span>
+                    <span class="discounted-price"><?php echo $value['price'] . "đ"?></span>    
                 </div>
-                <div class="small-image">
-                    <img src="https://product.hstatic.net/200000845405/product/1_1fde89db729544a5935dd9e06b471dcc_master.jpg" alt="Small Image 1" class="small-book-image">
-                    <img src="https://product.hstatic.net/200000845405/product/2_79ee8dc03e08420fb76cd27407a0818b_master.jpg" alt="Small Image 2" class="small-book-image">
-                    <img src="https://product.hstatic.net/200000845405/product/3_694ddc374ca645378bcffe9d381c5849_master.jpg" alt="Small Image 3" class="small-book-image">
+                <div class="quantity-wrapper">
+                    <label for="quantity">Quantity:</label>
+                    <div class="quantity-buttons">
+                        <button class="btn-decrement">-</button>
+                        <button class="quantity-input" id="quantity">1</button>
+                        <button class="btn-increment">+</button>
+                    </div>
                 </div>
             </div>
-            <div class="details-wrapper">
-                <div class="title">Everyone is a wounded child behind an adult shell</div>
-                <div class="price-quantity-wrapper">
-                    <div class="price">
-                        <span class="original-price">30,000đ</span>
-                        <span class="discounted-price">27,000đ</span>
-                    </div>
-                    <div class="quantity-wrapper">
-                        <label for="quantity">Quantity:</label>
-                        <div class="quantity-buttons">
-                            <button class="btn-decrement">-</button>
-                            <button class="quantity-input" id="quantity">1</button>
-                            <button class="btn-increment">+</button>
-                        </div>
-                    </div>
-                </div>
-
+        </div>
+        <?php break; } ?>
+    </div>
+</div>
+<?php
+// require_once 'footer.php';
+?>
 </body>
 </html>
