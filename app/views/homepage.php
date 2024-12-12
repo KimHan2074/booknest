@@ -525,18 +525,18 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     </div>
 
                     <div class="literature-item">
-                        <img class="img-book" src="public/img/OVE.png" alt="img-book">
+                        <img class="img-book" src="public/img/AC_NU.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">A Man Called Ove</p>
-                            <p class="price">144,000₫</p>
+                            <p class="name-book">Evil Girl Reincarnation – Episode 2</p>
+                            <p class="price">167,200₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
-                        <img class="img-book" src="public/img/POIROT.png" alt="img-book">
+                        <img class="img-book" src="public/img/30_TUOI.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Poirot Investigates </p>
-                            <p class="price">84,000₫</p>
+                            <p class="name-book">30 Years Old - Everything is Just Beginning </p>
+                            <p class="price">108,000₫</p>
                         </div>
                     </div>
 
@@ -554,10 +554,10 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                 <h2 class="title-type">Economics Books</h2>
                 <div class="literature-books">
                     <div class="literature-item">
-                        <img class="img-book" src="public/img/QUYEN_LUC.png" alt="img-book">
+                        <img class="img-book" src="public/img/GAM7.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">The 48 Laws of Power</p>
-                            <p class="price">180,000₫</p>
+                            <p class="name-book">GAM7 BOOK SPECIAL 2020 </p>
+                            <p class="price">202,500₫</p>
                         </div>
                     </div>
 
@@ -578,9 +578,9 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     </div>
 
                     <div class="literature-item">
-                        <img class="img-book" src="public/img/KHAC_BIET.png" alt="img-book">
+                        <img class="img-book" src="public/img/SPIN.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Differentiate to Succeed</p>
+                            <p class="name-book">Accelerate Sales Using SPIN (2024 Reissue)</p>
                             <p class="price">112,500₫</p>
                         </div>
                     </div>
