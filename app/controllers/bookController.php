@@ -12,6 +12,6 @@ class bookController extends DController {
 
         $data['bookById'] = $bookModel->getBookById($table_book, $book_id);
 
-        $this->load->view('book_detail', $data);
+        $this->load->view('bookdetails', $data);
     }
 }

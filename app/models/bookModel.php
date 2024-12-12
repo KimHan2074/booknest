@@ -6,8 +6,7 @@ class bookModel extends DModel {
         parent::__construct();
     }
 
-
-    public function getAllBook($table_books) {
+    public function getAllBooks($table_books) {
         $sql = "
                 SELECT * from $table_books
                 ORDER BY $table_books.stock DESC
@@ -17,15 +16,71 @@ class bookModel extends DModel {
     }
 
     public function getBookById($table_books, $book_id) {
-        $sql = "select $table_books.* from $table_books
-                where $table_books.book_id = :book_id";
+        $sql = "SELECT 
+            b.book_id,
+            b.title, 
+            b.price, 
+            i.path AS image_path
+        FROM 
+            $table_books b
+        LEFT JOIN 
+            images i ON b.book_id = i.book_id
+        where 
+        b.book_id = :book_id;";
 
         $data = [':book_id' => $book_id];
 
         return $this->db->select($sql, $data);
     }
 
+    public function getBestSellingBookHomepage($table_books) {
+        $sql = "
+        SELECT 
+            $table_books.book_id,
+            $table_books.title, 
+            $table_books.price, 
+            MIN(i.path) AS image_path
+        FROM 
+            $table_books
+        LEFT JOIN 
+            images i ON $table_books.book_id = i.book_id
+        GROUP BY 
+            $table_books.book_id, $table_books.title, $table_books.price
+        ORDER BY 
+            $table_books.stock ASC, $table_books.book_id ASC
+        LIMIT 10;
+        ";
 
+        return $this->db->select($sql);
+    }
+
+    public function getBooksByCategory($table_book, $category) {
+        $sql = "
+                SELECT $table_book.title, $table_book.price, images.path as image_path
+                from $table_book
+                left join images on $table_book.book_id = images.book_id
+                JOIN Categories on books.category_id = categories.category_id
+                WHERE categories.name = :category_name
+                ORDER BY $table_book.stock DESC
+                LIMIT 4;
+            ";
+
+        $data = [':category_name' => $category];
+        return $this->db->select($sql, $data);  
+    }
+
+    public  function getLiteratureBooks($table_books){
+        $sql = "
+                SELECT $table_books.title, $table_books.price, images.path as image_path
+                from $table_books
+                left join images on $table_books.book_id = images.book_id
+                JOIN Categories on books.category_id = categories.category_id
+                WHERE categories.name = 'Literature books'
+                ORDER BY $table_books.stock DESC
+                LIMIT 16;
+            ";
+        return $this->db->select($sql);
+    } 
 
 
 
