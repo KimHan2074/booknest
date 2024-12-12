@@ -1,4 +1,4 @@
-    <div class="containers">
+    <div class="footer">
         <div class="columns">
             <div class="columnone">
                 <h4>SERVICES</h4>
@@ -18,8 +18,11 @@
             </div>
             <div class="columnthree">
                 <h4>ADDRESS</h4>
+                <br>
                 <p>Phuoc My - Son Tra - Da Nang</p>
+                <br>
                 <p>booknest_shd@gmail.com</p>
+                <br>
                 <p>0762 778 450</p>
             </div>
         </div>

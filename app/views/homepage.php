@@ -22,7 +22,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
 <body>
     <!-- Header -->
 <?php
-    require_once './app/views/header.php';
+    require_once 'header.php';
 ?>
     <div class="content">
         <div class="content-left">
@@ -233,7 +233,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
 
     <!-- Footer -->
 <?php
-    require_once './app/views/footer.php';
+    require_once 'footer.php';
 ?>
 
 <script>

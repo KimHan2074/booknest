@@ -42,6 +42,12 @@
         font-weight: normal;
         margin-bottom: 0;
         line-height: 60px;
+        
+    }
+
+    .brand-name a {
+        text-decoration: none;
+        color: #815C5C;
     }
 
     /* Navigation Links */
@@ -109,10 +115,10 @@
     }
 
     /* Màu nền của footer */
-    .containers {
+    .footer {
         color: #815C5C;
         background-color: #DEE3E5;
-        padding: 20px;
+        padding: 20px 20px 0 20px;
     }
 
     .columns {
@@ -131,32 +137,20 @@
         text-decoration: none;
         margin: 5px 0;
     }
-
     .link:hover {
         text-decoration: underline;
     }
-
-    .footer {
-        position: relative;
-        padding: 20px 0;
-    }
-
     .footer-line {
         width: 100%;
         height: 1px;
         background-color: #815C5C;
     }
-
     .footer-content {
         display: flex;
         justify-content: space-between;
         padding: 10px 0;
+        margin: 0 70px;
     }
-
-    .footer-left {
-        text-align: left;
-    }
-
     .footer-right {
         text-align: right;
     }
