@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../public/css/homepage.css">
     <link rel="stylesheet" href="../public/css/book_details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>BookDetails</title>
 </head>
 <body>
@@ -41,7 +42,7 @@ require_once 'header.php';
         <div class="title"><?php echo $value['title']?></div>
             <div class="price-quantity-wrapper">
                 <div class="price">
-                    <span class="original-price">30,000đ</span>  
+                    <span class="original-price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></span> 
                 </div>
                 <div class="quantity-wrapper">
                     <label for="quantity">Quantity:</label>

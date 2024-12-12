@@ -49,7 +49,8 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <img class="image-book" src="public/img/<?php echo $value['image_path']?>" alt="image-book">
                         <div class="name-price">
                             <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'] ?>"><?php echo $value['title']?></a>
-                            <p class="price-book"><?php echo $value['price'] . "đ"?></p>
+                            <p class="price-book"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?>
+                            </p>
                         </div>
                     </div>
                     <?php 
@@ -105,8 +106,8 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <div class="literature-item">
                             <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
                             <div class="book-info">
-                                <p class="name-book"><?php echo $value['title'] ?></p>
-                                <p class="price"><?php echo $value['price'] . 'đ' ?></p>
+                                <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                                <p class="price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></p>
                             </div>
                         </div>
                     <?php } ?>
@@ -129,8 +130,8 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <div class="literature-item">
                             <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
                             <div class="book-info">
-                                <p class="name-book"><?php echo $value['title'] ?></p>
-                                <p class="price"><?php echo $value['price'] . 'đ' ?></p>
+                                <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                                <p class="price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></p>
                             </div>
                         </div>
                     <?php } ?>
@@ -152,8 +153,8 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <div class="literature-item">
                             <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
                             <div class="book-info">
-                                <p class="name-book"><?php echo $value['title'] ?></p>
-                                <p class="price"><?php echo $value['price'] . 'đ' ?></p>
+                                <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                                <p class="price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></p>
                             </div>
                         </div>
                     <?php } ?>
@@ -175,8 +176,8 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <div class="literature-item">
                             <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
                             <div class="book-info">
-                                <p class="name-book"><?php echo $value['title'] ?></p>
-                                <p class="price"><?php echo $value['price'] . 'đ' ?></p>
+                                <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                                <p class="price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></p>
                             </div>
                         </div>
                     <?php } ?>
@@ -197,8 +198,8 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <div class="literature-item">
                             <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
                             <div class="book-info">
-                                <p class="name-book"><?php echo $value['title'] ?></p>
-                                <p class="price"><?php echo $value['price'] . 'đ' ?></p>
+                                <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                                <p class="price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></p>
                             </div>
                         </div>
                     <?php } ?>
@@ -220,8 +221,8 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <div class="literature-item">
                             <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
                             <div class="book-info">
-                                <p class="name-book"><?php echo $value['title'] ?></p>
-                                <p class="price"><?php echo $value['price'] . 'đ' ?></p>
+                                <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                                <p class="price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></p>
                             </div>
                         </div>
                     <?php } ?>
@@ -242,28 +243,25 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
     const nextButton = document.querySelector('.slider-control-next');
     const paginationDots = document.querySelectorAll('.slider-pagination-dot');
 
-    let currentIndex = 1; // Bắt đầu từ slide đầu tiên (vị trí gốc)
+    let currentIndex = 1;
     const totalSlides = sliderItems.length;
 
-    // Cập nhật slider khi di chuyển
     function updateSlider() {
     slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-    
-    // Cập nhật chấm chỉ mục
+
     paginationDots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentIndex - 1);
     });
     }
 
-    // Chuyển slide tiếp theo
+
     function nextSlide() {
     if (currentIndex >= totalSlides - 1) {
-        // Đến slide clone cuối cùng
-        currentIndex = 1; // Reset về slide thực đầu tiên
-        slider.style.transition = 'none'; // Tắt hiệu ứng chuyển đổi
+        currentIndex = 1;
+        slider.style.transition = 'none';
         slider.style.transform = `translateX(-${currentIndex * 100}%)`;
         setTimeout(() => {
-        slider.style.transition = 'transform 0.8s ease-in-out'; // Khôi phục hiệu ứng
+        slider.style.transition = 'transform 0.8s ease-in-out';
         nextSlide();
         }, 50);
         return;
