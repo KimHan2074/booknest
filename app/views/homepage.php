@@ -535,7 +535,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/30_TUOI.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">30 Years Old - Everything is Just Beginning </p>
+                            <p class="name-book">Everything Is Just Beginning </p>
                             <p class="price">108,000₫</p>
                         </div>
                     </div>
@@ -543,7 +543,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/POTTER.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Harry Potter and the Goblet of Fire</p>
+                            <p class="name-book">Harry Potter And The Goblet Of Fire</p>
                             <p class="price">279,000₫</p>
                         </div>
                     </div>
@@ -556,7 +556,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/GAM7.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">GAM7 BOOK SPECIAL 2020 </p>
+                            <p class="name-book">Gam7 - Marketing In The New Normal </p>
                             <p class="price">202,500₫</p>
                         </div>
                     </div>
@@ -564,15 +564,15 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/TAM_LY.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Positive Psychology in Sales</p>
+                            <p class="name-book">Positive Psychology In Sales</p>
                             <p class="price">135,000₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
-                        <img class="img-book" src="public/img/SINH_TON.png" alt="img-book">
+                        <img class="img-book" src="public/img/SINH_TON (2).png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">How the World's Largest Companies Survive</p>
+                            <p class="name-book">How The Large Companies Survive</p>
                             <p class="price">189,000₫</p>
                         </div>
                     </div>
@@ -593,7 +593,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/TU_DUY.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Applying Open-Minded Thinking in Work</p>
+                            <p class="name-book">Open-Minded Thinking In Work</p>
                             <p class="price">127,200₫</p>
                         </div>
                     </div>
@@ -601,7 +601,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/GAME.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">The Game Theory of Decision Makers</p>
+                            <p class="name-book">The Game Theory Of Decision Makers</p>
                             <p class="price">143,200₫</p>
                         </div>
                     </div>
@@ -628,34 +628,34 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                 <h2 class="title-type">Health & Lifestyle</h2>
                 <div class="literature-books">
                     <div class="literature-item">
-                        <img class="img-book" src="public/img/REDFLAG.png" alt="img-book">
+                        <img class="img-book" src="public/img/HOA_SEN.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Lotus Flower Blooms Step By Step</p>
+                            <p class="price">67,500₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/HEALING.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Self-Healing Negative Emotions</p>
+                            <p class="price">107,100₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/FOCUS.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">The Attraction Of Concentration</p>
+                            <p class="price">116,100₫</p>
                         </div>
                     </div>
 
                     <div class="literature-item">
                         <img class="img-book" src="public/img/GIAI_TOA.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                            <p class="name-book">Encyclopedia Of Stress Relief</p>
+                            <p class="price">107,100₫</p>
                         </div>
                     </div>
                 </div>
@@ -666,7 +666,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/CHUYEN_KE.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">Stories for Preschool Children - Volume 1</p>
+                            <p class="name-book">Stories For Preschool Children - Volume 1</p>
                             <p class="price">72,000₫</p>
                         </div>
                     </div>
@@ -690,7 +690,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/KE_XAU.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">How to Defend When Facing a Bad Person</p>
+                            <p class="name-book">How To Defend When Facing A Bad Person</p>
                             <p class="price">25,200₫</p>
                         </div>
                     </div>
@@ -719,7 +719,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/TONG_TU.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">The Youth of Forensic Doctor Tong Cu</p>
+                            <p class="name-book">The Youth Of Forensic Doctor Tong Cu</p>
                             <p class="price">179,100₫</p>
                         </div>
                     </div>
@@ -727,7 +727,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="literature-item">
                         <img class="img-book" src="public/img/CHO_HOANG.png" alt="img-book">
                         <div class="book-info">
-                            <p class="name-book">The Wild Dog and the Bone</p>
+                            <p class="name-book">The Wild Dog And The Bone</p>
                             <p class="price">210,000₫</p>
                         </div>
                     </div>
