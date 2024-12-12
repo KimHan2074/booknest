@@ -11,11 +11,15 @@
     /* Header Styling */
     .header {
         display: flex;
+        position: fixed;
+        top: 0;
         align-items: center;
         padding: 10px 20px;
         background-color:#DEE3E5;
         font-family: "Inter", sans-serif;
         height: 60px;
+        width: 100%;
+        z-index: 9999;
     }
 
     /*logo brand*/
@@ -172,7 +176,7 @@
     .content{
         display: flex;
         gap: 30px;
-        margin: 30px 60px 0 60px;
+        margin: 90px 60px 0 60px;
     }
     .content-left{
         width: 30%;
