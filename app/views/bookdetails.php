@@ -7,7 +7,7 @@
     <title>BookDetails</title>
     <style>
          body {
-            font-family: Arial, sans-serif;
+            font-family: "Inter", sans-serif;
             margin: 0;
             padding: 0;
             background-color: #F9F5EE;
@@ -19,7 +19,7 @@
         }
 
         .book-details-container {
-            margin-top: 40px;
+            margin-top: 700px;
             display: flex;
             flex-direction: column;
             background: #F9F5EE;
@@ -59,10 +59,8 @@
             cursor: pointer;
             transition: transform 0.2s;
         }
-        .small-book-image:hover {
-            transform: scale(1.1);
-        }
 
+        /* Phần chi tiết sách */
         .title {
             font-size: 24px;
             font-weight: bold;
@@ -85,16 +83,9 @@
         .price {
             font-size: 18px;
             display: flex;
-            gap: 10px;
         }
 
         .original-price {
-            text-decoration: line-through;
-            color: #888;
-            font-weight: bold;
-        }
-
-        .discounted-price {
             color: #F30B0B;
             font-weight: bold;
         }
@@ -119,11 +110,138 @@
             border-radius: 3px;
         }
 
+        /* Nút bấm */
+        .button-wrapper {
+            display: flex;
+            gap: 200px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .add-to-cart {
+            background-color: #D8B99C;
+            color: white;
+        }
+
+        .add-to-cart:hover {
+            background-color: #815C5C;
+        }
+
+        .buy-now {
+            background-color: #D8B99C;
+            color: white;
+        }
+
+        .buy-now:hover {
+            background-color: #815C5C;
+        }
+
+        /* Mô tả chi tiết sách */
+        .description ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .description li {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        /* phần tiêu đề descible */
+        .descriptions {
+            font-size: 28px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+            padding: 10px 30px;
+            background-color: #FAFAFA;
+            margin-top: 50px;
+            box-sizing: border-box;
+        }
+
+        /* Phần mô tả nội dung sách*/
+        .describe {
+            padding: 20px;
+            background-color: #D9D9D9;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Sách cùng thể loại */
+        .same-genre {
+            margin-top: 50px;
+        }
+        
+         /* Đường ngang cho tiêu đề */
+         .same-genre-title::before,
+        .same-genre-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: black;
+            margin: 0 5px;
+        }
+
+        .same-genre-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .genre-books {
+            display: flex;
+            gap: 40px;
+            justify-content: center; 
+        }
+
+        .genre-book {
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+        }
+
+        /* Hình ảnh sách */
+        .genre-book img {
+            max-width: 100%;
+            max-height: 100%;
+            transition: transform 0.2s;
+        }
+
+        .genre-book-title {
+            font-size: 14px;
+            color: #333;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+    
+        .genre-book-price {
+            font-size: 16px;
+            color: #F30B0B;
+            font-weight: bold;
+        }
         
     </style>
 </head>
 <body>
-
 <?php
 // require_once 'header.php';
 ?>
@@ -148,16 +266,15 @@
                 if ($counter >= 2) break;
             }
             ?>
-
         </div>
+        <!-- Chi tiết sách -->
         <div class="details-wrapper">
         <?php foreach($bookById as $key => $value) { ?>
 
         <div class="title"><?php echo $value['title']?></div>
             <div class="price-quantity-wrapper">
                 <div class="price">
-                    <span class="original-price">30,000đ</span>
-                    <span class="discounted-price"><?php echo $value['price'] . "đ"?></span>    
+                    <span class="original-price">30,000đ</span>  
                 </div>
                 <div class="quantity-wrapper">
                     <label for="quantity">Quantity:</label>
@@ -168,8 +285,57 @@
                     </div>
                 </div>
             </div>
+        <!-- nút bấm -->
+            <div class="button-wrapper">
+                <button class="btn add-to-cart">Add to cart</button>
+                <button class="btn buy-now">Buy now</button>
+            </div>
+            <div class="description">
+                <ul>
+                    <li><strong>Book code:</strong> 2651656</li>
+                    <li><strong>Author:</strong> Gege Akutami</li>
+                    <li><strong>Dimension:</strong> 11.3 × 17.6 cm</li>
+                    <li><strong>Number of pages:</strong> 192</li>
+                    <li><strong>Format:</strong> Paperback</li>
+                    <li><strong>Weight:</strong> 140 grams</li>
+                    <li><strong>Book series:</strong> Wartime Spells</li>
+                </ul>
+            </div>
         </div>
         <?php break; } ?>
+    </div>
+    <!-- Mô tả chi tiết -->
+    <div class="descriptions">Describe</div>
+        <div class="describe">
+        Everyone is a wounded child behind an "adult" shell.
+        The book synthesizes stories of adults and youth's emotions from the aspects of family affection, love, learning, life attitude, personality formation,... to give readers a feeling of It's like I'm looking back at the journey I've taken and determined to move forward.
+        Along with the rush and stumbles, along the way there are also different joys and sorrows, unpredictable separations, in the end we will enrich ourselves and shake hands with the world as adults. This is the only way to grow up, this is our youth and golden age.
+        </div>
+    <!-- Sách cùng thể loại -->
+    <div class="same-genre">
+        <div class="same-genre-title">Books in the same genre</div>
+        <div class="genre-books">
+            <div class="genre-book">
+                <img src="https://product.hstatic.net/200000845405/product/1_8744256e014c42b3bf90faa8b6fce294_medium.jpg" alt="Book 1">
+                <div class="genre-book-title">Làm Người Dịu Dàng Vượt Ngàn Chông Gai</div>
+                <div class="genre-book-price">22,500đ</div>
+            </div>
+            <div class="genre-book">
+                <img src="https://product.hstatic.net/200000845405/product/1_7d8b8f4316de4d2292dfd9e6b42427d9_master.jpg" alt="Book 2">
+                <div class="genre-book-title">Làm Người Dịu Dàng Vượt Ngàn Chông Gai</div>
+                <div class="genre-book-price">22,500đ</div>
+            </div>
+            <div class="genre-book">
+                <img src="https://product.hstatic.net/200000845405/product/1_26512050088c4910823d5a2b40c46670_master.jpg" alt="Book 3">
+                <div class="genre-book-title">Làm Người Dịu Dàng Vượt Ngàn Chông Gai</div>
+                <div class="genre-book-price">22,500đ</div>
+            </div>
+            <div class="genre-book">
+                <img src="https://product.hstatic.net/200000845405/product/1_0942ffa40867432f95a73971afef6039_medium.jpg" alt="Book 4">
+                <div class="genre-book-title">Làm Người Dịu Dàng Vượt Ngàn Chông Gai</div>
+                <div class="genre-book-price">22,500đ</div>
+            </div>
+        </div>
     </div>
 </div>
 <?php
