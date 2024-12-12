@@ -6,8 +6,7 @@ class bookModel extends DModel {
         parent::__construct();
     }
 
-
-    public function getAllBook($table_books) {
+    public function getAllBooks($table_books) {
         $sql = "
                 SELECT * from $table_books
                 ORDER BY $table_books.stock DESC
@@ -54,6 +53,19 @@ class bookModel extends DModel {
 
         return $this->db->select($sql);
     }
+
+    public  function getLiteratureBooks($table_books){
+        $sql = "
+                SELECT $table_books.title, $table_books.price, images.path as image_path
+                from $table_books
+                left join images on $table_books.book_id = images.book_id
+                JOIN Categories on books.category_id = categories.category_id
+                WHERE categories.name = 'Literature books'
+                ORDER BY $table_books.stock DESC
+                LIMIT 16;
+            ";
+        return $this->db->select($sql);
+    } 
 
 
 

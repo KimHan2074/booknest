@@ -248,6 +248,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
         .name-book{
             color: #815C5C;
             font-weight: 500;
+            text-decoration: none;
         }
         .price-book{
             font-style: italic;
@@ -351,8 +352,8 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
         }
 
         .img-book {
-            max-width: 100%;
-            height: auto;
+            width: 100%;
+            height: 65%;
             margin-bottom: 8px;
         }
 
@@ -449,38 +450,25 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             <div class="literature">
                 <h2 class="title-type">Literature Books</h2>
                 <div class="literature-books">
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/lop-co-tang.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                    <?php 
+                    $old_book_name = ""; 
+                    foreach($LiteratureBooks as $key => $value) { 
+                        $new_book_name = $value['title']; 
+                        if ($new_book_name === $old_book_name) {
+                            continue;
+                        }
+                        $old_book_name = $new_book_name;
+                    ?>
+                        <div class="literature-item">
+                            <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
+                            <div class="book-info">
+                                <p class="name-book"><?php echo $value['title'] ?></p>
+                                <p class="price"><?php echo $value['price'] . 'đ' ?></p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/AC_NU.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Evil Girl Reincarnation – Episode 2</p>
-                            <p class="price">167,200₫</p>
-                        </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/30_TUOI.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">30 Years Old - Everything is Just Beginning </p>
-                            <p class="price">108,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/POTTER.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Harry Potter and the Goblet of Fire</p>
-                            <p class="price">279,000₫</p>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
+
             </div>
 
             <div class="economics">

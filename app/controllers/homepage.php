@@ -8,7 +8,8 @@ class homepage extends DController {
     public function index() {
         $bookModel = $this->load->model('bookModel');
         $table_book = 'books';
-        $data['books'] = $bookModel->getAllBook($table_book);
+        $data['books'] = $bookModel->getAllBooks($table_book);
+        $data['LiteratureBooks'] = $bookModel->getLiteratureBooks($table_book);
         $data['bookBestSelling'] = $bookModel->getBestSellingBookHomepage($table_book);
         $this->load->view('homepage', $data);
     }
