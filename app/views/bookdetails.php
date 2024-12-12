@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../public/css/homepage.css">
-    <link rel="stylesheet" href="../public/css/book_details.css">
+    <link rel="stylesheet" href="../../public/css/homepage.css">
+    <link rel="stylesheet" href="../../public/css/book_details.css">
     <title>BookDetails</title>
 </head>
 <body>
@@ -74,9 +74,10 @@ require_once 'header.php';
     <!-- Mô tả chi tiết -->
     <div class="descriptions">Describe</div>
         <div class="describe">
-        Everyone is a wounded child behind an "adult" shell.
+        <p>Everyone is a wounded child behind an "adult" shell.
         The book synthesizes stories of adults and youth's emotions from the aspects of family affection, love, learning, life attitude, personality formation,... to give readers a feeling of It's like I'm looking back at the journey I've taken and determined to move forward.
         Along with the rush and stumbles, along the way there are also different joys and sorrows, unpredictable separations, in the end we will enrich ourselves and shake hands with the world as adults. This is the only way to grow up, this is our youth and golden age.
+        </p>
         </div>
     <!-- Sách cùng thể loại -->
     <div class="same-genre">
