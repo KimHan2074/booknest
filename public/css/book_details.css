@@ -1,5 +1,5 @@
 .book-details-container {
-    /* margin-top: 700px; */
+    margin-top: 44px;
     display: flex;
     flex-direction: column;
     background: #F9F5EE;
@@ -47,10 +47,11 @@
     flex-direction: column;
     gap: 50px;
     flex: 1;
+    padding-left: 100px;
 }
 .price-quantity-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
 }
 .price {
@@ -66,12 +67,13 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-left: 40px;
 }
 
 .quantity-buttons {
     display: flex;
     padding-right: 80px ;
-    gap: 10px;
+    gap: 2px;
 }
 
 .quantity-input {
@@ -85,7 +87,12 @@
 /* Nút bấm */
 .button-wrapper {
     display: flex;
-    gap: 200px;
+    gap: 80px;
+}
+
+.btn-increment, .btn-decrement {
+    width: 30px;
+    height: 30px;
 }
 
 .btn {
@@ -122,7 +129,7 @@
     font-weight: bold;
     padding: 10px;
     text-align: center;
-    width: 90%;
+    width: 100%;
 }
 
 .describe {
@@ -133,6 +140,7 @@
     line-height: 1.8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 16px;
+    margin: auto;
 }
 
 .same-genre {

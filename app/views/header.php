@@ -1,10 +1,10 @@
 <header class="header">
     <div class="logo-brand">
         <img src="public/img/image.png" alt="BookNest Logo" class="logo">
-        <h1 class="brand-name">BookNest</h1>
+        <h1 class="brand-name"><a href="http://localhost/booknest_website/">BookNest</a></h1>
     </div>
     <ul class="navigation">
-        <li class="nav-link active"><a href="#">Home</a></li>
+        <li class="nav-link active"><a href="http://localhost/booknest_website/">Home</a></li>
         <li class="nav-link"><a href="#">Search</a></li>
     </ul>
     <div class="right-header">
