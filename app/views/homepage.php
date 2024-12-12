@@ -235,7 +235,6 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             background-color: white;
             padding: 8px 7px;
             border-radius: 5px;
-            cursor: pointer;
         }
         .image-book{
             width: 78px;
@@ -285,10 +284,10 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <?php
                     foreach($bookBestSelling as $key => $value) {
                     ?>
-                    <div class="product-item-bestSeller" onclick="">
+                    <div class="product-item-bestSeller">
                         <img class="image-book" src="public/img/<?php echo $value['image_path']?>" alt="image-book">
                         <div class="name-price">
-                            <p class="name-book"><?php echo $value['title']?></p>
+                            <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'] ?>"><?php echo $value['title']?></a>
                             <p class="price-book"><?php echo $value['price'] . "đ"?></p>
                         </div>
                     </div>

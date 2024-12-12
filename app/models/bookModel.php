@@ -18,6 +18,7 @@ class bookModel extends DModel {
 
     public function getBookById($table_books, $book_id) {
         $sql = "SELECT 
+            b.book_id,
             b.title, 
             b.price, 
             i.path AS image_path
@@ -36,6 +37,7 @@ class bookModel extends DModel {
     public function getBestSellingBookHomepage($table_books) {
         $sql = "
         SELECT 
+            $table_books.book_id,
             $table_books.title, 
             $table_books.price, 
             MIN(i.path) AS image_path
