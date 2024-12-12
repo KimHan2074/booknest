@@ -54,6 +54,21 @@ class bookModel extends DModel {
         return $this->db->select($sql);
     }
 
+    public function getBooksByCategory($table_book, $category) {
+        $sql = "
+                SELECT $table_book.title, $table_book.price, images.path as image_path
+                from $table_book
+                left join images on $table_book.book_id = images.book_id
+                JOIN Categories on books.category_id = categories.category_id
+                WHERE categories.name = :category_name
+                ORDER BY $table_book.stock DESC
+                LIMIT 4;
+            ";
+
+        $data = [':category_name' => $category];
+        return $this->db->select($sql, $data);  
+    }
+
     public  function getLiteratureBooks($table_books){
         $sql = "
                 SELECT $table_books.title, $table_books.price, images.path as image_path

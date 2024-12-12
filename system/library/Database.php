@@ -28,19 +28,6 @@ class Database extends PDO {
         }
         return $statement->execute();
     }
-    public function insertApplication($table_applications, $data) {
-        $keys = implode(',',array_keys($data));
-
-        $values = ":" . implode(', :',array_keys($data));
-
-        $sql = "insert into $table_applications($keys) values($values)";
-        $statement = $this->prepare($sql);
-
-        foreach ($data as $key => $value) {
-            $statement->bindValue(":$key", $value);
-        }
-        return $statement->execute();
-    }
 
     public function update($table, $data, $condition) {
         $updateKeys = NULL;
@@ -67,7 +54,6 @@ class Database extends PDO {
         }
         
     }
-
 
     public function delete($table, $condition, $limit = 1) {
         $sql = "delete from $table where $condition limit $limit";

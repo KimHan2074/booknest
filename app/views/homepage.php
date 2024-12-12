@@ -15,16 +15,15 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
     <!-- link font chữ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <style>
         /* Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: "Inter", sans-serif;
         }
         body{
             background-color: #F9F5EE;
@@ -126,49 +125,62 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
         }
 
         /* Màu nền của footer */
-        .footer {
-            background-color: #DEE3E5; /* Màu xám nhạt */
-            font-family: "Inter", sans-serif; /* Áp dụng font Inter cho footer */
+        .containers {
+            color: #815C5C;
+            background-color: #DEE3E5;
+            padding: 20px;
         }
 
-        /* Tiêu đề trong footer */
-        .footer h6 {
-            color: #815C5C; /* Màu chữ */
-            font-weight: bold;
-            padding-top: 30px; /* Thêm khoảng cách trên */
+        .columns {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
 
-        /* Liên kết trong footer */
-        .footer a {
-            color: #815C5C; /* Màu chữ */
+        .columnone, .columntwo, .columnthree {
+            flex: 1;
+            margin: 0 70px;
+        }
+        .link {
+            display: block;
+            color: #815C5C;
             text-decoration: none;
+            margin: 5px 0;
         }
 
-        .footer a:hover {
-            color: #815C5C; /* Không thay đổi màu chữ khi hover */
+        .link:hover {
             text-decoration: underline;
         }
 
-        /* Icon trong footer */
-        .footer i {
-            font-size: 1.5rem; /* Tăng kích thước icon */
-            color: gray; /* Màu chữ */
-            transition: color 0.3s ease;
+        .footer {
+            position: relative;
+            padding: 20px 0;
         }
 
-        .footer i:hover {
-            color: #815C5C; /* Màu chữ khi hover */
+        .footer-line {
+            width: 100%;
+            height: 1px;
+            background-color: #815C5C;
         }
 
-        /* Dòng phân cách */
-        #footer-hr {
-            border-color: #815C5C; /* Màu xám nhạt cho đường kẻ */
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
         }
 
-        /* Văn bản bản quyền */
-        .footer p {
-            color: #815C5C; /* Màu chữ */
-            font-size: 0.9rem;
+        .footer-left {
+            text-align: left;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .footer-right img {
+            margin-left: 10px;
+            width: 24px;
+            height: 24px;
         }
 
         /* Cập nhật các ID cho các thẻ p */
@@ -345,6 +357,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             padding: 20px 20px 0 20px;
             text-align: center;
             transition: transform 0.3s;
+            height: 330px;
         }
 
         .literature-item:hover {
@@ -386,13 +399,13 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             <div class="categories">
                 <h2 class="title-categories">Categories</h2>
                 <ul class="categories-list">
+                    <li class="categories-item">Newly released books</li>
                     <li class="categories-item">Literature books</li>
                     <li class="categories-item">Economics books</li>
                     <li class="categories-item">Life skills books</li>
                     <li class="categories-item">Health & Lifestyle</li>
                     <li class="categories-item">Children's books</li>
                     <li class="categories-item">Horror books</li>
-                    <li class="categories-item">Newly released books</li>
                 </ul>
             </div>
             <img class="poster" src="public/img/Horror-book.png" alt="horror book">
@@ -474,184 +487,114 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             <div class="economics">
                 <h2 class="title-type">Economics Books</h2>
                 <div class="literature-books">
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/GAM7.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">GAM7 BOOK SPECIAL 2020 </p>
-                            <p class="price">202,500₫</p>
+                <?php 
+                    $old_book_name = ""; 
+                    foreach($EconomicBooks as $key => $value) { 
+                        $new_book_name = $value['title']; 
+                        if ($new_book_name === $old_book_name) {
+                            continue;
+                        }
+                        $old_book_name = $new_book_name;
+                    ?>
+                        <div class="literature-item">
+                            <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
+                            <div class="book-info">
+                                <p class="name-book"><?php echo $value['title'] ?></p>
+                                <p class="price"><?php echo $value['price'] . 'đ' ?></p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/TAM_LY.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Positive Psychology in Sales</p>
-                            <p class="price">135,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/SINH_TON.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">How the World's Largest Companies Survive</p>
-                            <p class="price">189,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/SPIN.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Accelerate Sales Using SPIN (2024 Reissue)</p>
-                            <p class="price">112,500₫</p>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
 
             <div class="life skills">
                 <h2 class="title-type">Life Skills Books</h2>
                 <div class="literature-books">
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/TU_DUY.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Applying Open-Minded Thinking in Work</p>
-                            <p class="price">127,200₫</p>
+                <?php 
+                    $old_book_name = ""; 
+                    foreach($LifeSkillsBooks as $key => $value) { 
+                        $new_book_name = $value['title']; 
+                        if ($new_book_name === $old_book_name) {
+                            continue;
+                        }
+                        $old_book_name = $new_book_name;
+                    ?>
+                        <div class="literature-item">
+                            <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
+                            <div class="book-info">
+                                <p class="name-book"><?php echo $value['title'] ?></p>
+                                <p class="price"><?php echo $value['price'] . 'đ' ?></p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/GAME.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">The Game Theory of Decision Makers</p>
-                            <p class="price">143,200₫</p>
-                        </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/NAO.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">The Brain Must Be Well-Behaved Too</p>
-                            <p class="price">84,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/VUI_LEN.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Why Worry? Be Happy! (Small Format)</p>
-                            <p class="price">279,000₫</p>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>  
             </div>
 
             <div class="health-lifestyle">
                 <h2 class="title-type">Health & Lifestyle</h2>
                 <div class="literature-books">
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/REDFLAG.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
+                <?php 
+                    $old_book_name = ""; 
+                    foreach($HealthLifestyle as $key => $value) { 
+                        $new_book_name = $value['title']; 
+                        if ($new_book_name === $old_book_name) {
+                            continue;
+                        }
+                        $old_book_name = $new_book_name;
+                    ?>
+                        <div class="literature-item">
+                            <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
+                            <div class="book-info">
+                                <p class="name-book"><?php echo $value['title'] ?></p>
+                                <p class="price"><?php echo $value['price'] . 'đ' ?></p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/HEALING.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/FOCUS.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
-                        </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/GIAI_TOA.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Classes With Funerals Skip Roll Call</p>
-                            <p class="price">212,000₫</p>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
             <div class="children's">
                 <h2 class="title-type">Children's Books</h2>
                 <div class="literature-books">
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/CHUYEN_KE.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Stories for Preschool Children - Volume 1</p>
-                            <p class="price">72,000₫</p>
+                <?php 
+                    $old_book_name = ""; 
+                    foreach($Childrens_books as $key => $value) {
+                        $new_book_name = $value['title']; 
+                        if ($new_book_name === $old_book_name) {
+                            continue;
+                        }
+                        $old_book_name = $new_book_name;
+                    ?>
+                        <div class="literature-item">
+                            <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
+                            <div class="book-info">
+                                <p class="name-book"><?php echo $value['title'] ?></p>
+                                <p class="price"><?php echo $value['price'] . 'đ' ?></p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/NGUOI_LA.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Don't Follow Strangers Carelessly</p>
-                            <p class="price">28,800₫</p>
-                        </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/MAY_ANH.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Abracadabra! The Camera Opens!</p>
-                            <p class="price">92,800₫</p>
-                        </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/KE_XAU.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">How to Defend When Facing a Bad Person</p>
-                            <p class="price">25,200₫</p>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
 
             <div class="horror">
                 <h2 class="title-type">Horror Books</h2>
                 <div class="literature-books">
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/TRIEU_HOI.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Demon Summoning Volume 1</p>
-                            <p class="price">178,200₫</p>
+                <?php 
+                    $old_book_name = ""; 
+                    foreach($Horror_books as $key => $value) {
+                        $new_book_name = $value['title']; 
+                        if ($new_book_name === $old_book_name) {
+                            continue;
+                        }
+                        $old_book_name = $new_book_name;
+                    ?>
+                        <div class="literature-item">
+                            <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
+                            <div class="book-info">
+                                <p class="name-book"><?php echo $value['title'] ?></p>
+                                <p class="price"><?php echo $value['price'] . 'đ' ?></p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/TRIEU_HOI2.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">Demon Summoning Volume 2</p>
-                            <p class="price">178,200₫</p>
-                        </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/TONG_TU.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">The Youth of Forensic Doctor Tong Cu</p>
-                            <p class="price">179,100₫</p>
-                        </div>
-                    </div>
-
-                    <div class="literature-item">
-                        <img class="img-book" src="public/img/CHO_HOANG.png" alt="img-book">
-                        <div class="book-info">
-                            <p class="name-book">The Wild Dog and the Bone</p>
-                            <p class="price">210,000₫</p>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

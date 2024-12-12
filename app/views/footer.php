@@ -1,76 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <title>Footer</title>
-    <style>
-        body {
-            font-family: "Inter", sans-serif;
-            margin: 0;
-        }
-
-        .containers {
-            color: #815C5C;
-            background-color: #DEE3E5;
-            padding: 20px;
-        }
-
-        .columns {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .columnone, .columntwo, .columnthree {
-            flex: 1;
-            margin: 0 70px;
-        }
-        .link {
-            display: block;
-            color: #815C5C;
-            text-decoration: none;
-            margin: 5px 0;
-        }
-
-        .link:hover {
-            text-decoration: underline;
-        }
-
-        .footer {
-            position: relative;
-            padding: 20px 0;
-        }
-
-        .footer-line {
-            width: 100%;
-            height: 1px;
-            background-color: #815C5C;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-        }
-
-        .footer-left {
-            text-align: left;
-        }
-
-        .footer-right {
-            text-align: right;
-        }
-
-        .footer-right img {
-            margin-left: 10px;
-            width: 24px;
-            height: 24px;
-        }
-    </style>
-</head>
-<body>
     <div class="containers">
         <div class="columns">
             <div class="columnone">
@@ -103,12 +30,10 @@
             </div>
             <div class="footer-right">
                 Follow us:
-                <img src="../public/img/facebook.png" alt="Facebook">
-                <img src="../public/img/instagram.png" alt="Instagram">
-                <img src="../public/img/twitter.png" alt="Twitter">
-                <img src="../public/img/mail.png" alt="Mail">
+                <img src="public/img/facebook.png" alt="Facebook">
+                <img src="public/img/instagram.png" alt="Instagram">
+                <img src="public/img/twitter.png" alt="Twitter">
+                <img src="public/img/mail.png" alt="Mail">
             </div>
         </div>
     </div>
-</body>
-</html>
