@@ -6,12 +6,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../public/css/homepage.css">
     <link rel="stylesheet" href="../public/css/book_details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>BookDetails</title>
 </head>
 <body>
-<?php
-require_once 'header.php';
-?>
+<header class="header">
+    <div class="logo-brand">
+        <img src="../public/img/image.png" alt="BookNest Logo" class="logo">
+        <h1 class="brand-name"><a href="http://localhost/booknest_website/">BookNest</a></h1>
+    </div>
+    <ul class="navigation">
+        <li class="nav-link active"><a href="http://localhost/booknest_website/">Home</a></li>
+        <li class="nav-link"><a href="#">Search</a></li>
+    </ul>
+    <div class="right-header">
+        <div class="iconCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></div>
+        <div class="iconUser"><i class="fa-solid fa-user icon-user"></i></div>
+
+        <button class="sign-up">Sign Up</button>
+        <button class="log-in">Log In</button>
+        
+        <div class="log-out">Log Out</div>
+    </div>
+</header>
+
 <div class="book-details-container">
     <div class="images-details-wrapper">
         <!-- Hình ảnh sách -->
@@ -41,7 +59,7 @@ require_once 'header.php';
         <div class="title"><?php echo $value['title']?></div>
             <div class="price-quantity-wrapper">
                 <div class="price">
-                    <span class="original-price">30,000đ</span>  
+                    <span class="original-price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></span> 
                 </div>
                 <div class="quantity-wrapper">
                     <label for="quantity">Quantity:</label>
@@ -59,55 +77,86 @@ require_once 'header.php';
             </div>
             <div class="description">
                 <ul>
-                    <li><strong>Book code:</strong> 2651656</li>
-                    <li><strong>Author:</strong> Gege Akutami</li>
-                    <li><strong>Dimension:</strong> 11.3 × 17.6 cm</li>
-                    <li><strong>Number of pages:</strong> 192</li>
-                    <li><strong>Format:</strong> Paperback</li>
-                    <li><strong>Weight:</strong> 140 grams</li>
-                    <li><strong>Book series:</strong> Wartime Spells</li>
+                    <li><strong>Author: </strong><?php echo $value['author']?></li>
+                    <li><strong>Stock: </strong><?php echo $value['stock']?></li>
                 </ul>
             </div>
         </div>
-        <?php break; } ?>
     </div>
     <!-- Mô tả chi tiết -->
-    <div class="descriptions">Describe</div>
-        <div class="describe">
-        <p>Everyone is a wounded child behind an "adult" shell.
-        The book synthesizes stories of adults and youth's emotions from the aspects of family affection, love, learning, life attitude, personality formation,... to give readers a feeling of It's like I'm looking back at the journey I've taken and determined to move forward.
-        Along with the rush and stumbles, along the way there are also different joys and sorrows, unpredictable separations, in the end we will enrich ourselves and shake hands with the world as adults. This is the only way to grow up, this is our youth and golden age.
-        </p>
+    <div class="descriptions">
+        <p>Description</p>
+        <div class="description-content describe">
+            <p><?php echo $value['description']?></p>
         </div>
+    </div>
+    <?php break; } ?>
     <!-- Sách cùng thể loại -->
     <div class="same-genre">
         <div class="same-genre-title">Books in the same genre</div>
         <div class="genre-books">
+            <?php foreach($bookHasTheSameType as $key => $value) { ?>
             <div class="genre-book">
-                <img src="https://product.hstatic.net/200000845405/product/1_8744256e014c42b3bf90faa8b6fce294_medium.jpg" alt="Book 1">
-                <div class="genre-book-title">Làm Người Dịu Dàng Vượt Ngàn Chông Gai</div>
-                <div class="genre-book-price">22,500đ</div>
+                <img src="../public/img/<?php echo $value['image_path']?>" alt="Book 1">
+                <a class="name-book genre-book-title" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                <div class="genre-book-price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></div>
             </div>
-            <div class="genre-book">
-                <img src="https://product.hstatic.net/200000845405/product/1_7d8b8f4316de4d2292dfd9e6b42427d9_master.jpg" alt="Book 2">
-                <div class="genre-book-title">Làm Người Dịu Dàng Vượt Ngàn Chông Gai</div>
-                <div class="genre-book-price">22,500đ</div>
-            </div>
-            <div class="genre-book">
-                <img src="https://product.hstatic.net/200000845405/product/1_26512050088c4910823d5a2b40c46670_master.jpg" alt="Book 3">
-                <div class="genre-book-title">Làm Người Dịu Dàng Vượt Ngàn Chông Gai</div>
-                <div class="genre-book-price">22,500đ</div>
-            </div>
-            <div class="genre-book">
-                <img src="https://product.hstatic.net/200000845405/product/1_0942ffa40867432f95a73971afef6039_medium.jpg" alt="Book 4">
-                <div class="genre-book-title">Làm Người Dịu Dàng Vượt Ngàn Chông Gai</div>
-                <div class="genre-book-price">22,500đ</div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </div>
-<?php
-require_once 'footer.php';
-?>
+<div class="footer">
+        <div class="columns">
+            <div class="columnone">
+                <h4>SERVICES</h4>
+                <a class="link" href="#">Terms of Service</a>
+                <a class="link" href="#">Privacy Policy</a>
+                <a class="link" href="#">Contact</a>
+                <a class="link" href="#">Bookstore System</a>
+                <a class="link" href="#">Order Tracking</a>
+            </div>
+            <div class="columntwo">
+                <h4>SUPPORT</h4>
+                <a class="link" href="#">Order Guide</a>
+                <a class="link" href="#">Return and Refund Policy</a>
+                <a class="link" href="#">Shipping Policy</a>
+                <a class="link" href="#">Payment Methods</a>
+                <a class="link" href="#">Customer Policy</a>
+            </div>
+            <div class="columnthree">
+                <h4>ADDRESS</h4>
+                <br>
+                <p>Phuoc My - Son Tra - Da Nang</p>
+                <br>
+                <p>booknest_shd@gmail.com</p>
+                <br>
+                <p>0762 778 450</p>
+            </div>
+        </div>
+        <div class="footer-line"></div>
+        <div class="footer-content">
+            <div class="footer-left">
+                BookNest.com.vn © 2024. All Rights Reserved.
+            </div>
+            <div class="footer-right">
+                Follow us:
+                <img src="../public/img/facebook.png" alt="Facebook">
+                <img src="../public/img/instagram.png" alt="Instagram">
+                <img src="../public/img/twitter.png" alt="Twitter">
+                <img src="../public/img/mail.png" alt="Mail">
+            </div>
+        </div>
+    </div>
+<script>
+    const tabs = document.querySelectorAll(".nav-link");
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            tabs.forEach((t) => {
+                t.classList.remove("active");
+            });
+            tab.classList.add("active");
+        });
+    });
+</script>
 </body>
 </html>

@@ -42,6 +42,12 @@
         font-weight: normal;
         margin-bottom: 0;
         line-height: 60px;
+        
+    }
+
+    .brand-name a {
+        text-decoration: none;
+        color: #815C5C;
     }
 
     /* Navigation Links */
@@ -106,13 +112,18 @@
         color: white;
         border-radius: 5px;
         font-size: 16px;
+
+    }
+
+    .sign-up:hover, .log-in:hover {
+        cursor: pointer;
     }
 
     /* Màu nền của footer */
     .footer {
         color: #815C5C;
         background-color: #DEE3E5;
-        padding: 20px;
+        padding: 20px 20px 0 20px;
     }
 
     .columns {
@@ -143,6 +154,7 @@
         display: flex;
         justify-content: space-between;
         padding: 10px 0;
+        margin: 0 70px;
     }
     .footer-right {
         text-align: right;
@@ -193,6 +205,7 @@
     }
     .categories-item:hover{
         color: brown;
+        cursor: pointer;
     }
 
     .title-type{

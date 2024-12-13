@@ -11,6 +11,7 @@ class bookController extends DController {
         $book_id = $_GET['book_id'];
 
         $data['bookById'] = $bookModel->getBookById($table_book, $book_id);
+        $data['bookHasTheSameType'] = $bookModel->getBookHasTheSameType($table_book, $book_id);
 
         $this->load->view('bookdetails', $data);
     }
