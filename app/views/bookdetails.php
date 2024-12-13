@@ -13,10 +13,10 @@
 <header class="header">
     <div class="logo-brand">
         <img src="../public/img/image.png" alt="BookNest Logo" class="logo">
-        <h1 class="brand-name"><a href="http://localhost/booknest_website/">BookNest</a></h1>
+        <h1 class="brand-name"><a href="/booknest_website/">BookNest</a></h1>
     </div>
     <ul class="navigation">
-        <li class="nav-link active"><a href="http://localhost/booknest_website/">Home</a></li>
+        <li class="nav-link active"><a href="/booknest_website/">Home</a></li>
         <li class="nav-link"><a href="#">Search</a></li>
     </ul>
     <div class="right-header">
@@ -98,7 +98,7 @@
             <?php foreach($bookHasTheSameType as $key => $value) { ?>
             <div class="genre-book">
                 <img src="../public/img/<?php echo $value['image_path']?>" alt="Book 1">
-                <a class="name-book genre-book-title" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                <a class="name-book genre-book-title" href="/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
                 <div class="genre-book-price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></div>
             </div>
             <?php } ?>

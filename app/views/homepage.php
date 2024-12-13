@@ -48,7 +48,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                     <div class="product-item-bestSeller">
                         <img class="image-book" src="public/img/<?php echo $value['image_path']?>" alt="image-book">
                         <div class="name-price">
-                            <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'] ?>"><?php echo $value['title']?></a>
+                            <a class="name-book" href="/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'] ?>"><?php echo $value['title']?></a>
                             <p class="price-book"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?>
                             </p>
                         </div>
@@ -106,7 +106,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <div class="literature-item">
                             <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
                             <div class="book-info">
-                                <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                                <a class="name-book" href="/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
                                 <p class="price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></p>
                             </div>
                         </div>
@@ -130,7 +130,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <div class="literature-item">
                             <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
                             <div class="book-info">
-                                <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                                <a class="name-book" href="/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
                                 <p class="price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></p>
                             </div>
                         </div>
@@ -153,7 +153,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <div class="literature-item">
                             <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
                             <div class="book-info">
-                                <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                                <a class="name-book" href="/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
                                 <p class="price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></p>
                             </div>
                         </div>
@@ -176,7 +176,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <div class="literature-item">
                             <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
                             <div class="book-info">
-                                <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                                <a class="name-book" href="/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
                                 <p class="price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></p>
                             </div>
                         </div>
@@ -198,7 +198,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <div class="literature-item">
                             <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
                             <div class="book-info">
-                                <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                                <a class="name-book" href="/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
                                 <p class="price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></p>
                             </div>
                         </div>
@@ -221,7 +221,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         <div class="literature-item">
                             <img class="img-book" src="public/img/<?php echo $value['image_path'] ?>" alt="img-book">
                             <div class="book-info">
-                                <a class="name-book" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
+                                <a class="name-book" href="/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
                                 <p class="price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></p>
                             </div>
                         </div>
