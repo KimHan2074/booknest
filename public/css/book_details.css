@@ -1,10 +1,12 @@
+/* Phần container chi tiết sách */
 .book-details-container {
     margin-top: 44px;
     display: flex;
     flex-direction: column;
     background: #F9F5EE;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .images-details-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -14,27 +16,41 @@
     margin-right: 200px;
     margin-top: 50px;
 }
+
 .images-wrapper {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
+
+/* Ảnh lớn */
 .large-image img {
-    width: 218px;
-    height: 296px;
+    width: 240px;
+    height: 320px;
     object-fit: cover;
 }
+
+/* Ảnh nhỏ */
 .small-image {
     display: flex;
-    gap: 30px;
+    gap: 20px;
 }
+
 .small-book-image {
-    width: 60px;
-    height: 80px;
+    width: 80px;
+    height: 100px;
     object-fit: cover;
     cursor: pointer;
-    transition: transform 0.2s;
+    border-radius: 3px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.small-book-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 /* Phần chi tiết sách */
 .title {
     font-size: 24px;
@@ -42,6 +58,7 @@
     color: #000000;
     padding-top: 30px;
 }
+
 .details-wrapper {
     display: flex;
     flex-direction: column;
@@ -49,15 +66,18 @@
     flex: 1;
     padding-left: 100px;
 }
+
 .price-quantity-wrapper {
     display: flex;
     justify-content: left;
     align-items: center;
 }
+
 .price {
     font-size: 18px;
     display: flex;
 }
+
 .original-price {
     color: #F30B0B;
     font-weight: bold;
@@ -72,15 +92,15 @@
 
 .quantity-buttons {
     display: flex;
-    padding-right: 80px ;
+    padding-right: 80px;
     gap: 2px;
 }
 
 .quantity-input {
-    width: 30px;
+    width: 40px;
     text-align: center;
     padding: 5px;
-    border: 1px solid  #F9F5EE;
+    border: 1px solid #CCC;
     border-radius: 3px;
 }
 
@@ -122,6 +142,7 @@
     background-color: #815C5C;
 }
 
+/* Mô tả sách */
 .descriptions {
     background-color: #d3b18b;
     color: white;
@@ -143,9 +164,9 @@
     margin: auto;
     margin-top: 12px;
     margin-bottom: 28px;
-
 }
 
+/* Cùng thể loại */
 .same-genre {
     width: 90%;
     margin: 50px auto;
@@ -180,7 +201,7 @@
 }
 
 .genre-book {
-    width: calc(20% - 20px);
+    width: 200px;
     text-align: center;
     transition: transform 0.2s;
 }
@@ -190,8 +211,9 @@
 }
 
 .genre-book img {
-    width: 100%;
-    height: auto;
+    width: 200px;
+    height: 280px;
+    object-fit: cover;
 }
 
 .genre-book-title {
@@ -210,4 +232,3 @@
     color: #d33;
     margin-bottom: 10px;
 }
-
