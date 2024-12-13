@@ -78,6 +78,7 @@
             <div class="description">
                 <ul>
                     <li><strong>Author: </strong><?php echo $value['author']?></li>
+                    <li><strong>Stock: </strong><?php echo $value['stock']?></li>
                 </ul>
             </div>
         </div>
@@ -97,7 +98,7 @@
             <?php foreach($bookHasTheSameType as $key => $value) { ?>
             <div class="genre-book">
                 <img src="../public/img/<?php echo $value['image_path']?>" alt="Book 1">
-                <div class="genre-book-title"><?php echo $value['title']?></div>
+                <a class="name-book genre-book-title" href="http://localhost/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
                 <div class="genre-book-price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></div>
             </div>
             <?php } ?>
