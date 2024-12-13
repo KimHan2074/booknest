@@ -133,7 +133,7 @@
 }
 
 .describe {
-    background-color: #eef1f3;
+    background-color: #f8f5ef;
     color: #333;
     padding: 20px;
     width: 90%;
@@ -141,6 +141,9 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 16px;
     margin: auto;
+    margin-top: 12px;
+    margin-bottom: 28px;
+
 }
 
 .same-genre {
@@ -207,3 +210,4 @@
     color: #d33;
     margin-bottom: 10px;
 }
+
