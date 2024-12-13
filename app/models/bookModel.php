@@ -21,6 +21,7 @@ class bookModel extends DModel {
             b.title, 
             b.price,
             b.author,
+            b.stock,
             b.description,
             i.path AS image_path
         FROM 

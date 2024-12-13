@@ -20,8 +20,8 @@
     gap: 30px;
 }
 .large-image img {
-    max-width: 300px;
-    max-height: 400px;
+    width: 218px;
+    height: 296px;
     object-fit: cover;
 }
 .small-image {
