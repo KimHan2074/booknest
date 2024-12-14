@@ -3,8 +3,7 @@ class homepage extends DController {
     public function __construct() {
         parent::__construct();
     }
-    
-    //Phương thức index để hiển thị trang chủ
+
     public function index() {
         $bookModel = $this->load->model('bookModel');
         $table_book = 'books';
