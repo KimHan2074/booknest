@@ -59,7 +59,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                 </div>
             </div>
         </div>
-
+        
         <div class="content-right">
             <!-- Slider -->
             <div class="slider-container">
