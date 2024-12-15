@@ -54,7 +54,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                         </div>
                     </div>
                     <?php 
-                    }
+                        }
                     ?>
                 </div>
             </div>
