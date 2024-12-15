@@ -11,7 +11,7 @@
         <div class="iconCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></div>
         <div class="iconUser"><i class="fa-solid fa-user icon-user"></i></div>
 
-        <button class="sign-up">Sign Up</button>
+        <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/register">Sign up</a></button>
         <button class="log-in">Log In</button>
         
         <div class="log-out">Log Out</div>

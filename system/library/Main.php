@@ -39,17 +39,14 @@ class Main {
                 if (class_exists($this->controllerName)) {
                     $this->controller = new $this->controllerName();
                 } else {
-                    // Gán giá trị mặc định nếu class không tồn tại
                     $this->controller = null;
                 }
             } else {
-                // Gán giá trị mặc định nếu file không tồn tại
                 $this->controller = null;
             }
         }
     }
     
-
     public function callMethod() {
         // Nếu controller là null, chuyển hướng đến trang lỗi, nhưng tránh khi đang ở trang lỗi
         if ($this->controller === null && $this->url[0] !== 'homepage/notfound') {
