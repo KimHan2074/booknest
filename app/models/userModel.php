@@ -16,4 +16,12 @@ class userModel extends DModel {
         $data = [':email' => $email];
         return $this->db->select($sql, $data);
     }
+
+    public function checkUserExistsByField($table, $column, $value) {
+        $sql = "SELECT * FROM $table WHERE $column = :value";
+        
+        $data = [':value' => $value];
+        return $this->db->select($sql, $data);
+    }
+    
 }
