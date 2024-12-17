@@ -23,10 +23,13 @@
         <div class="iconCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></div>
         <div class="iconUser"><i class="fa-solid fa-user icon-user"></i></div>
 
-        <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/registerForm">Sign up</a></button>
-        <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/loginForm">Log In</a></button>
-        
-        <div class="log-out">Log Out</div>
+        <?php if (isset($_SESSION['is_logged_in'])): ?>
+            <div class="username"><?php echo $_SESSION['username'] ?></div>
+            <div class="sign-up"><a href="<?php echo BASE_URL; ?>userController/logout">Log Out</a></div>
+        <?php else: ?>
+            <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/registerForm">Sign up</a></button>
+            <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/loginForm">Log In</a></button>
+        <?php endif; ?>
     </div>
 </header>
 

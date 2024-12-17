@@ -80,7 +80,7 @@ class userController extends DController
                 'type' => 'success',
                 'message' => 'Đăng ký thành công! Vui lòng đăng nhập!'
             ];
-            header('Location: /booknest_website/');
+            header('Location: /booknest_website/userController/loginForm');
             exit();
         } else {
             $_SESSION['flash_message'] = [
@@ -154,7 +154,7 @@ class userController extends DController
 
         // Lưu session vào trong browser để dùng cho các 
         // lần tới mà không cần login lại
-
+        session_start(); 
         $_SESSION['user_id'] = $user["username"];
         $_SESSION['username'] = $user["username"];
         $_SESSION['email'] = $user["email"];
@@ -164,6 +164,19 @@ class userController extends DController
             'type' => 'success',
             'message' => 'Đăng nhập thành công!'
         ];
+        header('Location: /booknest_website/');
+        exit();
+    }
+
+    public function logout()
+    {
+        // Xoá dữ liệu session
+        session_unset();
+
+        // Hủy session
+        session_destroy();
+
+        // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chủ
         header('Location: /booknest_website/');
         exit();
     }
