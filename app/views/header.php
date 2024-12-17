@@ -24,7 +24,7 @@
         <div class="iconUser"><i class="fa-solid fa-user icon-user"></i></div>
 
         <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/registerForm">Sign up</a></button>
-        <button class="log-in">Log In</button>
+        <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/loginForm">Log In</a></button>
         
         <div class="log-out">Log Out</div>
     </div>
