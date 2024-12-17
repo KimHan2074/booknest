@@ -4,11 +4,11 @@ class userController extends DController {
     public function __construct() {
         parent::__construct();
     }
-    
 
     public function registerForm() {
         $this->load->view('register_form');
     }
+
     public function register() {
         $userModel = $this->load->model('userModel');
 
@@ -16,8 +16,6 @@ class userController extends DController {
         $password = $_POST['password'];
         $email = $_POST['email'];
         $phone = "";
-
-
 
         // Ràng buộc
         // Kiểm tra input rỗng
@@ -49,7 +47,6 @@ class userController extends DController {
         }
 
         // Kiểm tra user có tồn tại trong db chưa
-
         $table_user = "users";
         $existingUser = $userModel->checkUserExists($table_user, $email);
         if ($existingUser) {

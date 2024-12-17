@@ -121,21 +121,6 @@
     .back-to-home i{
         margin: 16px;
     }
-    /* CSS flash message */
-    .alert {
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-    .alert-success {
-      color: #155724;
-      background-color: #d4edda;
-    }
-    .alert-error {
-      color: #721c24;
-      background-color: #f8d7da;
-    }
 
   </style>
 </head>
