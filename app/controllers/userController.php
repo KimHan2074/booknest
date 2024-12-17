@@ -1,15 +1,19 @@
 <?php
 session_start();
-class userController extends DController {
-    public function __construct() {
+class userController extends DController
+{
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function registerForm() {
+
+    public function registerForm()
+    {
         $this->load->view('register_form');
     }
-
-    public function register() {
+    public function register()
+    {
         $userModel = $this->load->model('userModel');
 
         $username = $_POST['username'];
@@ -65,7 +69,7 @@ class userController extends DController {
             'phone' => $phone
         );
 
-        
+
         $result = $userModel->insertUser($table_user, $data);
 
         if ($result == 1) {
@@ -73,7 +77,7 @@ class userController extends DController {
                 'type' => 'success',
                 'message' => 'Đăng ký thành công! Vui lòng đăng nhập!'
             ];
-            header('Location: /booknest_website/');
+            header('Location: /booknest_website/userController/loginForm');
             exit();
         } else {
             $_SESSION['flash_message'] = [
@@ -85,7 +89,92 @@ class userController extends DController {
         }
     }
 
-    public function login(){
+    // Function Show màn hình login
+    public function loginForm()
+    {
+        $this->load->view('login_form');
+    }
 
+
+    // Function xử lý khi click Login trong LoginForm
+    public function login()
+    {
+        $userModel = $this->load->model('userModel');
+
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        // Kiểm tra input không rỗng
+        if (empty($username) || empty($password)) {
+            $_SESSION['flash_message'] = [
+                'type' => 'error',
+                'message' => 'Vui lòng điền đầy đủ thông tin!'
+            ];
+            header('Location: /booknest_website/userController/loginForm');
+            exit();
+        }
+
+        // Kiểm tra độ dài mật khẩu
+        if (strlen($password) < 6) {
+            $_SESSION['flash_message'] = [
+                'type' => 'error',
+                'message' => 'Mật khẩu phải có ít nhất 6 ký tự!'
+            ];
+            header('Location: /booknest_website/userController/loginForm');
+            exit();
+        }
+
+        // Lấy thông tin user dựa theo username từ input
+        $table_user = "users";
+        $field_name = "username";
+        $user = $userModel->checkUserExistsByField($table_user, $field_name, $username);
+
+        if (!$user) {
+            $_SESSION['flash_message'] = [
+                'type' => 'error',
+                'message' => 'Tài khoản này không tồn tại, vui lòng kiểm tra lại thông tin!'
+            ];
+            header('Location: /booknest_website/userController/loginForm');
+            exit();
+        }
+
+        $hashed_password = md5($password);
+
+        if ($hashed_password != $user["password"]) {
+            $_SESSION['flash_message'] = [
+                'type' => 'error',
+                'message' => 'Không đúng mật khẩu, vui lòng kiểm tra lại!'
+            ];
+            // header('Location: /booknest_website/userController/loginForm');
+            // exit();
+        }
+
+        // Lưu session vào trong browser để dùng cho các 
+        // lần tới mà không cần login lại
+        session_start(); 
+        $_SESSION['user_id'] = $user["username"];
+        $_SESSION['username'] = $user["username"];
+        $_SESSION['email'] = $user["email"];
+        $_SESSION['is_logged_in'] = true;
+
+        $_SESSION['flash_message'] = [
+            'type' => 'success',
+            'message' => 'Đăng nhập thành công!'
+        ];
+        header('Location: /booknest_website/');
+        exit();
+    }
+
+    public function logout()
+    {
+        // Xoá dữ liệu session
+        session_unset();
+
+        // Hủy session
+        session_destroy();
+
+        // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chủ
+        header('Location: /booknest_website/');
+        exit();
     }
 }

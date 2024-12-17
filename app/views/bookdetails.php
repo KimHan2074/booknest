@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,103 +10,85 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>BookDetails</title>
 </head>
+
 <body>
-<header class="header">
-    <div class="logo-brand">
-        <img src="../public/img/image.png" alt="BookNest Logo" class="logo">
-        <h1 class="brand-name"><a href="/booknest_website/">BookNest</a></h1>
-    </div>
-    <ul class="navigation">
-        <li class="nav-link active"><a href="/booknest_website/">Home</a></li>
-        <li class="nav-link"><a href="#">Search</a></li>
-    </ul>
-    <div class="right-header">
-        <div class="iconCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></div>
-        <div class="iconUser"><i class="fa-solid fa-user icon-user"></i></div>
-
-        <button class="sign-up">Sign Up</button>
-        <button class="log-in">Log In</button>
-        
-        <div class="log-out">Log Out</div>
-    </div>
-</header>
-
-<div class="book-details-container">
-    <div class="images-details-wrapper">
-        <!-- Hình ảnh sách -->
-        <div class="images-wrapper">
-        <?php
-            $counter = 0; 
-            foreach($bookById as $key => $value) { 
-                if ($counter == 0) { ?>
-                    <div class="large-image">
-                        <img src="../public/img/<?php echo $value['image_path']; ?>" alt="Book Cover" class="book-image">
-                    </div>
+    <?php include 'header.php'; ?>
+    <div class="book-details-container">
+        <div class="images-details-wrapper">
+            <!-- Hình ảnh sách -->
+            <div class="images-wrapper">
+                <?php
+                $counter = 0;
+                foreach ($bookById as $key => $value) {
+                    if ($counter == 0) { ?>
+                        <div class="large-image">
+                            <img src="../public/img/<?php echo $value['image_path']; ?>" alt="Book Cover" class="book-image">
+                        </div>
+                    <?php } elseif ($counter == 1) { ?>
+                        <div class="small-image">
+                            <img src="../public/img/<?php echo $value['image_path']; ?>" alt="Small Image 1" class="small-book-image">
+                        </div>
                 <?php }
-                elseif ($counter == 1) { ?>
-                    <div class="small-image">
-                        <img src="../public/img/<?php echo $value['image_path']; ?>" alt="Small Image 1" class="small-book-image">
-                    </div>
-                <?php }
-                $counter++;
-                if ($counter >= 2) break;
-            }
-            ?>
-        </div>
-        <!-- Chi tiết sách -->
-        <div class="details-wrapper">
-        <?php foreach($bookById as $key => $value) { ?>
+                    $counter++;
+                    if ($counter >= 2) break;
+                }
+                ?>
+            </div>
+            <!-- Chi tiết sách -->
+            <div class="details-wrapper">
+                <?php foreach ($bookById as $key => $value) { ?>
 
-        <div class="title"><?php echo $value['title']?></div>
-            <div class="price-quantity-wrapper">
-                <div class="price">
-                    <span class="original-price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></span> 
-                </div>
-                <div class="quantity-wrapper">
-                    <label for="quantity">Quantity:</label>
-                    <div class="quantity-buttons">
-                        <button class="btn-decrement">-</button>
-                        <button class="quantity-input" id="quantity">1</button>
-                        <button class="btn-increment">+</button>
+                    <div class="title"><?php echo $value['title'] ?></div>
+                    <div class="price-quantity-wrapper">
+                        <div class="price">
+                            <span class="original-price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></span>
+                        </div>
+                        <div class="quantity-wrapper">
+                            <label for="quantity">Quantity:</label>
+                            <div class="quantity-buttons">
+                                <button class="btn-decrement">-</button>
+                                <button class="quantity-input" id="quantity">1</button>
+                                <button class="btn-increment">+</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        <!-- nút bấm -->
-            <div class="button-wrapper">
-                <button class="btn add-to-cart">Add to cart</button>
-                <button class="btn buy-now">Buy now</button>
-            </div>
-            <div class="description">
-                <ul>
-                    <li><strong>Author: </strong><?php echo $value['author']?></li>
-                    <li><strong>Stock: </strong><?php echo $value['stock']?></li>
-                </ul>
+                    <!-- nút bấm -->
+                    <div class="button-wrapper">
+                        <button class="btn add-to-cart">Add to cart</button>
+                        <button class="btn buy-now">Buy now</button>
+                    </div>
+                    <div class="description">
+                        <ul>
+                            <li><strong>Author: </strong><?php echo $value['author'] ?></li>
+                            <li><strong>Stock: </strong><?php echo $value['stock'] ?></li>
+                        </ul>
+                    </div>
             </div>
         </div>
-    </div>
-    <!-- Mô tả chi tiết -->
-    <div class="descriptions">
-        <p>Description</p>
-        <div class="description-content describe">
-            <p><?php echo $value['description']?></p>
+        <!-- Mô tả chi tiết -->
+        <div class="descriptions">
+            <p>Description</p>
+            <div class="description-content describe">
+                <p><?php echo $value['description'] ?></p>
+            </div>
         </div>
-    </div>
-    <?php break; } ?>
+    <?php break;
+                } ?>
     <!-- Sách cùng thể loại -->
     <div class="same-genre">
         <div class="same-genre-title">Books in the same genre</div>
         <div class="genre-books">
-            <?php foreach($bookHasTheSameType as $key => $value) { ?>
-            <div class="genre-book">
-                <img src="../public/img/<?php echo $value['image_path']?>" alt="Book 1">
-                <a class="name-book genre-book-title" href="/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id'];?>"><?php echo $value['title'];?></a>
-                <div class="genre-book-price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></div>
-            </div>
+            <?php foreach ($bookHasTheSameType as $key => $value) { ?>
+                <div class="genre-book">
+                    <img src="../public/img/<?php echo $value['image_path'] ?>" alt="Book 1">
+                    <a class="name-book genre-book-title" href="/booknest_website/bookController/showBookDetail?book_id=<?php echo $value['book_id']; ?>"><?php echo $value['title']; ?></a>
+                    <div class="genre-book-price"><?php echo number_format($value['price'], 0, '', '.') . 'đ'; ?></div>
+                </div>
             <?php } ?>
         </div>
     </div>
-</div>
-<div class="footer">
+    </div>
+    <div class="footer">
         <div class="columns">
             <div class="columnone">
                 <h4>SERVICES</h4>
@@ -147,16 +130,17 @@
             </div>
         </div>
     </div>
-<script>
-    const tabs = document.querySelectorAll(".nav-link");
-    tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-            tabs.forEach((t) => {
-                t.classList.remove("active");
+    <script>
+        const tabs = document.querySelectorAll(".nav-link");
+        tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                tabs.forEach((t) => {
+                    t.classList.remove("active");
+                });
+                tab.classList.add("active");
             });
-            tab.classList.add("active");
         });
-    });
-</script>
+    </script>
 </body>
+
 </html>
