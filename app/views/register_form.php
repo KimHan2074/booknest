@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <title>Sign Up Form</title>
   <style>
@@ -119,10 +121,37 @@
     .back-to-home i{
         margin: 16px;
     }
+    /* CSS flash message */
+    .alert {
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .alert-success {
+      color: #155724;
+      background-color: #d4edda;
+    }
+    .alert-error {
+      color: #721c24;
+      background-color: #f8d7da;
+    }
 
   </style>
 </head>
 <body>
+<?php if (isset($_SESSION['flash_message'])): ?>
+    <script>
+        Swal.fire({
+            title: "<?php echo $_SESSION['flash_message']['type'] === 'success' ? 'Thành công!' : 'Thất bại!'; ?>",
+            text: "<?php echo $_SESSION['flash_message']['message']; ?>",
+            icon: "<?php echo $_SESSION['flash_message']['type']; ?>",
+            timer: 3000,
+            showConfirmButton: false
+        });
+    </script>
+    <?php unset($_SESSION['flash_message']); ?>
+<?php endif; ?>
     <div class="back-to-home">
     <i class="fa-solid fa-arrow-left"></i>
     </div>
@@ -131,7 +160,10 @@
   </div>
   <hr>
   <div class="container">
-    <form id="signUpForm" class="signUpForm">
+    
+     <!-- Hiển thị thông báo -->
+
+    <form id="signUpForm" class="signUpForm" action="/booknest_website/userController/register" method="POST">
       <label for="username">User Name</label>
       <input type="text" id="username" name="username" placeholder="User Name" required>
 
@@ -154,7 +186,6 @@
 
   <script>
     document.getElementById('signUpForm').addEventListener('submit', function(event) {
-      event.preventDefault();
       const username = document.getElementById('username').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
@@ -164,17 +195,6 @@
         alert('Passwords do not match!');
         return;
       }
-
-      alert(`Sign Up Successful!\nUsername: ${username}\nEmail: ${email}`);
-    });
-    const tabs = document.querySelectorAll(".nav-link");
-    tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-            tabs.forEach((t) => {
-                t.classList.remove("active");
-            });
-            tab.classList.add("active");
-        });
     });
   </script>
 </body>
