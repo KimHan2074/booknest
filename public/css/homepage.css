@@ -115,6 +115,11 @@
 
     }
 
+    .sign-up a{
+        text-decoration: none;
+        color: white;
+    }
+
     .sign-up:hover, .log-in:hover {
         cursor: pointer;
     }

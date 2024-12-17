@@ -15,12 +15,12 @@ class Database extends PDO {
         return $statement->fetchAll($fetchStyle);
     }
 
-    public function insert($table_jobs, $data) {
+    public function insert($table, $data) {
         $keys = implode(',',array_keys($data));
 
         $values = ":" . implode(', :',array_keys($data));
 
-        $sql = "insert into $table_jobs($keys) values($values)";
+        $sql = "insert into $table($keys) values($values)";
         $statement = $this->prepare($sql);
 
         foreach ($data as $key => $value) {
