@@ -141,7 +141,7 @@
     <?php endif; ?>
 
     <div class="back-to-home">
-        <i class="fa-solid fa-arrow-left"></i>
+        <i class="fa-solid fa-arrow-left" onclick="window.history.back()" title="Go Back"></i>
     </div>
 
     <div class="form-title">
