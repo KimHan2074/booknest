@@ -44,7 +44,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 100%;
-            padding-bottom: 136px;
+            padding-bottom: 120px;
         }
 
         .logInForm {
@@ -123,6 +123,15 @@
         .back-to-home i{
             margin: 16px;
         }
+        .forgetPassword{
+            height: 30px;
+            margin-bottom: 18px;
+            text-align: right;
+        }
+        .forget-password{
+            font-size: 20px;
+            color: #5e3927;
+        }
 
     </style>
 </head>
@@ -157,7 +166,11 @@
 
             <label for="password">Password</label>
             <input type="password" name="password" placeholder="Password" required>
-
+            
+            <div class="forgetPassword">
+                <a href="" class="forget-password">Forget the password</a>
+            </div>
+            
             <div class="btn">
                 <button type="submit" class="btn-login">Log In</button>
             </div>
