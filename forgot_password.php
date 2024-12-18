@@ -1,18 +1,20 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+require 'vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+require 'vendor/phpmailer/phpmailer/src/Exception.php';
+require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require 'vendor/phpmailer/phpmailer/src/SMTP.php';
 
-// Include PHPMailer files
-require 'path/to/PHPMailer/src/Exception.php';
-require 'path/to/PHPMailer/src/PHPMailer.php';
-require 'path/to/PHPMailer/src/SMTP.php';
 
 function sendCodeResetPassword($toEmail, $resetCode) {
     $mail = new PHPMailer(true);
     try {
         // Server settings
         $mail->isSMTP();
-        $mail->Host       = 'pddat2602@gmail.com';
+        $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'pddat2602@gmail.com';
         $mail->Password   = $_ENV['SMTP_PASSWORD'];
