@@ -95,6 +95,13 @@
   <div id="overlay"></div>
 
   <!-- Reset Password Form -->
+  <div id="reset-container">
+    <button id="close-btn" type="button">&times;</button>
+    <h1 id="reset-title">Reset Password</h1>
+    <form id="reset-form" action="/booknest_website/userController/forgetPastword" method="POST">
+      <label id="email-label" for="email-input">Email</label>
+      <input id="email-input" type="email" name="email" placeholder="Enter your email" required>
+      <button id="reset-btn" type="submit">Submit</button>
   <div id="reset-container" class="form-container" style="display: block;">
     <button id="close-btn-reset" class="close-btn" type="button">&times;</button>
     <h1 class="form-title">Reset Password</h1>
@@ -123,8 +130,6 @@
     <form>
       <label class="form-label" for="password-input">New Password</label>
       <input id="password-input" class="form-input" type="password" placeholder="Enter your new password" required>
-      <label class="form-label" for="confirm-password-input">Confirm Password</label>
-      <input id="confirm-password-input" class="form-input" type="password" placeholder="Confirm your new password" required>
       <button id="change-btn" class="form-btn" type="submit">Save</button>
     </form>
   </div>
@@ -154,6 +159,15 @@
       event.preventDefault();
       codeContainer.style.display = 'none';
       changeContainer.style.display = 'block';
+    });
+    // Khi nhấn Submit ở form reset password
+    document.getElementById('reset-form').addEventListener('submit', function(event) {
+      // event.preventDefault();
+
+      // Hiển thị form thay đổi mật khẩu và overlay
+      document.getElementById('change-container').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('reset-container').style.display = 'none'; // Ẩn form reset password
     });
 
     // Event: Close buttons

@@ -12,8 +12,66 @@ class userController extends DController
     {
         $this->load->view('register_form');
     }
-    public function register()
-    {
+    public function forgetPassForm() {
+        $this->load->view('forgotPassword');
+    }
+
+    public function forgotPassword() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userModel = $this->load->model('userModel');
+            $email = $_POST['email'];
+            $table = 'users';
+
+            if ($userModel->checkUserExists($table,$email)) {
+                $resetCode = rand(100000, 999999);
+                session_start();
+                $_SESSION['reset_code'] = $resetCode;
+                $_SESSION['reset_email'] = $email;
+                $_SESSION['reset_expiry'] = time() + 60;
+
+                // Gửi email reset
+                if (sendCodeResetPassword($email, $resetCode)) {
+                    echo "Reset code sent to your email!";
+                } else {
+                    echo "Failed to send reset email.";
+                }
+            } else {
+                echo "Email does not exist.";
+            }
+        }
+    }
+
+    public function resetPassword() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            session_start();
+            $enteredCode = $_POST['reset_code'];
+            $newPassword = $_POST['new_password'];
+    
+            // Kiểm tra mã reset
+            if (isset($_SESSION['reset_code']) && isset($_SESSION['reset_expiry']) && time() < $_SESSION['reset_expiry']) {
+                if ($enteredCode == $_SESSION['reset_code']) {
+                    // Đặt lại mật khẩu
+                    $email = $_SESSION['reset_email'];
+                    $userModel = new UserModel();
+                    // if ($userModel->updatePassword($email, $newPassword)) {
+                    //     // Xóa thông tin reset khỏi session
+                    //     unset($_SESSION['reset_code'], $_SESSION['reset_email'], $_SESSION['reset_expiry']);
+                    //     echo "Password reset successfully!";
+                    // } else {
+                    //     echo "Failed to reset password.";
+                    // }
+                } else {
+                    echo "Invalid reset code.";
+                }
+            } else {
+                echo "Reset code expired or invalid.";
+            }
+        } else {
+            require 'views/reset_password.php';
+        }
+    }
+
+    public function register() {
         $userModel = $this->load->model('userModel');
 
         $username = $_POST['username'];
@@ -94,7 +152,6 @@ class userController extends DController
     {
         $this->load->view('login_form');
     }
-
 
     // Function xử lý khi click Login trong LoginForm
     public function login()
