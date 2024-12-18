@@ -133,6 +133,10 @@
             color: #5e3927;
         }
 
+        .back-to-home {
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -149,7 +153,7 @@
         <?php unset($_SESSION['flash_message']); ?>
     <?php endif; ?>
 
-    <div class="back-to-home">
+    <div class="back-to-home" onclick="location.href='/booknest_website/'">
         <i class="fa-solid fa-arrow-left"></i>
     </div>
 
@@ -168,7 +172,7 @@
             <input type="password" name="password" placeholder="Password" required>
             
             <div class="forgetPassword">
-                <a href="" class="forget-password">Forget the password</a>
+                <a href="/booknest_website/userController/forgotPassForm" class="forget-password">Forget the password</a>
             </div>
             
             <div class="btn">
