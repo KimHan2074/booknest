@@ -21,8 +21,6 @@ class userController extends DController
         $email = $_POST['email'];
         $phone = "";
 
-
-
         // Ràng buộc
         // Kiểm tra input rỗng
         if (empty($username) || empty($email) || empty($password)) {
@@ -53,7 +51,6 @@ class userController extends DController
         }
 
         // Kiểm tra user có tồn tại trong db chưa
-
         $table_user = "users";
         $existingUser = $userModel->checkUserExists($table_user, $email);
         if ($existingUser) {
