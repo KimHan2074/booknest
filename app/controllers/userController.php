@@ -145,8 +145,6 @@ class userController extends DController
                 'type' => 'error',
                 'message' => 'Không đúng mật khẩu, vui lòng kiểm tra lại!'
             ];
-            // header('Location: /booknest_website/userController/loginForm');
-            // exit();
         }
 
         // Lưu session vào trong browser để dùng cho các 
