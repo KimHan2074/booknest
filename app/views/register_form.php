@@ -138,7 +138,7 @@
     <?php unset($_SESSION['flash_message']); ?>
 <?php endif; ?>
     <div class="back-to-home">
-    <i class="fa-solid fa-arrow-left"></i>
+    <a href="/booknest_website/"><i class="fa-solid fa-arrow-left"></i></a>
     </div>
   <div class="form-title">
     <h1>Sign Up</h1>
