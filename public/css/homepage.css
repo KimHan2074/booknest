@@ -109,7 +109,7 @@
         width: 80px;
         height: 30px; 
         padding: 0 6px;
-        color: white;
+        color: white;   
         border-radius: 5px;
         font-size: 16px;
         line-height: 30px;
@@ -377,3 +377,34 @@
             grid-template-columns: 1fr 1fr 1fr;
         }
     }
+
+    /* Thay đổi thanh scroll mặc định cho đẹp */
+::-webkit-scrollbar {
+    width: 14px; /* Độ rộng của thanh cuộn */
+  }
+  
+  /* Nền của thanh cuộn */
+  ::-webkit-scrollbar-track {
+    background: linear-gradient(to bottom, #f9f4e7, #f1e4c3); /* Nền mô phỏng giấy */
+    border-radius: 10px; /* Bo góc nhẹ */
+  }
+  
+  /* Phần thanh kéo (thumb) */
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #d3a35d, #8b5e3c); /* Màu sắc gỗ */
+    border-radius: 10px; /* Bo góc thanh kéo */
+    border: 3px solid #f9f4e7; /* Tạo khoảng cách giữa thumb và track */
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2); /* Hiệu ứng nổi nhẹ */
+  }
+  
+  /* Khi hover vào thanh kéo */
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #bc823e, #6d4129); /* Màu đậm hơn khi hover */
+  }
+  
+  /* Đối với Firefox */
+  html {
+    scrollbar-width: thin; /* Thanh cuộn mỏng */
+    scrollbar-color: #bc823e #f9f4e7; /* Màu thumb và nền */
+  }
+  

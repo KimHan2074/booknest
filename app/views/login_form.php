@@ -44,7 +44,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 100%;
-            padding-bottom: 136px;
+            padding-bottom: 120px;
         }
 
         .logInForm {
@@ -123,6 +123,19 @@
         .back-to-home i{
             margin: 16px;
         }
+        .forgetPassword{
+            height: 30px;
+            margin-bottom: 18px;
+            text-align: right;
+        }
+        .forget-password{
+            font-size: 20px;
+            color: #5e3927;
+        }
+
+        .back-to-home {
+            cursor: pointer;
+        }
 
     </style>
 </head>
@@ -140,8 +153,10 @@
         <?php unset($_SESSION['flash_message']); ?>
     <?php endif; ?>
 
-    <div class="back-to-home">
-        <i class="fa-solid fa-arrow-left" onclick="window.history.back()" title="Go Back"></i>
+
+    <div class="back-to-home" onclick="location.href='/booknest_website/'">
+        <i class="fa-solid fa-arrow-left" title="Go Back"></i>
+
     </div>
 
     <div class="form-title">
@@ -157,7 +172,11 @@
 
             <label for="password">Password</label>
             <input type="password" name="password" placeholder="Password" required>
-
+            
+            <div class="forgetPassword">
+                <a href="/booknest_website/userController/forgotPassForm" class="forget-password">Forget the password</a>
+            </div>
+            
             <div class="btn">
                 <button type="submit" class="btn-login">Log In</button>
             </div>

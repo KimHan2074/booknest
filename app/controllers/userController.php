@@ -1,4 +1,5 @@
 <?php
+require 'forgot_password.php';
 session_start();
 class userController extends DController
 {
@@ -12,8 +13,91 @@ class userController extends DController
     {
         $this->load->view('register_form');
     }
-    public function register()
-    {
+
+    public function forgotPassForm() {
+        $data['check-process'] = 1;
+        if(isset($_GET['check'])) {
+            if($_GET['check'] == 2) {
+                $data['check-process'] = 2;
+            };
+        }
+        $this->load->view('forgotPassword', $data);
+    }
+
+    public function forgotPassword() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userModel = $this->load->model('userModel');
+            $email = $_POST['email'];
+            $table = 'users';
+
+            if ($userModel->checkUserExists($table,$email)) {
+                $resetCode = rand(100000, 999999);
+                $_SESSION['reset_code'] = $resetCode;
+                $_SESSION['reset_email'] = $email;
+                $_SESSION['reset_expiry'] = time() + 60;
+
+
+                if (sendCodeResetPassword($email, $resetCode)) {
+                    echo "Reset code sent to your email!";
+                    header("Location: /booknest_website/userController/forgotPassForm?check=2");
+                    exit();
+                } else {
+                    echo "Failed to send reset email.";
+                }
+            } else {
+                echo "Email does not exist.";
+            }
+        }
+        $this->load->view('forgotPassword');
+    }
+
+    public function resetPassword() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            session_start();
+            $userModel = $this->load->model('userModel');
+            $enteredCode = $_POST['reset_code'];
+            $newPassword = $_POST['new_password'];
+
+            if (isset($_SESSION['reset_code']) && isset($_SESSION['reset_expiry']) && time() < $_SESSION['reset_expiry']) {
+                if ($enteredCode == $_SESSION['reset_code']) {
+                    $email = $_SESSION['reset_email'];
+                    $data['check-process'] = 2;
+                    $table = 'users';
+
+                    $data = array(
+                        'password' => $newPassword
+                    );
+
+                    $condition = "$table.email = '$email'";
+
+                    $msgUpdatePassword = $userModel->updatePassword($table, $data, $condition);
+
+                    if ($msgUpdatePassword == 1) {
+                        unset($_SESSION['reset_code'], $_SESSION['reset_email'], $_SESSION['reset_expiry']);
+                        $_SESSION['flash_message'] = [
+                            'type' => 'success',
+                            'message' => 'Thay đổi mật khẩu thành công!'
+                        ];
+                    } else {
+                        $_SESSION['flash_message'] = [
+                            'type' => 'error',
+                            'message' => 'Thay đổi mật khẩu thất bại!'
+                        ];
+                    }
+                    header("Location: /booknest_website/userController/loginForm");
+                    exit();
+                } else {
+                    echo "Invalid reset code.";
+                }
+            } else {
+                echo "Reset code expired or invalid.";
+            }
+        }
+        $this->load->view('forgotPassword');
+    }
+
+
+    public function register() {
         $userModel = $this->load->model('userModel');
 
         $username = $_POST['username'];
@@ -94,7 +178,6 @@ class userController extends DController
     {
         $this->load->view('login_form');
     }
-
 
     // Function xử lý khi click Login trong LoginForm
     public function login()
