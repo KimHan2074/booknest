@@ -127,41 +127,8 @@
   <?php endif ;?>
 
   <script>
-    // Get elements
-    // const resetForm = document.getElementById('reset-form');
-    // const codeForm = document.getElementById('code-form');
-
-    // const resetContainer = document.getElementById('reset-container');
-    // const codeContainer = document.getElementById('code-container');
-    // const changeContainer = document.getElementById('change-container');
-    // const overlay = document.getElementById('overlay');
 
     const closeButtons = document.querySelectorAll('.close-btn');
-
-    // Event: Submit Reset Form
-    // resetForm.addEventListener('submit', function(event) {
-    //   event.preventDefault();
-    //   resetContainer.style.display = 'none';
-    //   codeContainer.style.display = 'block';
-    //   overlay.style.display = 'block';
-    // });
-
-    // Event: Submit Code Form
-    // codeForm.addEventListener('submit', function(event) {
-    //   event.preventDefault();
-    //   codeContainer.style.display = 'none';
-    //   changeContainer.style.display = 'block';
-    // });
-    // Khi nhấn Submit ở form reset password
-    // document.getElementById('reset-form').addEventListener('submit', function(event) {
-    //   // event.preventDefault();
-
-    //   // Hiển thị form thay đổi mật khẩu và overlay
-    //   document.getElementById('change-container').style.display = 'block';
-    //   document.getElementById('overlay').style.display = 'block';
-    //   document.getElementById('reset-container').style.display = 'none'; // Ẩn form reset password
-    // });
-
     // Event: Close buttons
     closeButtons.forEach(button => {
       button.addEventListener('click', () => {
