@@ -153,8 +153,10 @@
         <?php unset($_SESSION['flash_message']); ?>
     <?php endif; ?>
 
+
     <div class="back-to-home" onclick="location.href='/booknest_website/'">
-        <i class="fa-solid fa-arrow-left"></i>
+        <i class="fa-solid fa-arrow-left" title="Go Back"></i>
+
     </div>
 
     <div class="form-title">
