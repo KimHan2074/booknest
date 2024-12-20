@@ -88,7 +88,7 @@
         <?php if (isset($_SESSION['is_logged_in'])): ?>
             <div class="iconCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></div>
             <div class="iconUser"><i class="fa-solid fa-user icon-user"></i></div>
-            <div class="username"><?php echo $_SESSION['username'] ?></div>
+            <div class="username"><?php echo $_SESSION['current_user']['username'] ?></div>
             <div class="sign-up"><a href="<?php echo BASE_URL; ?>userController/logout">Log Out</a></div>
         <?php else: ?>
             <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/registerForm">Sign up</a></button>
@@ -99,23 +99,25 @@
   <div class="wrapper">
     <div class="profile-container">
       <h2 class="profile-title">Personal Information</h2>
-      <form >
-        <?php foreach ($user as $key => $value) { ?>
+      <form action="<?php echo BASE_URL; ?>userController/updateUserInfo" method="POST">
+        <?php
+         foreach ($user as $key => $value) { 
+        ?>
           <div class="profile-group">
             <label class="profile-label" for="username"><i class="fas fa-user"></i> User name</label>
-            <input class="profile-input" type="text" id="username" placeholder="Enter your name" value="<?php echo htmlspecialchars($value['username']); ?>">
-          </div>-
+            <input class="profile-input" name="username" type="text" id="username" placeholder="Enter your name" value="<?php echo $value['username'] ?>">
+          </div>
           <div class="profile-group">
             <label class="profile-label" for="email"><i class="fas fa-envelope"></i> Email</label>
-            <input class="profile-input" type="email" id="email" placeholder="Enter your email" value="<?php echo htmlspecialchars($value['email']); ?>">
+            <input class="profile-input" name="email" type="email" id="email" placeholder="Enter your email" value="<?php echo $value['email'] ?>">
           </div>
           <div class="profile-group">
             <label class="profile-label" for="phone"><i class="fas fa-phone"></i> Phone</label>
-            <input class="profile-input" type="tel" id="phone" placeholder="Enter your phone">
+            <input class="profile-input" name="phone" type="tel" id="phone" placeholder="Enter your phone" value="<?php echo $value['phone'] ?>">
           </div>
           <div class="profile-group">
             <label class="profile-label" for="password"><i class="fas fa-lock"></i> Password</label>
-            <input class="profile-input" type="password" id="password" placeholder="Enter your password" value="<?php echo htmlspecialchars($value['password']); ?>">
+            <input class="profile-input" name="password" type="password" id="password" placeholder="Enter your password" value="<?php echo $value['password'] ?>">
           </div>
           <button class="profile-button" type="submit">Update</button>
         <?php
