@@ -38,5 +38,11 @@ class userModel extends DModel {
         $data = [':value' => $value];
         return $this->db->select($sql, $data);
     }
+    public function getUserByUserid($table_user, $user_id){
+        $sql = "SELECT * FROM users WHERE user_id = :user_id";
+
+        $data = [':user_id' => $user_id];
+        return $this->db->select($sql, $data);
+    }
     
 }
