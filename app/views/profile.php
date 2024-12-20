@@ -73,6 +73,8 @@
   </style>
 </head>
 <body>
+
+
 <header class="header">
     <div class="logo-brand">
         <img src="../public/img/image.png" alt="BookNest Logo" class="logo">
@@ -97,24 +99,28 @@
   <div class="wrapper">
     <div class="profile-container">
       <h2 class="profile-title">Personal Information</h2>
-      <form>
-        <div class="profile-group">
-          <label class="profile-label" for="username"><i class="fas fa-user"></i> User name</label>
-          <input class="profile-input" type="text" id="username" placeholder="Enter your name">
-        </div>
-        <div class="profile-group">
-          <label class="profile-label" for="email"><i class="fas fa-envelope"></i> Email</label>
-          <input class="profile-input" type="email" id="email" placeholder="Enter your email">
-        </div>
-        <div class="profile-group">
-          <label class="profile-label" for="phone"><i class="fas fa-phone"></i> Phone</label>
-          <input class="profile-input" type="tel" id="phone" placeholder="Enter your phone">
-        </div>
-        <div class="profile-group">
-          <label class="profile-label" for="password"><i class="fas fa-lock"></i> Password</label>
-          <input class="profile-input" type="password" id="password" placeholder="Enter your password">
-        </div>
-        <button class="profile-button" type="submit">Update</button>
+      <form >
+        <?php foreach ($user as $key => $value) { ?>
+          <div class="profile-group">
+            <label class="profile-label" for="username"><i class="fas fa-user"></i> User name</label>
+            <input class="profile-input" type="text" id="username" placeholder="Enter your name" value="<?php echo htmlspecialchars($value['username']); ?>">
+          </div>-
+          <div class="profile-group">
+            <label class="profile-label" for="email"><i class="fas fa-envelope"></i> Email</label>
+            <input class="profile-input" type="email" id="email" placeholder="Enter your email" value="<?php echo htmlspecialchars($value['email']); ?>">
+          </div>
+          <div class="profile-group">
+            <label class="profile-label" for="phone"><i class="fas fa-phone"></i> Phone</label>
+            <input class="profile-input" type="tel" id="phone" placeholder="Enter your phone">
+          </div>
+          <div class="profile-group">
+            <label class="profile-label" for="password"><i class="fas fa-lock"></i> Password</label>
+            <input class="profile-input" type="password" id="password" placeholder="Enter your password" value="<?php echo htmlspecialchars($value['password']); ?>">
+          </div>
+          <button class="profile-button" type="submit">Update</button>
+        <?php
+          } 
+        ?>
       </form>
     </div>
   </div>

@@ -8,13 +8,11 @@ class userController extends DController
         parent::__construct();
     }
 
-    public function userProfile() {
-        $this->load->view('profile');
-    }
+   
 
     public function updateUserInfo() {
         $userModel = $this->load->model('userModel');
-        session_start();
+        // session_start();
         if(isset($_SESSION['user_id'])){
             $user_id = $_SESSION['user_id'];
         }
@@ -273,8 +271,11 @@ class userController extends DController
 
         // Lưu session vào trong browser để dùng cho các 
         // lần tới mà không cần login lại
-        session_start(); 
-        $_SESSION['user_id'] = $user["username"];
+        // if (session_status() == PHP_SESSION_NONE) {
+        //     session_start();
+        // }
+     
+        $_SESSION['user_id'] = $user["user_id"];
         $_SESSION['username'] = $user["username"];
         $_SESSION['email'] = $user["email"];
         $_SESSION['is_logged_in'] = true;
@@ -285,13 +286,26 @@ class userController extends DController
         ];
         header('Location: /booknest_website/');
         exit();
+        
+    }
+
+    public function userProfile() {
+    
+        $userModel = $this->load->model('userModel');
+    
+        $table_user = 'users';
+        
+        if(isset($_SESSION['user_id'])){
+            $user_id = $_SESSION['user_id'];
+        }
+    
+        $data['user'] = $userModel->getUserByUserid($table_user, $user_id);
+        $this->load->view('profile', $data);
     }
 
     public function logout(){
         session_unset();
-
         session_destroy();
-
         header('Location: /booknest_website/');
         exit();
     }
