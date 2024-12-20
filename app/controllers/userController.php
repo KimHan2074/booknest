@@ -258,4 +258,16 @@ class userController extends DController
         header('Location: /booknest_website/');
         exit();
     }
+
+    public function updateProfile()
+    {   
+        session_start();
+        $userModel = $this->load->model('userModel');
+
+        $table_user = 'users';
+        $user_id = $_SESSION['user_id'] ?? null;
+
+        $data['userByUserid'] = $userModel->getUserByUserid($table_user, $user_id);
+        $this->load->view('profile', $data);
+    }
 }
