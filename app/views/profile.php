@@ -102,7 +102,7 @@
           <div class="profile-group">
             <label class="profile-label" for="username"><i class="fas fa-user"></i> User name</label>
             <input class="profile-input" type="text" id="username" placeholder="Enter your name" value="<?php echo htmlspecialchars($value['username']); ?>">
-          </div>
+          </div>-
           <div class="profile-group">
             <label class="profile-label" for="email"><i class="fas fa-envelope"></i> Email</label>
             <input class="profile-input" type="email" id="email" placeholder="Enter your email" value="<?php echo htmlspecialchars($value['email']); ?>">
