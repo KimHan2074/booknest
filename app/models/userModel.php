@@ -27,6 +27,10 @@ class userModel extends DModel {
     public function updatePassword($table_user, $data, $condition) {
         return $this->db->update($table_user, $data, $condition);
     }
+    
+    public function updateUserInfo($table_user, $data, $condition) {
+        return $this->db->update($table_user, $data, $condition);
+    }
 
     public function checkUserExistsByField($table, $column, $value) {
         $sql = "SELECT * FROM $table WHERE $column = :value";
