@@ -73,6 +73,8 @@
   </style>
 </head>
 <body>
+
+
 <header class="header">
     <div class="logo-brand">
         <img src="../public/img/image.png" alt="BookNest Logo" class="logo">
@@ -116,8 +118,9 @@
             <input class="profile-input" type="password" id="password" placeholder="Enter your password" value="<?php echo htmlspecialchars($value['password']); ?>">
           </div>
           <button class="profile-button" type="submit">Update</button>
-        <?php break;
-          } ?>
+        <?php
+          } 
+        ?>
       </form>
     </div>
   </div>
