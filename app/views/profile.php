@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +21,7 @@
       width: 100vw;
       height: 100vh;
     }
+
     .profile-container {
       background: #F9F5EE;
       padding: 20px 30px;
@@ -27,14 +29,17 @@
       width: 650px;
       text-align: center;
     }
+
     .profile-title {
       margin-bottom: 20px;
       color: #5b3d33;
     }
+
     .profile-group {
       margin-bottom: 30px;
       text-align: left;
     }
+
     .profile-label {
       display: block;
       margin-bottom: 5px;
@@ -42,10 +47,12 @@
       font-size: 14px;
       font-weight: bold;
     }
+
     .profile-label i {
       margin-right: 8px;
       color: #5b3d33;
     }
+
     .profile-input {
       width: 100%;
       padding: 10px;
@@ -55,9 +62,11 @@
       outline: none;
       background-color: white;
     }
+
     .profile-input:focus {
       border-color: #F9F5EE;
     }
+
     .profile-button {
       background-color: #c29d8e;
       color: #fff;
@@ -68,12 +77,60 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
+
     .profile-button:hover {
       background-color: #815C5C;
     }
   </style>
 </head>
+
 <body>
+  <!-- <?php if (isset($_SESSION['flash_message'])): ?>
+    <script>
+      Swal.fire({
+        title: "<?php echo $_SESSION['flash_message']['type'] === 'success' ? 'Thành công!' : 'Thất bại!'; ?>",
+        text: "<?php echo $_SESSION['flash_message']['message']; ?>",
+        icon: "<?php echo $_SESSION['flash_message']['type']; ?>",
+        timer: 3000,
+        showConfirmButton: false
+      });
+    </script>
+    <?php unset($_SESSION['flash_message']); ?>
+  <?php endif; ?>
+  <header class="header">
+    <div class="logo-brand">
+      <img src="public/img/image.png" alt="BookNest Logo" class="logo">
+      <h1 class="brand-name"><a href="/booknest_website/">BookNest</a></h1>
+    </div>
+    <ul class="navigation">
+      <li class="nav-link active"><a href="/booknest_website/">Home</a></li>
+      <li class="nav-link"><a href="#">Search</a></li>
+    </ul>
+    <div class="right-header">
+      <div class="iconCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></div>
+      <div class="iconUser"><i class="fa-solid fa-user icon-user"></i></div>
+
+      <?php if (isset($_SESSION['is_logged_in'])): ?>
+        <div class="username"><?php echo $_SESSION['username'] ?></div>
+        <div class="sign-up"><a href="<?php echo BASE_URL; ?>userController/logout">Log Out</a></div>
+      <?php else: ?>
+        <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/registerForm">Sign up</a></button>
+        <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/loginForm">Log In</a></button>
+      <?php endif; ?>
+    </div>
+  </header>
+
+  <script>
+    const tabs = document.querySelectorAll(".nav-link");
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => {
+          t.classList.remove("active");
+        });
+        tab.classList.add("active");
+      });
+    });
+  </script> -->
   <div class="wrapper">
     <div class="profile-container">
       <h2 class="profile-title">Personal Information</h2>
@@ -98,6 +155,48 @@
       </form>
     </div>
   </div>
-  <?php include 'footer.php'; ?>
+  <div class="footer">
+    <div class="columns">
+      <div class="columnone">
+        <h4>SERVICES</h4>
+        <a class="link" href="#">Terms of Service</a>
+        <a class="link" href="#">Privacy Policy</a>
+        <a class="link" href="#">Contact</a>
+        <a class="link" href="#">Bookstore System</a>
+        <a class="link" href="#">Order Tracking</a>
+      </div>
+      <div class="columntwo">
+        <h4>SUPPORT</h4>
+        <a class="link" href="#">Order Guide</a>
+        <a class="link" href="#">Return and Refund Policy</a>
+        <a class="link" href="#">Shipping Policy</a>
+        <a class="link" href="#">Payment Methods</a>
+        <a class="link" href="#">Customer Policy</a>
+      </div>
+      <div class="columnthree">
+        <h4>ADDRESS</h4>
+        <br>
+        <p>Phuoc My - Son Tra - Da Nang</p>
+        <br>
+        <p>booknest_shd@gmail.com</p>
+        <br>
+        <p>0762 778 450</p>
+      </div>
+    </div>
+    <div class="footer-line"></div>
+    <div class="footer-content">
+      <div class="footer-left">
+        BookNest.com.vn © 2024. All Rights Reserved.
+      </div>
+      <div class="footer-right">
+        Follow us:
+        <img src="public/img/facebook.png" alt="Facebook">
+        <img src="public/img/instagram.png" alt="Instagram">
+        <img src="public/img/twitter.png" alt="Twitter">
+        <img src="public/img/mail.png" alt="Mail">
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
