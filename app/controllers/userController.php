@@ -13,8 +13,10 @@ class userController extends DController
     public function updateUserInfo() {
         $userModel = $this->load->model('userModel');
         // session_start();
-        if(isset($_SESSION['user_id'])){
-            $user_id = $_SESSION['user_id'];
+        if(isset($_SESSION['current_user']['user_id'])){
+            $user_id = $_SESSION['current_user']['user_id'];
+        }else{
+            die('Không có sesssion');
         }
     
         $table_user = 'users';
@@ -22,7 +24,7 @@ class userController extends DController
         $condition = "$table_user.user_id = '$user_id'";
 
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $password = md5($_POST['password']);
         $email = $_POST['email'];
         $phone = $_POST['phone'];
 
@@ -248,43 +250,24 @@ class userController extends DController
 
         // Lấy thông tin user dựa theo username từ input
         $table_user = "users";
-        $field_name = "username";
-        $user = $userModel->checkUserExistsByField($table_user, $field_name, $username);
-
-        if (!$user) {
-            $_SESSION['flash_message'] = [
-                'type' => 'error',
-                'message' => 'Tài khoản này không tồn tại, vui lòng kiểm tra lại thông tin!'
-            ];
-            header('Location: /booknest_website/userController/loginForm');
-            exit();
+        $data['all_user'] = $userModel->getAllUsers();
+        foreach($data['all_user'] as $value){
+            if($value['username'] == $username && $value['password'] == md5($password)){
+                $_SESSION['current_user'] = $value;
+                $_SESSION['is_logged_in'] = true;
+                $_SESSION['flash_message'] = [
+                'type' => 'success',
+                'message' => 'Đăng nhập thành công!'
+                ];
+                header('Location: /booknest_website/');
+                exit();
+            }
         }
-
-        $hashed_password = md5($password);
-
-        if ($hashed_password != $user["password"]) {
-            $_SESSION['flash_message'] = [
-                'type' => 'error',
-                'message' => 'Không đúng mật khẩu, vui lòng kiểm tra lại!'
-            ];
-        }
-
-        // Lưu session vào trong browser để dùng cho các 
-        // lần tới mà không cần login lại
-        // if (session_status() == PHP_SESSION_NONE) {
-        //     session_start();
-        // }
-     
-        $_SESSION['user_id'] = $user["user_id"];
-        $_SESSION['username'] = $user["username"];
-        $_SESSION['email'] = $user["email"];
-        $_SESSION['is_logged_in'] = true;
-
         $_SESSION['flash_message'] = [
-            'type' => 'success',
-            'message' => 'Đăng nhập thành công!'
+            'type' => 'error',
+            'message' => 'Tài khoản này không tồn tại hoặc sai thông tin đăng nhập, vui lòng kiểm tra lại thông tin!'
         ];
-        header('Location: /booknest_website/');
+        header('Location: /booknest_website/userController/loginForm');
         exit();
         
     }
@@ -295,8 +278,10 @@ class userController extends DController
     
         $table_user = 'users';
         
-        if(isset($_SESSION['user_id'])){
-            $user_id = $_SESSION['user_id'];
+        if(isset($_SESSION['current_user']['user_id'])){
+            $user_id = $_SESSION['current_user']['user_id'];
+        }else{
+            die("Không có session ở đây");
         }
     
         $data['user'] = $userModel->getUserByUserid($table_user, $user_id);
@@ -306,6 +291,10 @@ class userController extends DController
     public function logout(){
         session_unset();
         session_destroy();
+        $_SESSION['flash_message'] = [
+            'type' => 'success',
+            'message' => 'Đăng xuất thành công!'
+        ];
         header('Location: /booknest_website/');
         exit();
     }

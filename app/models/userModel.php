@@ -39,10 +39,21 @@ class userModel extends DModel {
         return $this->db->select($sql, $data);
     }
     public function getUserByUserid($table_user, $user_id){
-        $sql = "SELECT * FROM users WHERE user_id = :user_id";
+        $sql = "SELECT * FROM $table_user WHERE user_id = :user_id";
 
         $data = [':user_id' => $user_id];
         return $this->db->select($sql, $data);
+    }
+    public function getUserByUsername($table_user, $username){
+        $sql = "SELECT * FROM $table_user WHERE username = :username";
+
+        $data = [':username' => $username];
+        return $this->db->select($sql, $data);
+    }
+    public function getAllUsers(){
+        $sql = "SELECT * FROM users;";
+
+        return $this->db->select($sql);
     }
     
 }
