@@ -8,9 +8,53 @@ class userController extends DController
         parent::__construct();
     }
 
+    public function userProfile() {
+        $this->load->view('profile');
+    }
 
-    public function registerForm()
-    {
+    public function updateUserInfo() {
+        $userModel = $this->load->model('userModel');
+        session_start();
+        if(isset($_SESSION['user_id'])){
+            $user_id = $_SESSION['user_id'];
+        }
+    
+        $table_user = 'users';
+
+        $condition = "$table_user.user_id = '$user_id'";
+
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+
+        $data = array(
+            'username' => $username,
+            'password' => $password, // Lưu đường dẫn ảnh vào DB
+            'email' => $email,
+            'phone' => $phone
+            
+        );
+    
+        // Gọi hàm update
+        $msgUpdateUserInfo = $userModel->updateUserInfo($table_user, $data, $condition);
+        
+        if ($msgUpdateUserInfo == 1) {
+            $_SESSION['flash_message'] = [
+                'type' => 'success',
+                'message' => 'Cập nhật tài khoản thành công!'
+            ];
+        } else {
+            $_SESSION['flash_message'] = [
+                'type' => 'error',
+                'message' => 'Cập nhật tài khoản thất bại!'
+            ];
+        }
+        header("Location: /booknest_website/");
+        exit();
+    }
+
+    public function registerForm(){
         $this->load->view('register_form');
     }
 
@@ -96,7 +140,6 @@ class userController extends DController
         $this->load->view('forgotPassword');
     }
 
-
     public function register() {
         $userModel = $this->load->model('userModel');
 
@@ -173,13 +216,11 @@ class userController extends DController
         }
     }
 
-    // Function Show màn hình login
     public function loginForm()
     {
         $this->load->view('login_form');
     }
 
-    // Function xử lý khi click Login trong LoginForm
     public function login()
     {
         $userModel = $this->load->model('userModel');
@@ -246,15 +287,11 @@ class userController extends DController
         exit();
     }
 
-    public function logout()
-    {
-        // Xoá dữ liệu session
+    public function logout(){
         session_unset();
 
-        // Hủy session
         session_destroy();
 
-        // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chủ
         header('Location: /booknest_website/');
         exit();
     }
