@@ -8,9 +8,7 @@ class userController extends DController
         parent::__construct();
     }
 
-    public function userProfile() {
-        $this->load->view('profile');
-    }
+   
 
     public function updateUserInfo() {
         $userModel = $this->load->model('userModel');
@@ -274,7 +272,9 @@ class userController extends DController
         // Lưu session vào trong browser để dùng cho các 
         // lần tới mà không cần login lại
         session_start(); 
-        $_SESSION['user_id'] = $user["username"];
+        $_SESSION['user_id'] = $user["user_id"];
+        // var_dump($_SESSION); // Kiểm tra session sau khi lưu
+        // exit();
         $_SESSION['username'] = $user["username"];
         $_SESSION['email'] = $user["email"];
         $_SESSION['is_logged_in'] = true;
@@ -285,6 +285,27 @@ class userController extends DController
         ];
         header('Location: /booknest_website/');
         exit();
+        
+    }
+
+    public function userProfile() {
+        session_start();
+        $userModel = $this->load->model('userModel');
+    
+        $table_user = 'users';
+        $user_id = $_SESSION['user_id'];
+    
+        if (!isset($user_id)) {
+            $_SESSION['flash_message'] = [
+                'type' => 'error',
+                'message' => 'Vui lòng đăng nhập trước!'
+            ];
+            header("Location: /booknest_website/userController/loginForm");
+            exit();
+        }
+    
+        $data['user'] = $userModel->getUserByUserid($table_user, $user_id);
+        $this->load->view('profile', $data);
     }
 
     public function logout(){
@@ -294,17 +315,5 @@ class userController extends DController
 
         header('Location: /booknest_website/');
         exit();
-    }
-
-    public function updateProfile()
-    {   
-        session_start();
-        $userModel = $this->load->model('userModel');
-
-        $table_user = 'users';
-        $user_id = $_SESSION['user_id'] ?? null;
-
-        $data['userByUserid'] = $userModel->getUserByUserid($table_user, $user_id);
-        $this->load->view('profile', $data);
     }
 }

@@ -97,8 +97,8 @@
   <div class="wrapper">
     <div class="profile-container">
       <h2 class="profile-title">Personal Information</h2>
-      <form>
-        <?php foreach ($bookById as $key => $value) { ?>
+      <form >
+        <?php foreach ($user as $key => $value) { ?>
           <div class="profile-group">
             <label class="profile-label" for="username"><i class="fas fa-user"></i> User name</label>
             <input class="profile-input" type="text" id="username" placeholder="Enter your name" value="<?php echo htmlspecialchars($value['username']); ?>">
