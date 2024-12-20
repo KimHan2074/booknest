@@ -5,6 +5,7 @@ class bookController extends DController {
         parent::__construct();
     }
     public function showBookDetail() {
+        session_start();
         $bookModel = $this->load->model('bookModel');
 
         $table_book = 'books';

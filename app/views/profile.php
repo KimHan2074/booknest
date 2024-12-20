@@ -28,6 +28,7 @@
     }
     .profile-title {
       margin-bottom: 6px;
+      margin-top: 30px;
       color: #5b3d33;
     }
     .profile-group {
