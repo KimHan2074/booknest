@@ -27,12 +27,33 @@ class userModel extends DModel {
     public function updatePassword($table_user, $data, $condition) {
         return $this->db->update($table_user, $data, $condition);
     }
+    
+    public function updateUserInfo($table_user, $data, $condition) {
+        return $this->db->update($table_user, $data, $condition);
+    }
 
     public function checkUserExistsByField($table, $column, $value) {
         $sql = "SELECT * FROM $table WHERE $column = :value";
         
         $data = [':value' => $value];
         return $this->db->select($sql, $data);
+    }
+    public function getUserByUserid($table_user, $user_id){
+        $sql = "SELECT * FROM $table_user WHERE user_id = :user_id";
+
+        $data = [':user_id' => $user_id];
+        return $this->db->select($sql, $data);
+    }
+    public function getUserByUsername($table_user, $username){
+        $sql = "SELECT * FROM $table_user WHERE username = :username";
+
+        $data = [':username' => $username];
+        return $this->db->select($sql, $data);
+    }
+    public function getAllUsers(){
+        $sql = "SELECT * FROM users;";
+
+        return $this->db->select($sql);
     }
     
 }

@@ -20,11 +20,10 @@
         <li class="nav-link"><a href="#">Search</a></li>
     </ul>
     <div class="right-header">
-        <div class="iconCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></div>
-        <div class="iconUser"><i class="fa-solid fa-user icon-user"></i></div>
-
         <?php if (isset($_SESSION['is_logged_in'])): ?>
-            <div class="username"><?php echo $_SESSION['username'] ?></div>
+            <div class="iconCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></div>
+            <div class="iconUser"><a href="<?php echo BASE_URL; ?>userController/userProfile"><i class="fa-solid fa-user icon-user"></i></a></div>
+            <div class="username"><?php echo $_SESSION['current_user']['username'] ?></div>
             <div class="sign-up"><a href="<?php echo BASE_URL; ?>userController/logout">Log Out</a></div>
         <?php else: ?>
             <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/registerForm">Sign up</a></button>

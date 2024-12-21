@@ -8,9 +8,53 @@ class userController extends DController
         parent::__construct();
     }
 
+   
 
-    public function registerForm()
-    {
+    public function updateUserInfo() {
+        $userModel = $this->load->model('userModel');
+        // session_start();
+        if(isset($_SESSION['current_user']['user_id'])){
+            $user_id = $_SESSION['current_user']['user_id'];
+        }else{
+            die('Không có sesssion');
+        }
+    
+        $table_user = 'users';
+
+        $condition = "$table_user.user_id = '$user_id'";
+
+        $username = $_POST['username'];
+        $password = md5($_POST['password']);
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+
+        $data = array(
+            'username' => $username,
+            'password' => $password, // Lưu đường dẫn ảnh vào DB
+            'email' => $email,
+            'phone' => $phone
+            
+        );
+    
+        // Gọi hàm update
+        $msgUpdateUserInfo = $userModel->updateUserInfo($table_user, $data, $condition);
+        
+        if ($msgUpdateUserInfo == 1) {
+            $_SESSION['flash_message'] = [
+                'type' => 'success',
+                'message' => 'Cập nhật tài khoản thành công!'
+            ];
+        } else {
+            $_SESSION['flash_message'] = [
+                'type' => 'error',
+                'message' => 'Cập nhật tài khoản thất bại!'
+            ];
+        }
+        header("Location: /booknest_website/");
+        exit();
+    }
+
+    public function registerForm(){
         $this->load->view('register_form');
     }
 
@@ -96,7 +140,6 @@ class userController extends DController
         $this->load->view('forgotPassword');
     }
 
-
     public function register() {
         $userModel = $this->load->model('userModel');
 
@@ -173,13 +216,11 @@ class userController extends DController
         }
     }
 
-    // Function Show màn hình login
     public function loginForm()
     {
         $this->load->view('login_form');
     }
 
-    // Function xử lý khi click Login trong LoginForm
     public function login()
     {
         $userModel = $this->load->model('userModel');
@@ -209,52 +250,51 @@ class userController extends DController
 
         // Lấy thông tin user dựa theo username từ input
         $table_user = "users";
-        $field_name = "username";
-        $user = $userModel->checkUserExistsByField($table_user, $field_name, $username);
-
-        if (!$user) {
-            $_SESSION['flash_message'] = [
-                'type' => 'error',
-                'message' => 'Tài khoản này không tồn tại, vui lòng kiểm tra lại thông tin!'
-            ];
-            header('Location: /booknest_website/userController/loginForm');
-            exit();
+        $data['all_user'] = $userModel->getAllUsers();
+        foreach($data['all_user'] as $value){
+            if($value['username'] == $username && $value['password'] == md5($password)){
+                $_SESSION['current_user'] = $value;
+                $_SESSION['is_logged_in'] = true;
+                $_SESSION['flash_message'] = [
+                'type' => 'success',
+                'message' => 'Đăng nhập thành công!'
+                ];
+                header('Location: /booknest_website/');
+                exit();
+            }
         }
-
-        $hashed_password = md5($password);
-
-        if ($hashed_password != $user["password"]) {
-            $_SESSION['flash_message'] = [
-                'type' => 'error',
-                'message' => 'Không đúng mật khẩu, vui lòng kiểm tra lại!'
-            ];
-        }
-
-        // Lưu session vào trong browser để dùng cho các 
-        // lần tới mà không cần login lại
-        session_start(); 
-        $_SESSION['user_id'] = $user["username"];
-        $_SESSION['username'] = $user["username"];
-        $_SESSION['email'] = $user["email"];
-        $_SESSION['is_logged_in'] = true;
-
         $_SESSION['flash_message'] = [
-            'type' => 'success',
-            'message' => 'Đăng nhập thành công!'
+            'type' => 'error',
+            'message' => 'Tài khoản này không tồn tại hoặc sai thông tin đăng nhập, vui lòng kiểm tra lại thông tin!'
         ];
-        header('Location: /booknest_website/');
+        header('Location: /booknest_website/userController/loginForm');
         exit();
+        
     }
 
-    public function logout()
-    {
-        // Xoá dữ liệu session
+    public function userProfile() {
+    
+        $userModel = $this->load->model('userModel');
+    
+        $table_user = 'users';
+        
+        if(isset($_SESSION['current_user']['user_id'])){
+            $user_id = $_SESSION['current_user']['user_id'];
+        }else{
+            die("Không có session ở đây");
+        }
+    
+        $data['user'] = $userModel->getUserByUserid($table_user, $user_id);
+        $this->load->view('profile', $data);
+    }
+
+    public function logout(){
         session_unset();
-
-        // Hủy session
         session_destroy();
-
-        // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chủ
+        $_SESSION['flash_message'] = [
+            'type' => 'success',
+            'message' => 'Đăng xuất thành công!'
+        ];
         header('Location: /booknest_website/');
         exit();
     }
