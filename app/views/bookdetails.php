@@ -60,7 +60,7 @@
             <!-- Chi tiết sách -->
             <div class="details-wrapper">
                 <?php foreach ($bookById as $key => $value) { ?>
-
+                    
                     <div class="title"><?php echo $value['title'] ?></div>
                     <div class="price-quantity-wrapper">
                         <div class="price">
@@ -70,20 +70,21 @@
                             <label for="quantity">Quantity:</label>
                             <div class="quantity-buttons">
                                 <button class="btn-decrement">-</button>
-                                <button class="quantity-input" id="quantity">1</button>
+                                <span class="quantity-input" id="quantity">1</span>
                                 <button class="btn-increment">+</button>
                             </div>
                         </div>
+                        <div id="quantity-message" class="quantity-message"></div>
                     </div>
                     <!-- nút bấm -->
                     <div class="button-wrapper">
-                        <button class="btn add-to-cart">Add to cart</button>
+                        <a href="javascript:void(0);" id="add-to-cart" class="btn add-to-cart" data-book-id="<?php echo $value['book_id']; ?>">Add to cart</a>
                         <button class="btn buy-now">Buy now</button>
                     </div>
                     <div class="description">
                         <ul>
                             <li><strong>Author: </strong><?php echo $value['author'] ?></li>
-                            <li><strong>Stock: </strong><?php echo $value['stock'] ?></li>
+                            <li data-stock="<?php echo $value['stock']; ?>"><strong>Stock available: </strong><?php echo $value['stock'] ?></li>
                         </ul>
                     </div>
             </div>
@@ -164,6 +165,7 @@
             });
         });
     </script>
+    <script src="../public/js/book-detail.js"></script>
 </body>
 
 </html>

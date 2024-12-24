@@ -16,4 +16,13 @@ class bookController extends DController {
 
         $this->load->view('bookdetails', $data);
     }
+    
+    public function deleteBook(){
+
+    }
+    public function updateBook(){
+
+    }
+
+
 }

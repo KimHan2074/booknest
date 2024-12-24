@@ -4,8 +4,7 @@ class Main {
 
     public $url;
 
-    public $controllerName = 'homepage';
-
+    public $controllerName = 'homeController';
     public $methodName = 'index';
     public $controllerPath = 'app/controllers/';
     public $controller;
@@ -49,8 +48,8 @@ class Main {
     
     public function callMethod() {
         // Nếu controller là null, chuyển hướng đến trang lỗi, nhưng tránh khi đang ở trang lỗi
-        if ($this->controller === null && $this->url[0] !== 'homepage/notfound') {
-            header("Location: " . BASE_URL . "homepage/notfound");
+        if ($this->controller === null && $this->url[0] !== 'homeController/notfound') {
+            header("Location: " . BASE_URL . "homeController/notfound");
             return;
         }
     
@@ -65,8 +64,8 @@ class Main {
             }
         } else {
             // Nếu phương thức không tồn tại, chuyển hướng đến trang lỗi
-            if ($this->url[0] !== 'homepage/notfound') {
-                header("Location: " . BASE_URL . "homepage/notfound");
+            if ($this->url[0] !== 'homeController/notfound') {
+                header("Location: " . BASE_URL . "homeController/notfound");
             }
         }
     }

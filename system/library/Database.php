@@ -29,6 +29,24 @@ class Database extends PDO {
         return $statement->execute();
     }
 
+    public function insertCart($table, $data) {
+        $keys = implode(',', array_keys($data));
+        $values = ":" . implode(', :', array_keys($data));
+        $sql = "INSERT INTO $table($keys) VALUES($values)";
+        $statement = $this->prepare($sql);
+    
+        foreach ($data as $key => $value) {
+            $statement->bindValue(":$key", $value);
+        }
+    
+        // Thực thi câu lệnh
+        if ($statement->execute()) {
+            // Trả về ID tự động tăng của bản ghi vừa được chèn
+            return $this->lastInsertId();
+        }
+        return false;
+    }
+    
     public function update($table, $data, $condition) {
         $updateKeys = NULL;
 
