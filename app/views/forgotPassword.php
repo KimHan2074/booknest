@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Password Form</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
   <style>
     /* General Styling */
     body {
@@ -93,10 +95,17 @@
       text-align: center;
       width: 100%;
     }
+    .back-to-home {
+      cursor: pointer;
+      padding: 16px;
+    }
   </style>
 </head>
 <body>
+<div class="back-to-home" onclick="location.href='/booknest_website/'">
+        <i class="fa-solid fa-arrow-left" title="Go Back"></i>
 
+    </div>
   <!-- Reset Password Form -->
   <?php if(isset($data['check-process'])&&$data['check-process'] == 1): ?>
   <div id="reset-container" class="form-container" style="display: block;">
@@ -105,7 +114,9 @@
     <form id="reset-form" action="/booknest_website/userController/forgotPassword" method="POST">
       <label class="form-label" for="email-input">Email</label>
       <input id="email-input" name="email" class="form-input" type="email" placeholder="Enter your email" required>
+      <div class="btn-submit-forget-pass">
       <button id="reset-btn" class="form-btn" type="submit">Send</button>
+      </div>
     </form>
   </div>
   <?php endif ; ?>

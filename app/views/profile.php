@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,7 @@
       align-items: center;
       height: 71vh;
     }
+
     .profile-container {
       background: #F9F5EE;
       padding: 20px 30px;
@@ -26,14 +28,18 @@
       width: 650px;
       text-align: center;
     }
+
     .profile-title {
       margin-bottom: 6px;
+      margin-top: 30px;
       color: #5b3d33;
     }
+
     .profile-group {
       margin-bottom: 30px;
       text-align: left;
     }
+
     .profile-label {
       display: block;
       margin-bottom: 5px;
@@ -41,10 +47,12 @@
       font-size: 14px;
       font-weight: bold;
     }
+
     .profile-label i {
       margin-right: 8px;
       color: #5b3d33;
     }
+
     .profile-input {
       width: 100%;
       padding: 10px;
@@ -54,9 +62,11 @@
       outline: none;
       background-color: white;
     }
+
     .profile-input:focus {
       border-color: #F9F5EE;
     }
+
     .profile-button {
       background-color: #c29d8e;
       color: #fff;
@@ -67,11 +77,13 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
+
     .profile-button:hover {
       background-color: #815C5C;
     }
   </style>
 </head>
+
 <body>
 
 
@@ -169,4 +181,5 @@
         </div>
     </div>
 </body>
+
 </html>
