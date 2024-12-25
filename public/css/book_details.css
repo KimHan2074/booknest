@@ -92,7 +92,7 @@
 
 .quantity-buttons {
     display: flex;
-    padding-right: 80px;
+    padding-right: 30px;
     gap: 2px;
 }
 
@@ -127,6 +127,7 @@
 .add-to-cart {
     background-color: #D8B99C;
     color: white;
+    text-decoration: none;
 }
 
 .add-to-cart:hover {
@@ -231,4 +232,11 @@
     font-size: 14px;
     color: #d33;
     margin-bottom: 10px;
+}
+
+.quantity-message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: red;
+    display: none; /* Ẩn thông báo mặc định */
 }
