@@ -8,8 +8,6 @@ class userController extends DController
         parent::__construct();
     }
 
-   
-
     public function updateUserInfo() {
         $userModel = $this->load->model('userModel');
         // session_start();
@@ -109,7 +107,7 @@ class userController extends DController
                     $table = 'users';
 
                     $data = array(
-                        'password' => $newPassword
+                        'password' => md5($newPassword)
                     );
 
                     $condition = "$table.email = '$email'";
@@ -291,6 +289,7 @@ class userController extends DController
     public function logout(){
         session_unset();
         session_destroy();
+        session_start();
         $_SESSION['flash_message'] = [
             'type' => 'success',
             'message' => 'Đăng xuất thành công!'
@@ -298,4 +297,6 @@ class userController extends DController
         header('Location: /booknest_website/');
         exit();
     }
+        
 }
+
