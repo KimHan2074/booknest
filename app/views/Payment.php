@@ -23,6 +23,19 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+  <?php if (isset($_SESSION['flash_message'])): ?>
+    <script>
+        Swal.fire({
+          title: "<?php echo $_SESSION['flash_message']['type'] === 'success' ? 'Thành công!' : 'Thất bại!'; ?>",
+          text: "<?php echo $_SESSION['flash_message']['message']; ?>",
+          icon: "<?php echo $_SESSION['flash_message']['type']; ?>",
+          timer: 3000,
+          showConfirmButton: false
+        });
+    </script>
+    <?php unset($_SESSION['flash_message']); ?>
+  <?php endif; ?>
+
   <div class="container">
   <header class="header">
       <div class="logo-brand">
@@ -47,23 +60,45 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
     </header>
 
     <main class="main-content">
-      <section class="delivery-form">
-        <h2 class="title-content">Delivery information</h2>
-        <form class="frm-info-delivery">
-          <input class="input-address" type="text" placeholder="Add new address..." required>
-          <input class="input-name" type="text" placeholder="Enter your name" required>
-          <input class="input-phone" type="tel" placeholder="Enter your phone" required>
-          <input class="input-note" type="text" placeholder="Enter a note to the seller">
-        </form>
-        <h2 class="title-content">Payment method</h2>
+    <section class="delivery-form">
+    <h2 class="title-content">Delivery Information</h2>
+    <form id="paymentForm" class="paymentForm" action="/booknest_website/orderController/showPaymentInfo" method="POST">
+        <input class="input-address" name="inputAddress" type="text" placeholder="Add new address..." required>
+        <input class="input-name" name="inputName" type="text" placeholder="Enter your name" required>
+        <input class="input-phone" name="inputPhone" type="tel" placeholder="Enter your phone" required>
+        <input class="input-note" name="inputNote" type="text" placeholder="Enter a note to the seller">
+    
+        <h2 class="title-content">Payment Method</h2>
         <div class="payment-methods">
-          <label class="label"><input type="radio" name="payment" checked> Cash On Delivery</label>
-          <label class="label"><input type="radio" name="payment"> VNPay Wallet</label>
+            <label class="label">
+                <input type="radio" name="paymentMethod" value="cash payment" onclick="toggleBankTransferInfo()" checked>
+                Cash On Delivery
+            </label>
+            <label class="label">
+                <input type="radio" name="paymentMethod" value="bank transfer" onclick="toggleBankTransferInfo()">
+                Bank Transfer
+            </label>
         </div>
+
+        <div id="bankTransferInfo" style="display: none; margin-top: 10px;">
+            <h2 class="title-content">Bank Transfer Details</h2>
+            <p>Please transfer the payment to the following bank account:</p>
+            <ul class="bankTransferInfo">
+                <li>Account Name: <?php echo $bankTransferInfo['accountHolder']; ?></li>
+                <li>Account Number: <?php echo $bankTransferInfo['accountNumber']; ?></li>
+                <li>Bank: <?php echo $bankTransferInfo['bankName']; ?></li>
+                <li>Total Price: <?php echo number_format($bankTransferInfo['amount']); ?> VND</li>
+            </ul>
+            <h4>Scan QR Code for Payment:</h4>
+            <img class="qrCode" src="<?php echo $bankTransferInfo['qrFilePath']; ?>" alt="QR Code thanh toán">
+        </div>
+
         <div class="btn">
-          <button class="order-btn">Order</button>
+            <!-- Nút Order nằm trong form để kích hoạt gửi thông tin -->
+            <button class="order-btn" type="submit">Order</button>
         </div>
-      </section>
+    </form>
+</section>
 
       <section class="order-summary">
         <ul class="items-list">
@@ -147,6 +182,19 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
       </div>
     </div>
   </div>
+
+  <script>
+        function toggleBankTransferInfo() {
+            const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            const bankTransferInfo = document.getElementById('bankTransferInfo');
+
+            if (selectedPaymentMethod === 'bank transfer') {
+                bankTransferInfo.style.display = 'block';
+            } else {
+                bankTransferInfo.style.display = 'none';
+            }
+        }
+    </script>
+
 </body>
 </html>
-

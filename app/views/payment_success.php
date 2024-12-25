@@ -139,22 +139,26 @@
         <p>Thank you for ordering at <span class="store-name">BookNest</span></p>
     </div>
     <div class="order-details">
+      <!-- Loop through the books in the order -->
+      <?php foreach ($bookInOrder as $book): ?>
       <div class="book-info">
-        <img src="../public/img/book1.png" alt="Book Cover" class="book-image">
+        <img src="../public/img/<?= $book['path']; ?>" alt="Book Cover" class="book-image">
         <div class="book-title-price">
-          <h3 class="book-title">The Shadow of the Eight Trigrams Gate</h3>
-          <p class="book-price">207,000đ</p>
+          <h3 class="book-title"><?= $book['title']; ?></h3>
+          <p class="book-price"><?= number_format($book['price'], 0, ',', '.') ?>đ</p>
         </div>
       </div>
+      <?php endforeach; ?>
       <div class="order-info">
-        <p class="order-info-total"><strong>Total payment:</strong> <span class="total-payment">27,000đ</span></p>
-        <p><strong>Delivery address:</strong> 101B Le Huu Trac, Son Tra</p>
+        <p class="order-info-total"><strong>Total payment:</strong> <span class="total-payment"><?= number_format($book['total_price'], 0, ',', '.') ?>đ</span></p>
+        <p><strong>Delivery address:</strong> <?= $book['address_delivery']; ?></p> <!-- Assuming you have the delivery address variable -->
       </div>
     </div>
     <div class="order-note">
       <p>Your order will be delivered to you soon, please check your email for detailed information</p>
     </div>
 </div>
+
 
 
 <div class="footer">
