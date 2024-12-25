@@ -29,10 +29,9 @@ class cartController extends DController {
                     'book_id' => $book_id,
                     'quantity' => $quantity
                 );
-    
+    // Kiểm tra với order_id này và trạng thái này cùng vơú book_id này đã có tồn tại hay chưa để cộng quantity thay vì thêm bản ghi mới
                 $result = $orderModel->insertBookIntoOrderItems($table_order_items, $data);
                 if ($result) {
-                    // Cập nhật thông tin order (tổng số lượng hoặc giá trị)
 
                     $table_orders = 'orders';
 
@@ -41,11 +40,10 @@ class cartController extends DController {
                     $total_price = $orderModel->calculateTotalPrice($table_order_items, $order_id);
 
                     $data = array(
-                        'total_price' => $total_price
+                        'total_price' => $total_price[0]['total_price']
                     );
-
                     $orderModel->updateOrderSummary($table_orders, $data, $condition);
-    
+
                     $_SESSION['flash_message'] = [
                         'type' => 'success',
                         'message' => 'Sản phẩm đã được thêm vào giỏ hàng!'
@@ -99,7 +97,7 @@ class cartController extends DController {
         }
     
         // Điều hướng về trang giỏ hàng
-        header('Location: /booknest_website/cartController/viewCart');
+        header('Location: /booknest_website/');
         exit();
     }
     

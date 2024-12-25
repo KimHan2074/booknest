@@ -4,5 +4,9 @@ class orderController extends DController {
         parent::__construct();
     }
 
+
+    public function orderSuccess() {
+        $this->load->view('payment_success');
+    }
     
 }
