@@ -15,86 +15,85 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .order-success {
-  background-color: #EFEFEF;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 560px;
-  margin: 136px auto; /* Căn giữa phần nội dung */
-}
+        background-color: #EFEFEF;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 560px;
+        margin: 136px auto; /* Căn giữa phần nội dung */
+        }
 
-.header-order-successfull {
-  font-size: 18px;
-  font-weight: bold;
-  color: #6a4c40;
-  margin-top: 30px;
-  margin-bottom: 40px;
-}
+        .header-order-successfull {
+        font-size: 18px;
+        font-weight: bold;
+        color: #6a4c40;
+        margin-top: 30px;
+        margin-bottom: 40px;
+        }
 
-.store-name {
-  font-weight: bold;
-  color: #6a4c40;
-}
+        .store-name {
+        font-weight: bold;
+        color: #6a4c40;
+        }
 
-.order-details {
-  margin-bottom: 20px;
-}
+        .order-details {
+        margin-bottom: 20px;
+        }
 
-.book-info {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
+        .book-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        }
 
-.book-image {
-  width: 50px;
-  height: 70px;
-  margin-right: 10px;
-  object-fit: cover;
-}
+        .book-image {
+        width: 50px;
+        height: 70px;
+        margin-right: 10px;
+        object-fit: cover;
+        }
 
-.book-title {
-  font-size: 16px;
-  margin: 0;
-  color: #333;
-}
+        .book-title {
+        font-size: 16px;
+        margin: 0;
+        color: #333;
+        }
 
-.book-price {
-  font-size: 14px;
-  color: #999;
-  margin: 0;
-}
+        .book-price {
+        font-size: 14px;
+        color: #999;
+        margin: 0;
+        }
 
-.total-payment {
-  color: red;
-  font-weight: bold;
-}
+        .total-payment {
+        color: red;
+        font-weight: bold;
+        }
 
-.order-note {
-  border-top: 1px solid #ddd;
-  padding-top: 30px;
-  font-size: 12px;
-  color: #666;
-}
+        .order-note {
+        border-top: 1px solid #ddd;
+        padding-top: 30px;
+        font-size: 12px;
+        color: #666;
+        }
 
-.order-success-title {
-    text-align: left;
-    margin-bottom: 20px;
-}
+        .order-success-title {
+            text-align: left;
+            margin-bottom: 20px;
+        }
 
-.order-info {
-    text-align: left;
-}
+        .order-info {
+            text-align: left;
+        }
 
-.order-info p {
-    margin-bottom: 16px;
-}
+        .order-info p {
+            margin-bottom: 16px;
+        }
 
-.book-title-price {
-    text-align: left;
-}
-
+        .book-title-price {
+            text-align: left;
+        }
     </style>
 </head>
 <body>

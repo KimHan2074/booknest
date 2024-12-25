@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,8 @@
         .cart-wrapper {
             font-family: "Inter", sans-serif;
             background-color: #F9F5EE;
+            margin-top: 60px;
+            margin-bottom: 186px;
         }
 
         .cart {
@@ -96,7 +99,7 @@
         .cart-actions {
             margin-top: 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
         }
 
         .continue-shopping-btn {
@@ -135,9 +138,48 @@
             vertical-align: baseline;
         }
 
+    .quantity-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: 40px;
+    }
+
+    .quantity-buttons {
+        display: flex;
+        padding-right: 30px;
+        gap: 2px;
+    }
+
+    .quantity-input {
+        width: 40px;
+        text-align: center;
+        padding: 5px;
+        border: 1px solid #CCC;
+        border-radius: 3px;
+    }
+
+    /* Nút bấm */
+    .button-wrapper {
+        display: flex;
+        gap: 80px;
+    }
+
+    .btn-increment, .btn-decrement {
+        width: 30px;
+        height: 30px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s, color 0.3s;
+    }
     </style>
 </head>
-  <h1>This is cart page</h1>
     <?php if (isset($_SESSION['flash_message'])): ?>
         <script>
             Swal.fire({
@@ -176,15 +218,15 @@
     <!-- body -->
     <div class="cart-wrapper">
         <div class="cart" id="cart">
-            <h1 id="title">Giỏ hàng của bạn</h1>
-            <p class="cart-subtitle">Có 3 sản phẩm trong giỏ hàng của bạn</p>
+            <h1 id="title">Your shopping cart</h1>
+            <p class="cart-subtitle">There are 3 items in your cart</p>
             <table class="cart-table">
                 <thead>
                     <tr>
-                        <th>Tên sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Số lượng</th>
-                        <th>Thành tiền</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -194,43 +236,16 @@
                             <img src="https://product.hstatic.net/200000845405/product/8936225390201_2ac6f56f84f54accb8b5d9abc427b9c4_master.jpg" alt="Không Sao Đâu, Lại Bắt Đầu">
                             Sẵn sàng để yêu
                         </td>
-                        <td class="cart-item-price">84,000đ</td>
+                        <td class="cart-item-price original-price">84,000đ</td>
                         <td class="cart-item-quantity">
-                            <button class="quantity-decrease">-</button>
-                            <input type="text" value="1" readonly>
-                            <button class="quantity-increase">+</button>
+                            <button class="btn-decrement">-</button>
+                            <span class="quantity-input" id="quantity">1</span>
+                            <button class="btn-increment">+</button>
                         </td>
-                        <td class="cart-item-total">84,000đ</td>
+                        <td class="cart-item-total or">84,000đ</td>
                         <td><button class="cart-item-remove">&times;</button></td>
                     </tr>
-                    <tr class="cart-item">
-                        <td class="cart-item-name">
-                            <img src="https://product.hstatic.net/200000845405/product/bia_1_tu_chua_lanh_cam_xuc_xau_574caf4289f64930a7b96467fb8f5e17_master.png" alt="Tham Vấn Tâm Lý Trên Nền Tảng Phật Giáo">
-                            Tự Chữa Lành Cảm Xúc Xấu
-                        </td>
-                        <td class="cart-item-price">207,200đ</td>
-                        <td class="cart-item-quantity">
-                            <button class="quantity-decrease">-</button>
-                            <input type="text" value="1" readonly>
-                            <button class="quantity-increase">+</button>
-                        </td>
-                        <td class="cart-item-total">207,200đ</td>
-                        <td><button class="cart-item-remove">&times;</button></td>
-                    </tr>
-                    <tr class="cart-item">
-                        <td class="cart-item-name">
-                            <img src="https://product.hstatic.net/200000845405/product/8936225390188_3dff227ade9c4c2991598d8f064b1617_master.jpg" alt="Giới Hạn Và Sứ Mệnh Của Linh Hồn">
-                            Tình Yêu Cũng Cần Phải Học
-                        </td>
-                        <td class="cart-item-price">160,000đ</td>
-                        <td class="cart-item-quantity">
-                            <button class="quantity-decrease">-</button>
-                            <input type="text" value="1" readonly>
-                            <button class="quantity-increase">+</button>
-                        </td>
-                        <td class="cart-item-total">160,000đ</td>
-                        <td><button class="cart-item-remove">&times;</button></td>
-                    </tr>
+                    
                 </tbody>
             </table>
             <div class="cart-actions">
@@ -282,5 +297,45 @@
             </div>
         </div>
     </div>
+    <script>
+        const cartItems = document.querySelectorAll(".cart-item");
+
+cartItems.forEach((item) => {
+    const decrementButton = item.querySelector(".btn-decrement");
+    const incrementButton = item.querySelector(".btn-increment");
+    const quantityInput = item.querySelector(".quantity-input");
+    const priceElement = item.querySelector(".cart-item-price");
+    const totalElement = item.querySelector(".cart-item-total");
+
+    // Lấy giá sản phẩm từ HTML và chuyển thành số
+    const originalPrice = parseInt(priceElement.textContent.replace(/,|đ/g, ""));
+
+    // Hàm cập nhật tổng giá
+    const updateTotalPrice = () => {
+        const quantity = parseInt(quantityInput.textContent);
+        const totalPrice = originalPrice * quantity;
+        totalElement.textContent = `${totalPrice.toLocaleString()}đ`;
+    };
+
+    // Xử lý khi nhấn nút giảm số lượng
+    decrementButton.addEventListener("click", () => {
+        let quantity = parseInt(quantityInput.textContent);
+        if (quantity > 1) {
+            quantity--;
+            quantityInput.textContent = quantity;
+            updateTotalPrice();
+        }
+    });
+
+    // Xử lý khi nhấn nút tăng số lượng
+    incrementButton.addEventListener("click", () => {
+        let quantity = parseInt(quantityInput.textContent);
+        quantity++;
+        quantityInput.textContent = quantity;
+        updateTotalPrice();
+    });
+});
+
+    </script>
 </body>
 </html>

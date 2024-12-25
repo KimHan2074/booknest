@@ -30,4 +30,17 @@ class OrderModel extends DModel {
         return $this->db->select($sql, $data);  
     }
 
+
+    public function getOrderItemByOrderIdAndBookId($order_id, $book_id) {
+        $sql = "SELECT * FROM order_items WHERE order_id = :order_id AND book_id = :book_id";
+
+        $data = ['order_id' => $order_id,
+                'book_id' => $book_id];
+        return $this->db->select($sql, $data);  
+
+    }
+
+    public function updateOrderItemQuantity($table_order_items, $data, $condition) {
+        return $this->db->update($table_order_items, $data, $condition);
+    }
 }
