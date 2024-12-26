@@ -57,16 +57,18 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
               <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/loginForm">Log In</a></button>
           <?php endif; ?>
       </div>
-    </header>
-
+  </header>
+    <?php if (empty($user_cart) || count($user_cart) < 1): ?>
+      <p>Không có sản phẩm nào trong giỏ hàng.</p>
+    <?php else: ?>
     <main class="main-content">
     <section class="delivery-form">
     <h2 class="title-content">Delivery Information</h2>
     <form id="paymentForm" class="paymentForm" action="/booknest_website/orderController/showPaymentInfo" method="POST">
-        <input class="input-address" name="inputAddress" type="text" placeholder="Add new address..." required>
-        <input class="input-name" name="inputName" type="text" placeholder="Enter your name" required>
-        <input class="input-phone" name="inputPhone" type="tel" placeholder="Enter your phone" required>
-        <input class="input-note" name="inputNote" type="text" placeholder="Enter a note to the seller">
+            <input class="input-address" name="address" type="text" value="<?php echo $_SESSION['current_user']['user_id']; ?>" placeholder="Add new address..." required>
+            <input class="input-name" name="name" type="text" value="<?php echo $_SESSION['current_user']['username']; ?>" placeholder="Enter your name" required>
+            <input class="input-phone" name="phone" type="tel" value="<?php echo $_SESSION['current_user']['phone']; ?>" placeholder="Enter your phone" required>
+            <input class="input-note" name="inputNote" type="text" placeholder="Enter a note to the seller">
     
         <h2 class="title-content">Payment Method</h2>
         <div class="payment-methods">
@@ -98,7 +100,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             <button class="order-btn" type="submit">Order</button>
         </div>
     </form>
-</section>
+    </section>
 
       <section class="order-summary">
         <ul class="items-list">
@@ -179,11 +181,10 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
               <img src="../public/img/mail.png" alt="Mail">
             </div>
         </div>
-      </div>
     </div>
   </div>
 
-  <script>
+   <script>
         function toggleBankTransferInfo() {
             const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
             const bankTransferInfo = document.getElementById('bankTransferInfo');
@@ -194,7 +195,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                 bankTransferInfo.style.display = 'none';
             }
         }
-    </script>
+  </script>
 
 </body>
 </html>
