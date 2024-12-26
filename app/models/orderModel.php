@@ -97,11 +97,67 @@ class OrderModel extends DModel {
             JOIN orders o ON oi.order_id = o.order_id
             JOIN images i ON b.book_id = i.book_id
             JOIN payments p ON o.order_id = p.order_id
-            WHERE o.user_id = :user_id
-            AND o.status IN ('pending', 'complete')
-            ORDER BY o.created_at DESC
-            LIMIT 1
+            WHERE o.order_id = (
+                SELECT order_id
+                FROM orders
+                WHERE user_id = :user_id
+                AND status IN ('pending', 'complete')
+                ORDER BY created_at DESC
+                LIMIT 1
+            )
+            ORDER BY oi.order_item_id
+    ";
+    
+        $data = [':user_id' => $user_id];
+        return $this->db->select($sql, $data);
+    }
+    
+    public function getAllBookInOrderDetails($table_orders, $user_id){
+        $sql = "
+            SELECT 
+                i.path,
+                b.title,
+                b.price,
+                oi.quantity
+            FROM orders o
+            JOIN `order_items` oi ON o.order_id = oi.order_id
+            JOIN books b ON b.book_id = oi.book_id
+            JOIN images i ON i.book_id = b.book_id
+            WHERE o.order_id = (
+                SELECT order_id
+                FROM orders
+                WHERE user_id = :user_id
+                AND status IN ('pending', 'complete')
+                ORDER BY created_at DESC
+                LIMIT 1
+            )
+            ORDER BY oi.order_item_id
+            ";
+
+        $data = [':user_id' => $user_id];
+        return $this->db->select($sql, $data);
+    }
+
+    public function getInfoCustomer($table_orders, $user_id){
+        $sql = "
+            SELECT 
+                o.total_price,
+                u.username,
+                u.email,
+                p.address_delivery
+            FROM orders o
+            JOIN users u ON o.user_id = u.user_id
+            JOIN payments p ON o.order_id = p.order_id
+            WHERE o.order_id = (
+                SELECT order_id 
+                FROM orders 
+                WHERE user_id = :user_id
+                AND status IN ('pending','complete')
+                ORDER BY created_at DESC
+                LIMIT 1
+            )
         ";
+
         $data = [':user_id' => $user_id];
         return $this->db->select($sql, $data);
     }
