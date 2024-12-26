@@ -1,5 +1,4 @@
 <?php
-
 class paymentController extends DController
 {
     public function __construct()
@@ -45,7 +44,7 @@ class paymentController extends DController
     {
         $this->load->view('payment_success');
     }
-    
+
     public function checkout()
     {
         session_start();
@@ -75,7 +74,7 @@ class paymentController extends DController
         if ($payment_method == 'credit') {
             $status = 'complete'; 
         } 
-        
+
 
         $data = array(
             'user_id' => $user_id,
