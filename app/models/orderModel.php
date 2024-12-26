@@ -168,7 +168,7 @@ class OrderModel extends DModel {
 
         $data = ['order_id' => $order_id,
                 'book_id' => $book_id];
-        return $this->db->select($sql, $data);  
+        return $this->db->select($sql, $data);
 
     }
 
