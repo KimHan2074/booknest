@@ -12,6 +12,12 @@ class cartModel extends DModel {
         $data = [':user_id' => $user_id, 'status' => $status];
         return $this->db->select($sql, $data);
     }
+    public function getUserCart($user_id, $status) {
+        $sql = "SELECT * FROM `orders` WHERE `user_id` = :user_id AND `status` = :status";
+        
+        $data = [':user_id' => $user_id, 'status' => $status];
+        return $this->db->select($sql, $data);
+    }
     
     public function createNewCart($table_orders, $data) {
         return $this->db->insertCart($table_orders, $data);

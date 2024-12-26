@@ -5,7 +5,12 @@ class cartController extends DController {
     }
 
     public function viewCart() {
-        $this->load->view('cart');
+        $cartModel = $this->load->model('cartModel');
+        if (isset($_SESSION['current_user'])) {
+            $user_id = $_SESSION['current_user']['user_id'];
+            $data['user_cart'] = $cartModel->getUserCart($user_id, 'inCart');
+        }
+        $this->load->view('cart', $data);
     }
 
 
@@ -24,35 +29,67 @@ class cartController extends DController {
                 // Giỏ hàng đã tồn tại
                 $order_id = $cart[0]['order_id'];
                 $table_order_items = 'order_items';
-                $data = array(
-                    'order_id' => $order_id,
-                    'book_id' => $book_id,
-                    'quantity' => $quantity
-                );
-    // Kiểm tra với order_id này và trạng thái này cùng vơú book_id này đã có tồn tại hay chưa để cộng quantity thay vì thêm bản ghi mới
-                $result = $orderModel->insertBookIntoOrderItems($table_order_items, $data);
-                if ($result) {
 
-                    $table_orders = 'orders';
+                $existingItem = $orderModel->getOrderItemByOrderIdAndBookId($order_id, $book_id);
 
-                    $condition = "$table_orders.order_id = '$order_id'";
+                if ($existingItem) {
+                    $newQuantity = $existingItem[0]['quantity'] + $quantity;
 
-                    $total_price = $orderModel->calculateTotalPrice($table_order_items, $order_id);
+                    $order_item_id = $existingItem[0]['order_item_id'];
+
+                    $condition = "$table_order_items.order_item_id = '$order_item_id'";
 
                     $data = array(
-                        'total_price' => $total_price[0]['total_price']
+                        'quantity' => $newQuantity                        
                     );
-                    $orderModel->updateOrderSummary($table_orders, $data, $condition);
 
-                    $_SESSION['flash_message'] = [
-                        'type' => 'success',
-                        'message' => 'Sản phẩm đã được thêm vào giỏ hàng!'
-                    ];
-                } else {
-                    $_SESSION['flash_message'] = [
-                        'type' => 'error',
-                        'message' => 'Không thể thêm sản phẩm vào giỏ hàng!'
-                    ];
+                    $updateResult = $orderModel->updateOrderItemQuantity($table_order_items, $data, $condition);
+
+                    if($updateResult) {
+                        $table_orders = 'orders';
+                        $condition = "$table_orders.order_id = '$order_id'";
+
+                        $total_price = $orderModel->calculateTotalPrice($table_order_items, $order_id);
+
+                        $data = array(
+                            'total_price' => $total_price[0]['total_price']
+                        );
+                        $orderModel->updateOrderSummary($table_orders, $data, $condition);
+                        $_SESSION['flash_message'] = [
+                            'type' => 'success',
+                            'message' => 'Số lượng sản phẩm đã được cập nhật trong giỏ hàng!'
+                        ];
+                    }else{
+                        $_SESSION['flash_message'] = [
+                            'type' => 'error',
+                            'message' => 'Không thể cập nhật số lượng sản phẩm!'
+                        ];
+                    }
+                }else{
+                    $data = array(
+                        'order_id' => $order_id,
+                        'book_id' => $book_id,
+                        'quantity' => $quantity
+                    );
+                    $result = $orderModel->insertBookIntoOrderItems($table_order_items, $data);
+                    if ($result) {
+
+                        $table_orders = 'orders';
+    
+                        $condition = "$table_orders.order_id = '$order_id'";
+    
+                        $total_price = $orderModel->calculateTotalPrice($table_order_items, $order_id);
+    
+                        $data = array(
+                            'total_price' => $total_price[0]['total_price']
+                        );
+                        $orderModel->updateOrderSummary($table_orders, $data, $condition);
+    
+                        $_SESSION['flash_message'] = [
+                            'type' => 'success',
+                            'message' => 'Sản phẩm đã được thêm vào giỏ hàng!'
+                        ];
+                    }
                 }
             } else {
                 // Tạo giỏ hàng mới
@@ -65,9 +102,26 @@ class cartController extends DController {
     
                 $newCartId = $cartModel->createNewCart($table_orders, $data);
                 if ($newCartId) {
-                    $result = $orderModel->insertBookIntoOrderItems($newCartId, $book_id);
+                    $cart = $cartModel->getCartByUserIdAndStatus($user_id, 'inCart');
+                    $order_id = $cart[0]['order_id'];
+                    $table_order_items = 'order_items';
+                    $data = array(
+                        'order_id' => $order_id,
+                        'book_id' => $book_id,
+                        'quantity' => $quantity
+                    );
+                    $result = $orderModel->insertBookIntoOrderItems($table_order_items, $data);
                     if ($result) {
-                        $orderModel->updateOrderSummary($newCartId);
+                        $table_orders = 'orders';
+
+                        $condition = "$table_orders.order_id = '$order_id'";
+
+                        $total_price = $orderModel->calculateTotalPrice($table_order_items, $order_id);
+
+                        $data = array(
+                            'total_price' => $total_price[0]['total_price']
+                        );
+                        $orderModel->updateOrderSummary($table_orders, $data, $condition);
     
                         $_SESSION['flash_message'] = [
                             'type' => 'success',
@@ -100,7 +154,5 @@ class cartController extends DController {
         header('Location: /booknest_website/');
         exit();
     }
-    
-    
     
 }
