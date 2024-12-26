@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ hàng</title>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../public/css/homepage.css">
+    <link rel="stylesheet" href="../public/css/homepage.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <style>
         .cart-wrapper {
@@ -37,6 +37,12 @@
 
         .cart-table {
             width: 100%;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .cart-table, th{
+            border: 1px solid black;
+            border-collapse: collapse;
         }
 
         #cart th,
@@ -94,6 +100,7 @@
             border: none;
             background: none;
             padding-top: 40px;
+            text-decoration: none;
         }
 
         .cart-actions {
@@ -227,27 +234,30 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total Price</th>
-                        <th></th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="cart-item">
+                    <?php foreach ($user_cart as $key => $value) {
+                    ?>
+                    <tr class="cart-item" data-book-id="<?php echo $value['book_id']; ?>" data-order-id="<?php echo $value['order_id']; ?>">
                         <td class="cart-item-name">
-                            <img src="https://product.hstatic.net/200000845405/product/8936225390201_2ac6f56f84f54accb8b5d9abc427b9c4_master.jpg" alt="Không Sao Đâu, Lại Bắt Đầu">
-                            Sẵn sàng để yêu
+                            <img src="../public/img/<?php echo $value['image_path'] ?>" alt="Book Image">
+                            <p><?php echo $value['title'] ?></p>
                         </td>
-                        <td class="cart-item-price original-price">84,000đ</td>
+                        <td class="cart-item-price original-price"><?php echo $value['price'] ?></td>
                         <td class="cart-item-quantity">
                             <button class="btn-decrement">-</button>
-                            <span class="quantity-input" id="quantity">1</span>
+                            <span class="quantity-input" id="quantity"><?php echo $value['quantity'] ?></span>
                             <button class="btn-increment">+</button>
                         </td>
-                        <td class="cart-item-total or">84,000đ</td>
-                        <td><button class="cart-item-remove">&times;</button></td>
+                        <td class="cart-item-total or"><?php echo $value['price'] * $value['quantity'] ?></td>
+                        <td><a href="<?php echo BASE_URL; ?>cartController/deleteItemFromCart?order_item_id=<?php echo $value['order_item_id'] ?>&order_id=<?php echo $value['order_id']; ?>" class="cart-item-remove">&times;</a></td>
                     </tr>
-                    
+                    <?php } ?>
                 </tbody>
             </table>
+            <div id="cart-total" style="text-align: right; font-weight: bold; margin-top: 20px;"></div>
             <div class="cart-actions">
                 <button class="continue-shopping-btn">Continue shopping</button>
                 <button class="payment-btn">Payment</button>
@@ -300,41 +310,56 @@
     <script>
         const cartItems = document.querySelectorAll(".cart-item");
 
-cartItems.forEach((item) => {
-    const decrementButton = item.querySelector(".btn-decrement");
-    const incrementButton = item.querySelector(".btn-increment");
-    const quantityInput = item.querySelector(".quantity-input");
-    const priceElement = item.querySelector(".cart-item-price");
-    const totalElement = item.querySelector(".cart-item-total");
+        cartItems.forEach((item) => {
+            const decrementButton = item.querySelector(".btn-decrement");
+            const incrementButton = item.querySelector(".btn-increment");
+            const quantityInput = item.querySelector(".quantity-input");
+            const bookId = item.dataset.bookId; // Đảm bảo thêm thuộc tính data-book-id vào HTML
+            const orderId = item.dataset.orderId; // Đảm bảo thêm thuộc tính data-order-id vào HTML
 
-    // Lấy giá sản phẩm từ HTML và chuyển thành số
-    const originalPrice = parseInt(priceElement.textContent.replace(/,|đ/g, ""));
+            const updateQuantity = (newQuantity) => {
+                fetch('/booknest_website/cartController/updateQuantity', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        order_id: orderId,
+                        book_id: bookId,
+                        quantity: newQuantity,
+                    }),
+                })
+                .then((response) => response.json())  // Chuyển dữ liệu trả về thành JSON
+                .then((data) => {
+                    console.log("Dữ liệu trả về từ server:", data);  // Kiểm tra dữ liệu
+                    if (data.success) {
+                        console.log("Cập nhật số lượng thành công!");
+                    } else {
+                        // alert("Có lỗi xảy ra khi cập nhật số lượng: " + data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Lỗi:", error);
+                    // alert("Có lỗi khi cập nhật số lượng.");
+                });
+            };
 
-    // Hàm cập nhật tổng giá
-    const updateTotalPrice = () => {
-        const quantity = parseInt(quantityInput.textContent);
-        const totalPrice = originalPrice * quantity;
-        totalElement.textContent = `${totalPrice.toLocaleString()}đ`;
-    };
+            decrementButton.addEventListener("click", () => {
+                let quantity = parseInt(quantityInput.textContent || quantityInput.value);
+                if (quantity > 1) {
+                    quantity--;
+                    quantityInput.textContent = quantity;
+                    updateQuantity(quantity); // Gọi hàm cập nhật số lượng
+                }
+            });
 
-    // Xử lý khi nhấn nút giảm số lượng
-    decrementButton.addEventListener("click", () => {
-        let quantity = parseInt(quantityInput.textContent);
-        if (quantity > 1) {
-            quantity--;
-            quantityInput.textContent = quantity;
-            updateTotalPrice();
-        }
-    });
-
-    // Xử lý khi nhấn nút tăng số lượng
-    incrementButton.addEventListener("click", () => {
-        let quantity = parseInt(quantityInput.textContent);
-        quantity++;
-        quantityInput.textContent = quantity;
-        updateTotalPrice();
-    });
-});
+            incrementButton.addEventListener("click", () => {
+                let quantity = parseInt(quantityInput.textContent || quantityInput.value);
+                quantity++;
+                quantityInput.textContent = quantity;
+                updateQuantity(quantity); // Gọi hàm cập nhật số lượng
+            });
+        });
 
     </script>
 </body>

@@ -112,8 +112,8 @@ class orderController extends DController {
 
         if (sendConfirmationEmail($email, $bookInOrderDetails, $userName, $totalPayment, $deliveryAddress)) {
             echo "Check your email!";
-            // header("Location: /booknest_website");
-            // exit();
+            header("Location: /booknest_website");
+            exit();
         } else {
             echo "Failed to send confirm.";
         }

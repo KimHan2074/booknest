@@ -23,23 +23,8 @@ function sendConfirmationEmail($toEmail, $bookInOrderDetails, $userName, $totalP
         $mail->CharSet = 'UTF-8';
         $mail->Subject = 'Order Confirmation';
 
-        // Create email content
-        // $orderItemsHtml = '';
-        // foreach ($bookInOrderDetails as $item) {
-        //     $orderItemsHtml .= "
-        //         <tr>
-        //             <td><img src='/../public/img/{$item['path']}' alt='{$item['title']}' width='100'></td>
-        //             <td>{$item['title']}</td>
-        //             <td>" . number_format($item['price'], 0, ',', '.') . "</td>
-        //             <td>{$item['quantity']}</td>
-        //             <td>" . number_format($item['price'] * $item['quantity'], 0, ',', '.') . "</td>
-        //         </tr>
-        //     ";
-        // }
-        $baseUrl = "http://localhost:8080/booknest_website"; // URL cơ sở, ví dụ: https://yourwebsite.com
         $orderItemsHtml = '';
         foreach ($bookInOrderDetails as $item) {
-            $imageUrl = "{$baseUrl}/public/img/{$item['path']}";
             $orderItemsHtml .= "
                 <tr>
                     <td>{$item['title']}</td>
