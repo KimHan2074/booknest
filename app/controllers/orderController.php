@@ -102,5 +102,5 @@ class orderController extends DController {
     
         $this->load->view('payment_success', $data);
     }
-    
 }
+
