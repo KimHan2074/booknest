@@ -231,23 +231,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach ($user_cart as $key => $value) {
+                    ?>
                     <tr class="cart-item">
                         <td class="cart-item-name">
-                            <img src="https://product.hstatic.net/200000845405/product/8936225390201_2ac6f56f84f54accb8b5d9abc427b9c4_master.jpg" alt="Không Sao Đâu, Lại Bắt Đầu">
-                            Sẵn sàng để yêu
+                            <img src="../public/img/<?php echo $value['image_path'] ?>" alt="Book Image">
+                            <p><?php echo $value['title'] ?></p>
                         </td>
-                        <td class="cart-item-price original-price">84,000đ</td>
+                        <td class="cart-item-price original-price"><?php echo $value['price'] ?></td>
                         <td class="cart-item-quantity">
                             <button class="btn-decrement">-</button>
-                            <span class="quantity-input" id="quantity">1</span>
+                            <span class="quantity-input" id="quantity"><?php echo $value['quantity'] ?></span>
                             <button class="btn-increment">+</button>
                         </td>
-                        <td class="cart-item-total or">84,000đ</td>
+                        <td class="cart-item-total or"><?php echo $value['price'] * $value['quantity'] ?></td>
                         <td><button class="cart-item-remove">&times;</button></td>
                     </tr>
-                    
+                    <?php } ?>
                 </tbody>
             </table>
+            <div id="cart-total" style="text-align: right; font-weight: bold; margin-top: 20px;"></div>
             <div class="cart-actions">
                 <button class="continue-shopping-btn">Continue shopping</button>
                 <button class="payment-btn">Payment</button>
@@ -300,42 +303,41 @@
     <script>
         const cartItems = document.querySelectorAll(".cart-item");
 
-cartItems.forEach((item) => {
-    const decrementButton = item.querySelector(".btn-decrement");
-    const incrementButton = item.querySelector(".btn-increment");
-    const quantityInput = item.querySelector(".quantity-input");
-    const priceElement = item.querySelector(".cart-item-price");
-    const totalElement = item.querySelector(".cart-item-total");
+        cartItems.forEach((item) => {
+            const decrementButton = item.querySelector(".btn-decrement");
+            const incrementButton = item.querySelector(".btn-increment");
+            const quantityInput = item.querySelector(".quantity-input");
+            const priceElement = item.querySelector(".cart-item-price");
+            const totalElement = item.querySelector(".cart-item-total");
 
-    // Lấy giá sản phẩm từ HTML và chuyển thành số
-    const originalPrice = parseInt(priceElement.textContent.replace(/,|đ/g, ""));
+            // Lấy giá sản phẩm từ HTML và chuyển thành số
+            const originalPrice = parseInt(priceElement.textContent.replace(/,|đ/g, ""));
 
-    // Hàm cập nhật tổng giá
-    const updateTotalPrice = () => {
-        const quantity = parseInt(quantityInput.textContent);
-        const totalPrice = originalPrice * quantity;
-        totalElement.textContent = `${totalPrice.toLocaleString()}đ`;
-    };
+            // Hàm cập nhật tổng giá
+            const updateTotalPrice = () => {
+                const quantity = parseInt(quantityInput.textContent);
+                const totalPrice = originalPrice * quantity;
+                totalElement.textContent = `${totalPrice.toLocaleString()}đ`;
+            };
 
-    // Xử lý khi nhấn nút giảm số lượng
-    decrementButton.addEventListener("click", () => {
-        let quantity = parseInt(quantityInput.textContent);
-        if (quantity > 1) {
-            quantity--;
-            quantityInput.textContent = quantity;
-            updateTotalPrice();
-        }
-    });
+            // Xử lý khi nhấn nút giảm số lượng
+            decrementButton.addEventListener("click", () => {
+                let quantity = parseInt(quantityInput.textContent);
+                if (quantity > 1) {
+                    quantity--;
+                    quantityInput.textContent = quantity;
+                    updateTotalPrice();
+                }
+            });
 
-    // Xử lý khi nhấn nút tăng số lượng
-    incrementButton.addEventListener("click", () => {
-        let quantity = parseInt(quantityInput.textContent);
-        quantity++;
-        quantityInput.textContent = quantity;
-        updateTotalPrice();
-    });
-});
-
+            // Xử lý khi nhấn nút tăng số lượng
+            incrementButton.addEventListener("click", () => {
+                let quantity = parseInt(quantityInput.textContent);
+                quantity++;
+                quantityInput.textContent = quantity;
+                updateTotalPrice();
+            });
+        });
     </script>
 </body>
 </html>

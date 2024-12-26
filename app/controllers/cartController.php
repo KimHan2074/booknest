@@ -5,10 +5,19 @@ class cartController extends DController {
     }
 
     public function viewCart() {
+        session_start();
         $cartModel = $this->load->model('cartModel');
         if (isset($_SESSION['current_user'])) {
             $user_id = $_SESSION['current_user']['user_id'];
-            $data['user_cart'] = $cartModel->getUserCart($user_id, 'inCart');
+            $status = 'inCart';
+            $data['user_cart'] = $cartModel->getUserCart($user_id, $status);
+        }else {
+            $_SESSION['flash_message'] = [
+                'type' => 'error',
+                'message' => 'Vui lòng đăng nhập để thêm vào giỏ hàng!'
+            ];
+            header('Location: /booknest_website/userController/loginForm');
+            exit();
         }
         $this->load->view('cart', $data);
     }
@@ -20,7 +29,7 @@ class cartController extends DController {
         $orderModel = $this->load->model('orderModel');
         $book_id = $_GET['book_id'];
         $quantity = $_GET['quantity'];
-    
+        
         if (isset($_SESSION['current_user'])) {
             $user_id = $_SESSION['current_user']['user_id'];
             $cart = $cartModel->getCartByUserIdAndStatus($user_id, 'inCart');
