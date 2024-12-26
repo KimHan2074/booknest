@@ -26,27 +26,54 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
 
 <body>
   <div class="container">
-    <!-- header -->
+  <header class="header">
+      <div class="logo-brand">
+          <img src="../public/img/image.png" alt="BookNest Logo" class="logo">
+          <h1 class="brand-name"><a href="/booknest_website/">BookNest</a></h1>
+      </div>
+      <ul class="navigation">
+          <li class="nav-link active"><a href="/booknest_website/">Home</a></li>
+          <li class="nav-link"><a href="#">Search</a></li>
+      </ul>
+      <div class="right-header">
+          <!-- <?php if (isset($_SESSION['is_logged_in'])): ?> -->
+              <div class="iconCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></div>
+              <div class="iconUser"><a href="<?php echo BASE_URL; ?>userController/userProfile"><i class="fa-solid fa-user icon-user"></i></a></div>
+              <div class="username"><?php echo $_SESSION['current_user']['username'] ?></div>
+              <div class="sign-up"><a href="<?php echo BASE_URL; ?>userController/logout">Log Out</a></div>
+          <?php else: ?>
+              <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/registerForm">Sign up</a></button>
+              <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/loginForm">Log In</a></button>
+          <?php endif; ?>
+      </div>
+    </header>
     <?php if (empty($user_cart) || count($user_cart) < 1): ?>
       <p>Không có sản phẩm nào trong giỏ hàng.</p>
     <?php else: ?>
       <main class="main-content">
-        <form class="frm-info-delivery" action="/booknest_website/paymentController/checkout" method="POST">
-          <section class="delivery-form">
+        <section class="delivery-form">
+          <form class="frm-info-delivery" action="/booknest_website/paymentController/checkout" method="POST">
             <h2 class="title-content">Delivery information</h2>
             <input class="input-address" name="address" type="text" value="<?php echo $_SESSION['current_user']['user_id']; ?>" placeholder="Add new address..." required>
             <input class="input-name" name="name" type="text" value="<?php echo $_SESSION['current_user']['username']; ?>" placeholder="Enter your name" required>
             <input class="input-phone" name="phone" type="tel" value="<?php echo $_SESSION['current_user']['phone']; ?>" placeholder="Enter your phone" required>
             <h2 class="title-content">Payment method</h2>
             <div class="payment-methods">
-              <label class="label"><input type="radio" name="payment" checked> Cash On Delivery</label>
-              <label class="label"><input type="radio" name="payment"> VNPay Wallet</label>
+              <label class="label"><input type="radio" name="payment_method" value="cash" checked> Cash On Delivery</label>
+              <label class="label"><input type="radio" name="payment_method" value="credit"> Bank Transfer</label>
             </div>
+            <?php foreach ($user_cart as $key => $item): ?>
+              <div>
+                <input type="hidden" name="products[<?php echo $key; ?>][book_id]" value="<?php echo $item['book']['book_id']; ?>">
+                <input type="hidden" name="products[<?php echo $key; ?>][quantity]" value="<?php echo $item['quantity']; ?>">
+              </div>
+            <?php endforeach; ?>
+            <input type="hidden" name="total_price" value="<?php echo $total_price; ?>">
             <div class="btn">
               <button type="submit" class="order-btn">Order</button>
             </div>
-          </section>
-        </form>
+          </form>
+        </section>
 
         <section class="order-summary">
           <ul class="items-list">
@@ -122,4 +149,5 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
   </div>
   </div>
 </body>
+
 </html>

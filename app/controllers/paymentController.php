@@ -1,10 +1,13 @@
 <?php
 
-class paymentController extends DController {
-    public function __construct() {
+class paymentController extends DController
+{
+    public function __construct()
+    {
         parent::__construct();
     }
-    public function viewPayment() {
+    public function viewPayment()
+    {
         $book_id = isset($_GET['book_id']) ? $_GET['book_id'] : null;
         $quantity = isset($_GET['quantity']) ? $_GET['quantity'] : null;
         $data = null;
@@ -38,13 +41,78 @@ class paymentController extends DController {
 
         $this->load->view('Payment', $data);
     }
-    public function viewPaymentSuccess(){
+    public function viewPaymentSuccess()
+    {
         $this->load->view('payment_success');
     }
+    
+    public function checkout()
+    {
+        session_start();
+        // Lấy toàn bộ form info 
+        $name = $_POST['name'] ?? '';
+        $address = $_POST['address'] ?? '';
+        $phone = $_POST['phone'] ?? '';
+        $total_price = $_POST['total_price'] ?? 0;
+        $payment_method = $_POST['payment_method'] ?? 'cash';
 
-    public function checkout(){
-        // TODO: Lấy toàn bộ form info để tạo thành 1 order, bên trong chứa 1 orderItem (sản phẩm buy now)
+        // Lấy danh sách sản phẩm
+        $products = $_POST['products'] ?? [];
+
+        // Kiểm tra dữ liệu
+        if (empty($name) || empty($address) || empty($phone) || empty($products)) {
+            echo "Vui lòng điền đầy đủ thông tin và chọn sản phẩm!";
+            exit;
+        }
+
+        // Tạo đơn hàng mới
+        $cartModel = $this->load->model('cartModel');
+        $orderModel = $this->load->model('orderModel');
+        $user_id = $_SESSION['current_user']['user_id'];
+        $table_orders = 'orders';
+        // Kiểm tra lại loại thanh toán
+        $status = 'pending'; 
+        if ($payment_method == 'credit') {
+            $status = 'complete'; 
+        } 
         
+
+        $data = array(
+            'user_id' => $user_id,
+            'status' => $status,
+            'total_price' => $total_price
+        );
+
+        $newOrderId = $cartModel->createNewCart($table_orders, $data);
+        if ($newOrderId) {
+            $table_order_items = 'order_items';
+            //Tạo orderItem
+            foreach ($products as $product) {
+                $book_id = $product['book_id'];
+                $quantity = $product['quantity'];
+
+                $data = array(
+                    'order_id' => $newOrderId,
+                    'book_id' => $book_id,
+                    'quantity' => $quantity
+                );
+                $result = $orderModel->insertBookIntoOrderItems($table_order_items, $data);
+                if (!$result) {
+                    $_SESSION['flash_message'] = [
+                        'type' => 'error',
+                        'message' => 'Không thể thêm sản phẩm vào đơn hàng mới!'
+                    ];
+                }
+            }
+        } else {
+            $_SESSION['flash_message'] = [
+                'type' => 'error',
+                'message' => 'Không thể tạo đơn hàng mới!'
+            ];
+        }
+
+
+
         // Lưu thành công thì Chuyển hướng trang đến payment success
         header('Location: /booknest_website/paymentController/viewPaymentSuccess');
         exit();
