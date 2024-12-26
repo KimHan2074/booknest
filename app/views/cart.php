@@ -100,6 +100,7 @@
             border: none;
             background: none;
             padding-top: 40px;
+            text-decoration: none;
         }
 
         .cart-actions {
@@ -251,7 +252,7 @@
                             <button class="btn-increment">+</button>
                         </td>
                         <td class="cart-item-total or"><?php echo $value['price'] * $value['quantity'] ?></td>
-                        <td><a href="<?php echo BASE_URL; ?>cartController/deleteItemFromCart?order_item_id=<?php echo $value['order_item_id'] ?>" class="cart-item-remove">&times;</a></td>
+                        <td><a href="<?php echo BASE_URL; ?>cartController/deleteItemFromCart?order_item_id=<?php echo $value['order_item_id'] ?>&order_id=<?php echo $value['order_id']; ?>" class="cart-item-remove">&times;</a></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -310,57 +311,55 @@
         const cartItems = document.querySelectorAll(".cart-item");
 
         cartItems.forEach((item) => {
-    const decrementButton = item.querySelector(".btn-decrement");
-    const incrementButton = item.querySelector(".btn-increment");
-    const quantityInput = item.querySelector(".quantity-input");
-    const bookId = item.dataset.bookId; // Đảm bảo thêm thuộc tính data-book-id vào HTML
-    const orderId = item.dataset.orderId; // Đảm bảo thêm thuộc tính data-order-id vào HTML
+            const decrementButton = item.querySelector(".btn-decrement");
+            const incrementButton = item.querySelector(".btn-increment");
+            const quantityInput = item.querySelector(".quantity-input");
+            const bookId = item.dataset.bookId; // Đảm bảo thêm thuộc tính data-book-id vào HTML
+            const orderId = item.dataset.orderId; // Đảm bảo thêm thuộc tính data-order-id vào HTML
 
-    const updateQuantity = (newQuantity) => {
-        fetch('/booknest_website/cartController/updateQuantity', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                order_id: orderId,
-                book_id: bookId,
-                quantity: newQuantity,
-            }),
-        })
-        .then((response) => response.json())  // Chuyển dữ liệu trả về thành JSON
-        .then((data) => {
-            console.log("Dữ liệu trả về từ server:", data);  // Kiểm tra dữ liệu
-            if (data.success) {
-                console.log("Cập nhật số lượng thành công!");
-            } else {
-                // alert("Có lỗi xảy ra khi cập nhật số lượng: " + data.message);
-            }
-        })
-        .catch((error) => {
-            console.error("Lỗi:", error);
-            // alert("Có lỗi khi cập nhật số lượng.");
+            const updateQuantity = (newQuantity) => {
+                fetch('/booknest_website/cartController/updateQuantity', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        order_id: orderId,
+                        book_id: bookId,
+                        quantity: newQuantity,
+                    }),
+                })
+                .then((response) => response.json())  // Chuyển dữ liệu trả về thành JSON
+                .then((data) => {
+                    console.log("Dữ liệu trả về từ server:", data);  // Kiểm tra dữ liệu
+                    if (data.success) {
+                        console.log("Cập nhật số lượng thành công!");
+                    } else {
+                        // alert("Có lỗi xảy ra khi cập nhật số lượng: " + data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Lỗi:", error);
+                    // alert("Có lỗi khi cập nhật số lượng.");
+                });
+            };
+
+            decrementButton.addEventListener("click", () => {
+                let quantity = parseInt(quantityInput.textContent || quantityInput.value);
+                if (quantity > 1) {
+                    quantity--;
+                    quantityInput.textContent = quantity;
+                    updateQuantity(quantity); // Gọi hàm cập nhật số lượng
+                }
+            });
+
+            incrementButton.addEventListener("click", () => {
+                let quantity = parseInt(quantityInput.textContent || quantityInput.value);
+                quantity++;
+                quantityInput.textContent = quantity;
+                updateQuantity(quantity); // Gọi hàm cập nhật số lượng
+            });
         });
-    };
-
-    decrementButton.addEventListener("click", () => {
-        console.log("Giam");
-        let quantity = parseInt(quantityInput.textContent || quantityInput.value);
-        if (quantity > 1) {
-            quantity--;
-            quantityInput.textContent = quantity;
-            updateQuantity(quantity); // Gọi hàm cập nhật số lượng
-        }
-    });
-
-    incrementButton.addEventListener("click", () => {
-        console.log("Tang");
-        let quantity = parseInt(quantityInput.textContent || quantityInput.value);
-        quantity++;
-        quantityInput.textContent = quantity;
-        updateQuantity(quantity); // Gọi hàm cập nhật số lượng
-    });
-});
 
     </script>
 </body>

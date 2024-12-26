@@ -194,6 +194,7 @@ class cartController extends DController {
     public function deleteItemFromCart() {
         session_start();
         $cartModel = $this->load->model('cartModel');
+        $orderModel = $this->load->model('orderModel');
         $table_order_items = 'order_items';
 
         $id = $_GET['order_item_id'];
@@ -202,6 +203,16 @@ class cartController extends DController {
 
 
         $result = $cartModel->deleteItemFromCart($table_order_items, $condition);
+        $table_orders = 'orders';
+        $order_id = $_GET['order_id'];
+        $condition = "$table_orders.order_id = '$order_id'";
+
+        $total_price = $orderModel->calculateTotalPrice($table_order_items, $order_id);
+
+        $data = array(
+            'total_price' => $total_price[0]['total_price']
+        );
+        $orderModel->updateOrderSummary($table_orders, $data, $condition);
         
         if ($result == 1) {
             $_SESSION['flash_message'] = [
