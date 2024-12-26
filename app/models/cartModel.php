@@ -18,9 +18,11 @@ class cartModel extends DModel {
                     books.title,
                     books.price,
                     order_items.quantity,
+                    order_items.order_item_id,
                     (books.price * order_items.quantity) AS total_price_per_item,
                     images.path AS image_path,
-                    orders.total_price
+                    orders.total_price,
+                    orders.order_id
                 FROM 
                     orders
                 JOIN 
@@ -47,4 +49,16 @@ class cartModel extends DModel {
         return $this->db->insertCart($table_orders, $data);
     }
 
+    public function updateQuantity($table_order_items, $data, $condition) {
+        try {
+            return $this->db->update($table_order_items, $data, $condition);
+        } catch (Exception $e) {
+            return false;  // Trả về false nếu có lỗi
+        }
+    }
+
+    public function deleteItemFromCart($table_order_items, $condition) {
+        return $this->db->delete($table_order_items, $condition);
+    }
+    
 }

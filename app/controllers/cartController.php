@@ -22,7 +22,6 @@ class cartController extends DController {
         $this->load->view('cart', $data);
     }
 
-
     public function addToCart() {
         session_start();
         $cartModel = $this->load->model('cartModel');
@@ -164,4 +163,58 @@ class cartController extends DController {
         exit();
     }
     
+    public function updateQuantity() {
+        $data = json_decode(file_get_contents("php://input"), true);
+    
+        $order_id = $data['order_id'];
+        $book_id = $data['book_id'];
+        $quantity = $data['quantity'];
+    
+        $cartModel = $this->load->model('cartModel');
+    
+        $table_order_items = 'order_items';
+        $condition = "order_items.order_id = $order_id AND order_items.book_id = $book_id";
+    
+        $dataToUpdate = array(
+            'quantity' => $quantity
+        );
+    
+        // Gọi phương thức update
+        $result = $cartModel->updateQuantity($table_order_items, $dataToUpdate, $condition);
+    
+        // Nếu update thành công, trả về success
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            // Nếu thất bại, trả về lỗi
+            echo json_encode(['success' => false, 'message' => 'Không thể cập nhật số lượng.']);
+        }
+    }
+
+    public function deleteItemFromCart() {
+        session_start();
+        $cartModel = $this->load->model('cartModel');
+        $table_order_items = 'order_items';
+
+        $id = $_GET['order_item_id'];
+
+        $condition ="order_item_id = $id";
+
+
+        $result = $cartModel->deleteItemFromCart($table_order_items, $condition);
+        
+        if ($result == 1) {
+            $_SESSION['flash_message'] = [
+                'type' => 'success',
+                'message' => 'Đã xoá sản phẩm khỏi giỏ hàng!'
+            ];
+        } else {
+            $_SESSION['flash_message'] = [
+                'type' => 'error',
+                'message' => 'Xoá sản phẩm thất bại!'
+            ];
+        }
+        header('Location: /booknest_website/cartController/ViewCart');
+        exit();
+    }
 }
