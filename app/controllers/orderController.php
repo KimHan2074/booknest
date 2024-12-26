@@ -1,4 +1,5 @@
 <?php
+require 'success_payment.php';
 class orderController extends DController {
     public function __construct() {
         parent::__construct();
@@ -72,7 +73,7 @@ class orderController extends DController {
             }
 
             // Chuyển hướng đến trang payment_success sau khi thanh toán thành công
-            header("Location: /booknest_website/orderController/orderSuccess");
+            header("Location: /booknest_website/orderController/showBookOrder");
             exit();
         }
 
@@ -99,7 +100,24 @@ class orderController extends DController {
         if (empty($data['bookInOrder'])) {
             die("Không có đơn hàng nào.");
         }
-    
+
+        $bookInOrderDetails= $orderModel->getAllBookInOrderDetails($table_orders, $userId);
+
+        $infoCustomer = $orderModel->getInfoCustomer($table_orders, $userId);
+
+        $email = $infoCustomer[0]['email'];
+        $userName = $infoCustomer[0]['username'];
+        $totalPayment = $infoCustomer[0]['total_price'];
+        $deliveryAddress = $infoCustomer[0]['address_delivery'] ;
+
+        if (sendConfirmationEmail($email, $bookInOrderDetails, $userName, $totalPayment, $deliveryAddress)) {
+            echo "Check your email!";
+            // header("Location: /booknest_website");
+            // exit();
+        } else {
+            echo "Failed to send confirm.";
+        }
+
         $this->load->view('payment_success', $data);
     }
 }
