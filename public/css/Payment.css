@@ -144,7 +144,6 @@ body {
 /* Main Content */
 .main-content {
   display: flex;
-  margin-top: 60px;
   margin-left: 40px;
 }
 
@@ -194,6 +193,15 @@ body {
 
 .order-btn:hover {
   background-color:rgb(151, 64, 64);
+}
+
+.bankTransferInfo{
+  margin-left: 40px;
+}
+
+.qrCode{
+  width: 120px;
+  height: 120px;
 }
 
 /* Order Summary */
