@@ -49,12 +49,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const addToCartButton = document.getElementById("add-to-cart");
+    const buyNowButton = document.getElementById("buy-now-btn");
     const bookId = addToCartButton.dataset.bookId;
 
 
     addToCartButton.addEventListener("click", function () {
         const quantity = parseInt(quantityInput.textContent);
         const url = `/booknest_website/cartController/addToCart?book_id=${bookId}&quantity=${quantity}`;
+        console.log(url);
+        window.location.href = url;
+    });
+
+    // Xử lý sự kiện khi nhấn "Buy Now"
+    buyNowButton.addEventListener("click", function () {
+        const quantity = parseInt(quantityInput.textContent);
+        const url = `/booknest_website/paymentController/viewPayment?book_id=${bookId}&quantity=${quantity}`;
         console.log(url);
         window.location.href = url;
     });

@@ -79,7 +79,7 @@
                     <!-- nút bấm -->
                     <div class="button-wrapper">
                         <a href="javascript:void(0);" id="add-to-cart" class="btn add-to-cart" data-book-id="<?php echo $value['book_id']; ?>">Add to cart</a>
-                        <button class="btn buy-now">Buy now</button>
+                        <a href="javascript:void(0);" id="buy-now-btn" class="btn add-to-cart" data-book-id="<?php echo $value['book_id']; ?>">Buy now</a>
                     </div>
                     <div class="description">
                         <ul>
