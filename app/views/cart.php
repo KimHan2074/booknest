@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giỏ hàng</title>
+    <title>Your Cart</title>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../public/css/homepage.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -136,12 +136,12 @@
             background-color: #7d5240;
             transform: scale(1.05);
         }
-
+/* 
         #cart td:nth-child(2),
         #cart td:nth-child(4),
         #cart td:nth-child(1) {
             vertical-align: baseline;
-        }
+        } */
 
     .quantity-wrapper {
         display: flex;
@@ -202,25 +202,25 @@
 <body>
     <!-- Header -->
     <header class="header">
-    <div class="logo-brand">
-        <img src="../public/img/image.png" alt="BookNest Logo" class="logo">
-        <h1 class="brand-name"><a href="/booknest_website/">BookNest</a></h1>
-    </div>
-    <ul class="navigation">
-        <li class="nav-link active"><a href="/booknest_website/">Home</a></li>
-        <li class="nav-link"><a href="#">Search</a></li>
-    </ul>
-    <div class="right-header">
-        <?php if (isset($_SESSION['is_logged_in'])): ?>
-            <div class="iconCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></div>
-            <div class="iconUser"><i class="fa-solid fa-user icon-user"></i></div>
-            <div class="username"><?php echo $_SESSION['current_user']['username'] ?></div>
-            <div class="sign-up"><a href="<?php echo BASE_URL; ?>userController/logout">Log Out</a></div>
-        <?php else: ?>
-            <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/registerForm">Sign up</a></button>
-            <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/loginForm">Log In</a></button>
-        <?php endif; ?>
-    </div>
+        <div class="logo-brand">
+            <img src="../public/img/image.png" alt="BookNest Logo" class="logo">
+            <h1 class="brand-name"><a href="/booknest_website/">BookNest</a></h1>
+        </div>
+        <ul class="navigation">
+            <li class="nav-link active"><a href="/booknest_website/">Home</a></li>
+            <li class="nav-link"><a href="#">Search</a></li>
+        </ul>
+        <div class="right-header">
+            <?php if (isset($_SESSION['is_logged_in'])): ?>
+                <div class="iconCart"><a href="<?php echo BASE_URL; ?>cartController/viewCart"><i class="fa-solid fa-cart-shopping icon-cart"></i></a></div>
+                <div class="iconUser"><a href="<?php echo BASE_URL; ?>userController/userProfile"><i class="fa-solid fa-user icon-user"></i></a></div>
+                <div class="username"><?php echo $_SESSION['current_user']['username'] ?></div>
+                <div class="sign-up"><a href="<?php echo BASE_URL; ?>userController/logout">Log Out</a></div>
+            <?php else: ?>
+                <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/registerForm">Sign up</a></button>
+                <button class="sign-up"><a href="<?php echo BASE_URL; ?>userController/loginForm">Log In</a></button>
+            <?php endif; ?>
+        </div>
     </header>
     <!-- body -->
     <div class="cart-wrapper">
