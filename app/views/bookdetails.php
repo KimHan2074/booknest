@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	@@ -15,27 +16,27 @@
+
 </head>
 
 <body>
@@ -32,7 +32,7 @@
     <div class="book-details-container">
         <div class="images-details-wrapper">
             <!-- Hình ảnh sách -->
-	@@ -60,7 +61,7 @@
+
             <!-- Chi tiết sách -->
             <div class="details-wrapper">
                 <?php foreach ($bookById as $key => $value) { ?>
@@ -40,7 +40,7 @@
                     <div class="title"><?php echo $value['title'] ?></div>
                     <div class="price-quantity-wrapper">
                         <div class="price">
-	@@ -79,7 +80,7 @@
+
                     <!-- nút bấm -->
                     <div class="button-wrapper">
                         <a href="javascript:void(0);" id="add-to-cart" class="btn add-to-cart" data-book-id="<?php echo $value['book_id']; ?>">Add to cart</a>
