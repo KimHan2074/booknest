@@ -52,13 +52,10 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             <div class="order-detail">
               <div class="orderProduct-name">Crow Dream Ac Nu</div>
               <div class="quantity">
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="number_subtraction" id="number_subtraction">-</button>
-                <input class="input_sl" id="input_sl-${item.id}" type="number" value="1" min="1" />
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="number_addition" id="number_addition">+</button>
+              <input class="input_sl" id="input_sl-1" type="number" value="1" min="1" readonly />
               </div>
             </div>
             <p class="price">145.000đ</p>
-            <i class="fa-regular fa-trash-can"></i>
           </li>
 
           <li>
@@ -66,13 +63,10 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
             <div class="order-detail">
               <div class="orderProduct-name">Crow Dream book 2 ...</div>
               <div class="quantity">
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="number_subtraction" id="number_subtraction">-</button>
-                <input class="input_sl" id="input_sl-${item.id}" type="number" value="1" min="1" />
-                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="number_addition" id="number_addition">+</button>
+              <input class="input_sl" id="input_sl-1" type="number" value="1" min="1" readonly />
               </div>
             </div>
             <p class="price">145.000đ</p>
-            <i class="fa-regular fa-trash-can"></i>
           </li> 
         </ul>
         <hr>
