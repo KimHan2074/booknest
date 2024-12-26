@@ -47,19 +47,11 @@ function sendConfirmationEmail($toEmail, $bookInOrderDetails, $userName, $totalP
                     padding: 0;
                 }
                 .email-container {
-                    max-width: 800px;
                     margin: 20px auto;
                     padding: 20px;
                     background-color: #ffffff;
                     border-radius: 10px;
                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                }
-                .email-header {
-                    font-size: 28px;
-                    color:rgb(99, 32, 10);
-                    text-align: center;
-                    margin-bottom: 20px;
-                    font-weight: bold;
                 }
                 .order-details table {
                     width: 100%;
@@ -78,8 +70,7 @@ function sendConfirmationEmail($toEmail, $bookInOrderDetails, $userName, $totalP
         </head>
         <body>
             <div class='email-container'>
-                <div class='email-header'>Order Confirmation</div>
-                <div class='email-body'>
+                <div class='email-content'>
                     <p>Hello <strong>{$userName}</strong>,</p>
                     <p>Thank you for your order at BookNest!</p>
                     <p>Here are the details of your order:</p>
