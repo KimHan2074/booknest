@@ -17,7 +17,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../public/css/Payment.css">
+    <link rel="stylesheet" href="../public/css/Payment.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -58,7 +58,10 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
       </div>
     </header>
 
-
+    <?php if (empty($user_cart) || count($user_cart) < 1): ?>
+      <p>Không có sản phẩm nào trong giỏ hàng.</p>
+    <?php else: ?>
+      
       <main class="main-content">
         <section class="delivery-form">
           <h2 class="title-content">Delivery Information</h2>
@@ -93,7 +96,12 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
               <img class="qrCode" src="<?php echo $bankTransferInfo['qrFilePath']; ?>" alt="QR Code thanh toán">
             </div>
 
-            
+            <?php foreach ($user_cart as $key => $item): ?>
+              <div>
+                <input type="hidden" name="products[<?php echo $key; ?>][book_id]" value="<?php echo $item['book']['book_id']; ?>">
+                <input type="hidden" name="products[<?php echo $key; ?>][quantity]" value="<?php echo $item['quantity']; ?>">
+              </div>
+            <?php endforeach; ?>
             <input type="hidden" name="total_price" value="<?php echo $total_price; ?>">
 
             <div class="btn">
@@ -105,7 +113,10 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
 
         <section class="order-summary">
           <ul class="items-list">
-            
+            <?php
+            foreach ($user_cart as $key => $value) {
+              $book = $value['book']
+            ?>
               <li>
                 <img src="../public/img/<?php echo $book['image_path']; ?>" alt="Glow Cream" class="img-product">
                 <div class="order-detail">
@@ -117,7 +128,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                 <p class="price"><?php echo number_format($book['price'], 0, '', '.') . 'đ'; ?></p>
               </li>
             <?php
-
+            }
             ?>
           </ul>
           <hr>
@@ -127,7 +138,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
           </div>
         </section>
       </main>
-
+    <?php endif; ?>
 
     <div class="footer">
       <div class="columns">
