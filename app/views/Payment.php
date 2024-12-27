@@ -58,10 +58,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
       </div>
     </header>
 
-    <?php if (empty($user_cart) || count($user_cart) < 1): ?>
-      <p>Không có sản phẩm nào trong giỏ hàng.</p>
-    <?php else: ?>
-      
+
       <main class="main-content">
         <section class="delivery-form">
           <h2 class="title-content">Delivery Information</h2>
@@ -96,12 +93,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
               <img class="qrCode" src="<?php echo $bankTransferInfo['qrFilePath']; ?>" alt="QR Code thanh toán">
             </div>
 
-            <?php foreach ($user_cart as $key => $item): ?>
-              <div>
-                <input type="hidden" name="products[<?php echo $key; ?>][book_id]" value="<?php echo $item['book']['book_id']; ?>">
-                <input type="hidden" name="products[<?php echo $key; ?>][quantity]" value="<?php echo $item['quantity']; ?>">
-              </div>
-            <?php endforeach; ?>
+            
             <input type="hidden" name="total_price" value="<?php echo $total_price; ?>">
 
             <div class="btn">
@@ -113,10 +105,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
 
         <section class="order-summary">
           <ul class="items-list">
-            <?php
-            foreach ($user_cart as $key => $value) {
-              $book = $value['book']
-            ?>
+            
               <li>
                 <img src="../public/img/<?php echo $book['image_path']; ?>" alt="Glow Cream" class="img-product">
                 <div class="order-detail">
@@ -128,7 +117,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
                 <p class="price"><?php echo number_format($book['price'], 0, '', '.') . 'đ'; ?></p>
               </li>
             <?php
-            }
+
             ?>
           </ul>
           <hr>
@@ -138,7 +127,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
           </div>
         </section>
       </main>
-    <?php endif; ?>
+
 
     <div class="footer">
       <div class="columns">
