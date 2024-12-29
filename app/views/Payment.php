@@ -65,7 +65,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
       <main class="main-content">
         <section class="delivery-form">
           <h2 class="title-content">Delivery Information</h2>
-          <form id="paymentForm" class="paymentForm" action="/booknest_website/orderController/showPaymentInfo" method="POST">
+          <form id="paymentForm" class="paymentForm" method="POST" action="/booknest_website/paymentController/proccessPaymentFromCart">
             <input class="input-address" name="inputAddress" type="text" placeholder="Add new address..." required>
             <input class="input-name" name="inputName" type="text" value="<?php echo $_SESSION['current_user']['username']; ?>" placeholder="Enter your name" required>
             <input class="input-phone" name="inputPhone" type="tel" value="<?php echo $_SESSION['current_user']['phone']; ?>" placeholder="Enter your phone" required>
@@ -98,7 +98,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
 
             <?php foreach ($user_cart as $key => $item): ?>
               <div>
-                <input type="hidden" name="products[<?php echo $key; ?>][book_id]" value="<?php echo $item['book']['book_id']; ?>">
+                <input type="hidden" name="products[<?php echo $key; ?>][book_id]" value="<?php echo $item['book_id']; ?>">
                 <input type="hidden" name="products[<?php echo $key; ?>][quantity]" value="<?php echo $item['quantity']; ?>">
               </div>
             <?php endforeach; ?>
@@ -115,7 +115,7 @@ $is_logged_in = isset($_SESSION['current']) && !empty($_SESSION['current']);
           <ul class="items-list">
             <?php
             foreach ($user_cart as $key => $value) {
-              $book = $value['book']
+              $book = $value
             ?>
               <li>
                 <img src="../public/img/<?php echo $book['image_path']; ?>" alt="Glow Cream" class="img-product">

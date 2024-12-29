@@ -61,9 +61,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Xử lý sự kiện khi nhấn "Buy Now"
+
+    // Lấy bookId từ URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const book_Id = urlParams.get('book_id');
+
+    // Kiểm tra nếu bookId tồn tại
+    if (book_Id) {
+        console.log("Book ID:", book_Id);  // In ra bookId trong console để kiểm tra
+    } else {
+        console.log("Không có bookId trong URL.");
+    }
     buyNowButton.addEventListener("click", function () {
-        const quantity = parseInt(quantityInput.textContent);
-        const url = `/booknest_website/paymentController/viewPayment?book_id=${bookId}&quantity=${quantity}`;
+        const url = `/booknest_website/payment1Controller/processPaymentFromBookDetails?book_id=${book_Id}`;
         console.log(url);
         window.location.href = url;
     });
